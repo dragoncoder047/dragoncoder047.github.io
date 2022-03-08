@@ -1,0 +1,336 @@
+@import url('prism.css');
+@import url('scrollbar.css');
+@import url('inputs.css');
+@import url('tabs.css');
+@import url('tasklist.css');
+@import url('files.css');
+@import url('fonts.css');
+@import url('nav.css');
+:root {
+    --color-bg: #0a0a0a;
+    --color-fg: #eee;
+    --black: black;
+    --white: white;
+    --lightgray: #888;
+    --darkgray: #444;
+    --theme-1-darker: #505;
+    --theme-1: purple;
+    --theme-1-lighter: #a0a;
+    --theme-1-lightest: magenta;
+    --theme-2-darker: #039;
+    --theme-2: #06f;
+    --theme-3: gold;
+    --theme-3-darker: darkorange;
+    --theme-4: lime;
+    --theme-4-darker: green;
+    --color-heading: var(--theme-2);
+    --color-link: var(--theme-2);
+    --color-link-visited: var(--theme-1);
+    --color-open-tab: var(--theme-3);
+    --color-footer: var(--darkgray);
+    --font-heading: "Nova Square", sans-serif;
+    --font-body: sans-serif;
+    --font-code: "Ubuntu Mono", monospace;
+}
+
+@media print {
+     :root {
+        --theme-1-darker: purple;
+        --theme-1: #a0a;
+        --theme-1-lighter: magenta;
+        --theme-1-lightest: #f5f;
+        --color-bg: white;
+        --color-fg: #0a0a0a;
+        --theme-2-darker: #06f;
+        --theme-2: blue;
+        --theme-3: goldenrod;
+        --theme-4: green;
+        --theme-4-darker: lime;
+        --black: white;
+        --white: black;
+        --lightgray: #444;
+        --darkgray: #888;
+    }
+}
+
+
+/* @media screen and (prefers-color-scheme: light) {
+     :root {
+        --theme-1-darker: purple;
+        --theme-1: #a0a;
+        --theme-1-lighter: magenta;
+        --theme-1-lightest: #f5f;
+        --color-bg: white;
+        --color-fg: #0a0a0a;
+        --theme-2: blue;
+        --theme-3: goldenrod;
+        --black: white;
+        --white: black;
+        --lightgray: #444;
+        --darkgray: #888;
+    }
+} */
+
+html {
+    font-size: 1em;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    margin: 0;
+}
+
+header,
+footer {
+    text-align: left;
+    width: 100%;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px dashed gray;
+    background: var(--color-bg);
+    padding-bottom: 10px;
+    z-index: 99999999;
+    display: flex;
+    flex-direction: row;
+    padding: 0.2em;
+}
+
+#sitename-text {
+    display: flex;
+    flex-direction: column;
+}
+
+#sitename-text h1, #sitename-text h2 {
+    font-size: 1.5em;
+    color: var(--theme-1);
+    padding-left: 0.5em;
+}
+
+#sitename-text h2 {
+    font-size: 1em;
+}
+
+main {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1em;
+    line-height: 1.2em; /* 1.15em, although standard, is a little too tight */
+}
+
+footer {
+    color: var(--color-footer);
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+}
+
+h1 {
+    text-align: center;
+}
+
+blockquote {
+    margin-left: 1em;
+    padding-left: 0.25em;
+    border-left: 3px dotted gray;
+}
+
+.post-info {
+    font-style: italic;
+    border: 1px solid gray;
+    padding: 1em;
+    font-size: 70%;
+}
+
+#extras {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid gray;
+    font-style: italic;
+    font-size: 70%;
+}
+
+#extras div,
+#extras ul {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#extras li {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none!important;
+    padding: 0.25em;
+}
+
+
+/* basic links */
+
+a {
+    color: var(--color-link);
+}
+
+a[href^="http"]::after {
+    font-family: Icons;
+    content: "open_in_new";
+    color: var(--theme-3-darker);
+}
+
+footer a,
+footer a:visited,
+footer a::after {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:visited {
+    color: var(--color-link-visited);
+}
+
+
+/* code */
+
+pre,
+code {
+    font-family: var(--font-code);
+    size: 16px;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: var(--black);
+}
+
+pre {
+    padding: 0.5em;
+    border-radius: 10px;
+    border: 1px solid var(--theme-3-darker);
+}
+
+code {
+    border-bottom: 1px dotted var(--theme-3-darker);
+}
+
+pre code {
+    border: none;
+}
+
+
+/* tables */
+
+table {
+    width: 100%;
+}
+
+table,
+thead,
+tbody,
+th,
+tr,
+td {
+    border-collapse: collapse;
+    border: 1px solid gray;
+    padding: 2px;
+}
+
+thead {
+    position: sticky;
+    background: var(--color-bg);
+    border: 1px solid gray;
+}
+
+th {
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+
+/* callout boxes */
+
+details,
+div.admonition {
+    padding: 10px;
+    margin: 1em;
+    background-color: var(--black);
+    border-radius: 10px;
+    border: 2px solid gray;
+}
+
+details.danger,
+div.admonition.danger {
+    border-color: red;
+}
+
+details.info,
+div.admonition.info {
+    border-color: blue;
+}
+
+details.warning,
+div.admonition.warning {
+    border-color: yellow;
+}
+
+p.admonition-title {
+    font-weight: bold;
+}
+
+
+/* definition lists */
+
+dl dt {
+    margin-top: 0.75em;
+}
+
+dd+dd {
+    margin-top: 0.5em;
+}
+
+
+/* strikeout */
+
+del {
+    text-decoration: line-through;
+    opacity: 50%;
+}
+
+
+/* some helper classes */
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* clean up */
+
+::selection {
+    color: black;
+    background-color: #ff07;
+}
