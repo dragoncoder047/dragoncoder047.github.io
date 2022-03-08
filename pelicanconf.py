@@ -134,7 +134,7 @@ MARKDOWN = {
 PLUGINS = [
     # 'seo',
     'pelican.plugins.share_post',
-    'sitemap',
+    # 'sitemap',
     'pelican.plugins.related_posts',
     'minchin.pelican.plugins.nojekyll',
     'pelican.plugins.read_more',

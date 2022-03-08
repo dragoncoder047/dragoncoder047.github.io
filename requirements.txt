@@ -1,7 +1,7 @@
 pelican
 pelican-seo
 pelican-share-post
-pelican-sitemap
+#pelican-sitemap
 pelican-related-posts
 pymdown-extensions
 markdown-figcap
