@@ -36,6 +36,8 @@ AUTHOR_FEED_RSS = None
 
 SEO_REPORT = True
 
+DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = False
+
 # Blogroll
 LINKS = (
     ('Conwaylife', 'https://www.conwaylife.com/'),
