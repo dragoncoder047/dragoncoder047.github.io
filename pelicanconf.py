@@ -21,13 +21,13 @@ THEME_STATIC_DIR = 'static/'
 USE_FOLDER_AS_CATEGORY = False
 
 PATH = 'content'
-OUTPUT_PATH = 'output/'
+OUTPUT_PATH = 'docs/'
 
 TIMEZONE = 'America/New_York'
 
 DEFAULT_LANG = 'en_US'
 
-# Feed generation is usually not desired when developing
+# maybe later...
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
