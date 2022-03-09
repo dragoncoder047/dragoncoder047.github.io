@@ -20,8 +20,8 @@ THEME_CSS_FILE = '/static/css/main.css'
 THEME_STATIC_DIR = 'static/'
 USE_FOLDER_AS_CATEGORY = False
 
-PATH = 'content'
-OUTPUT_PATH = 'docs/'
+PATH = 'aaaa/'
+OUTPUT_PATH = './'
 
 TIMEZONE = 'America/New_York'
 
@@ -144,3 +144,7 @@ PLUGINS = [
     'series',
     'pelican.plugins.more_categories'
 ]
+
+if __name__ == '__main__':
+    import os
+    os.system(f'pelican {PATH} -o {OUTPUT_PATH} -s {__file__}')
