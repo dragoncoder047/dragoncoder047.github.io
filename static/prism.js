@@ -6721,6 +6721,7 @@ Prism.languages.nb = Prism.languages.wolfram;
 		"pbfasm": "PureBasic",
 		"purs": "PureScript",
 		"py": "Python",
+        "py3": "Python 3",
 		"qsharp": "Q#",
 		"qs": "Q#",
 		"q": "Q (kdb+ database)",
