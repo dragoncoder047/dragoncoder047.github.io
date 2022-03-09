@@ -29,8 +29,3 @@ def bar():
 # easy recursion error
 bar()
 ```
-
-```lifeviewer
-x = 31, y = 1, rule = WireWorld
-A30C!
-```

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>dragoncoder047&rsquo;s site - (!!DRAFT!!) testing</title>
+                <title>dragoncoder047&rsquo;s site - (!!DRAFT!!) LifeViewer test</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,15 +11,15 @@
 
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
-    <meta property="og:title" content="dragoncoder047&rsquo;s site - testing" />
-    <meta property="og:description" content="$f(x,y)=\lambda x\lambda y$ aaaa, bbbbbbb This is text Something Else No dot def foo(): bar() def bar(): foo() # easy recursion error bar()" />
+    <meta property="og:title" content="dragoncoder047&rsquo;s site - LifeViewer test" />
+    <meta property="og:description" content="x = 13, y = 5, rule = Bliptile 3CA9C$C2.B8.C$C2.10C$C2.2C$4C! Lifeviewer requests .rule files at /wiki/Rule:%s (where %s is the rule) so it will work on https://conwaylife.com okay. But https://dragoncoder047.github.io/wiki/ will probably never exist, so something needs …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="page" />
-    <meta property="og:url" content="https://dragoncoder047.github.io/drafts/pages/testing.html" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/drafts/pages/lifeviewer-test.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="dragoncoder047&rsquo;s site - testing" />
-    <meta name="twitter:description" content="$f(x,y)=\lambda x\lambda y$ aaaa, bbbbbbb This is text Something Else No dot def foo(): bar() def bar(): foo() # easy recursion error bar()" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s site - LifeViewer test" />
+    <meta name="twitter:description" content="x = 13, y = 5, rule = Bliptile 3CA9C$C2.B8.C$C2.10C$C2.2C$4C! Lifeviewer requests .rule files at /wiki/Rule:%s (where %s is the rule) so it will work on https://conwaylife.com okay. But https://dragoncoder047.github.io/wiki/ will probably never exist, so something needs …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
 <script src="/static/prism.js"></script>        <!-- /PrismJS -->
@@ -44,6 +44,15 @@
         );
     });
 </script>        <!-- /Katex -->
+        <!-- Lifeviewer -->
+<meta name="LifeViewer" content="lifeviewer textarea" />
+<script src="/static/lv-plugin.js"></script>
+<style>
+.lifeviewer textarea {
+	position: absolute;
+	top: -1000px;
+}
+</style>        <!-- /Lifeviewer -->
 
     </head>
 
@@ -60,26 +69,13 @@
             </nav>
         </header>
         <main>
-    <h1>testing</h1>
+    <h1>LifeViewer test</h1>
     
 
 
-    <p><img src="https://kroki.io/svgbob/svg/eNrT1QUDPa4aEFBQqNHV1dLN1_XXtdPV5oLI6aor6MKANkQdCqkNArpaAJ8ZEuE=" /></p>
-<p>$f(x,y)=\lambda x\lambda y$</p>
-<p>aaaa, bbbbbbb This is text</p>
-<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled/> Something</li>
-<li class="task-list-item"><input type="checkbox" disabled checked/> Else</li>
-<li>No dot</li>
-</ul>
-<pre class="highlight"><code class="language-py3">def foo():
-    bar()
-
-def bar():
-    foo()
-
-# easy recursion error
-bar()</code></pre>
+    <div class="lifeviewer"><textarea>x = 13, y = 5, rule = Bliptile
+3CA9C$C2.B8.C$C2.10C$C2.2C$4C!</textarea><canvas height="400" width="600"></canvas></div>
+<p>Lifeviewer requests <code>.rule</code> files at <code>/wiki/Rule:%s</code> (where <code>%s</code> is the rule) so it will work on <a href="https://conwaylife.com">https://conwaylife.com</a> okay. But <a href="https://dragoncoder047.github.io/wiki/">https://dragoncoder047.github.io/wiki/</a> will probably never exist, so something needs to be fixed for LifeViewer to work here.</p>
             <section id="extras">
                     <div class="blogroll">
                         <ul>
