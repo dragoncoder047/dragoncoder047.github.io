@@ -51,7 +51,7 @@ SOCIAL = (
 )
 
 MENUITEMS = (
-    ('Archives', f'/archives.html'),
+#    ('Archives', f'/archives.html'),
 )
 
 DEFAULT_PAGINATION = 10
@@ -149,3 +149,6 @@ PLUGINS = [
 if __name__ == '__main__':
     import os
     os.system(f'pelican {PATH} -o {OUTPUT_PATH} -s {__file__}')
+    files_to_remove = ['authors.html', 'categories.html', 'tags.html', 'archives.html']
+    for f in files_to_remove:
+        os.system(f'rm {f}')
