@@ -2,9 +2,9 @@ Title: testing
 Status: draft
 
 ```{.kroki type="svgbob"}
--------\
+-------.
 |||||  |--*-o-O->-+
--------/ ---------+
+-------' ---------+
 |||||
 |||||
 |||||
@@ -25,6 +25,12 @@ def foo():
 
 def bar():
     foo()
+
 # easy recursion error
 bar()
+```
+
+```lifeviewer
+x = 31, y = 1, rule = WireWorld
+A30C!
 ```
