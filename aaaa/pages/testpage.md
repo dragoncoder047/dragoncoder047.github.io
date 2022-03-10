@@ -13,7 +13,7 @@ Status: draft
 
 $f(x,y)=\lambda x\lambda y$
 
-`:::latex $f(x,y)=\lambda x\lambda y$`
+`:::latex f(x,y)=\lambda x\lambda y`
 
 aaaa, bbbbbbb This is text
 
