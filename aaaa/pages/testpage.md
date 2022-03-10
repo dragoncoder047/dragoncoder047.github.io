@@ -13,6 +13,8 @@ Status: draft
 
 $f(x,y)=\lambda x\lambda y$
 
+`:::latex $f(x,y)=\lambda x\lambda y$`
+
 aaaa, bbbbbbb This is text
 
 * [ ] Something
@@ -28,4 +30,38 @@ def bar():
 
 # easy recursion error
 bar()
+```
+
+```js
+function r() {
+    let x = 0;
+    const aaaa = () => { x++; aaaa(); };
+    try { aaaa(); } catch(e) {}
+    return x;
+}
+```
+
+```lolcode
+HAI 1.3
+IM IN YR loop UPPIN YR var TIL BOTH SAEM var AN 10
+	VISIBLE SMOOSH var AN " " MKAY!
+IM OUTTA YR loop
+KTHXBYE
+```
+
+```markdown
+# Hello
+
+AAAA
+
+bbbb
+
+`code`
+
+* list
+* unordered
+
+1. an
+2. ordered
+3. list
 ```
