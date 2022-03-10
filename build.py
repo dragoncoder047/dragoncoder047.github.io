@@ -52,6 +52,10 @@ SOCIAL = (
 
 MENUITEMS = (
 #    ('Archives', f'/archives.html'),
+    ('Projects', '#', (
+        ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
+        ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste')
+    )),
 )
 
 DEFAULT_PAGINATION = 10
