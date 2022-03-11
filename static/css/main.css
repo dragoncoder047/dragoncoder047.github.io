@@ -91,7 +91,8 @@ footer {
 header {
     position: sticky;
     top: 0;
-    width: 100%;
+    width: 99%;
+    margin: none;
     border-bottom: 1px dashed gray;
     background: var(--color-bg);
     padding-bottom: 10px;
