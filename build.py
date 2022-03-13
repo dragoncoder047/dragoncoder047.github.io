@@ -17,7 +17,8 @@ LOGO_SIZE = (141, 85)
 LOGO_ALT = 'Patrick the purple dragon'
 ICON = '/images/patrick_head_silhouette.svg'
 ICON_MIMETYPE = 'image/svg+xml'
-THEME_CSS_FILE = '/static/css/main.css'
+THEME_CSS_FILE = '/static/css/theme.css'
+THEME_MAIN_CSS = '/static/css/main.css'
 THEME_STATIC_DIR = 'static/'
 USE_FOLDER_AS_CATEGORY = False
 
@@ -88,6 +89,9 @@ def kroki_fence(source, language, css_class, options, md, **kwargs):
         attr = f' width="{options["width"]}" height="{options["height"]}"'
     return f'<img src="https://kroki.io/{lang}/svg/{data}"{attr} />'
 
+def circuit_fence(source, language, css_class, options, md, **kwargs):
+    return '<span style="color: red; background: yellow;">TODO</span>'
+
 
 MARKDOWN = {
     'extension_configs': {
@@ -101,11 +105,11 @@ MARKDOWN = {
         'pymdownx.inlinehilite': {},
         "pymdownx.superfences": {
             "custom_fences": [
-                # {
-                #     'name': 'mermaid',
-                #     'class': 'mermaid',
-                #     'format': pymdownx.superfences.fence_div_format
-                # }, # covered by kroki
+                {
+                    'name': 'mermaid',
+                    'class': 'mermaid',
+                    'format': pymdownx.superfences.fence_div_format
+                }, # covered by kroki, but needed for compatibility with github
                 {
                     'name': 'lifeviewer',
                     'class': 'lifeviewer',
