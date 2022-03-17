@@ -1,3 +1,4 @@
+button,
 input:not([type=checkbox]),
 input:not([type=radio]) {
     background-color: var(--black);
