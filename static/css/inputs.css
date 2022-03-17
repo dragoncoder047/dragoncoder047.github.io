@@ -74,7 +74,7 @@ input[type=radio]::before {
     display: inline-block;
     vertical-align: sub;
     font-family: Icons;
-    font-size: 1.25rem;
+    font-size: inherit;
 }
 
 input[type=checkbox]:disabled:before,
@@ -100,7 +100,7 @@ input:not(.switch)[type=checkbox]:checked::before {
 }
 
 input.switch[type=checkbox]::before {
-    font-size: 2rem;
+    transform: scale(154%);
     padding: -0.5em;
 }
 
