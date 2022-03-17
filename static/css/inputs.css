@@ -22,6 +22,7 @@ input.indicate-validity:valid {
     color: lime;
 }
 
+button[disabled],
 input[readonly],
 input[disabled] {
     cursor: not-allowed;
