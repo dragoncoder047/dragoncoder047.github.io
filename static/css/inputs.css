@@ -75,8 +75,7 @@ input[type=radio]::before {
     display: inline-block;
     vertical-align: sub;
     font-family: Icons;
-    font-size: inherit;
-    transform: scale(2.2);
+    font-size: 1.2em;
     padding-left: 2px;
     padding-right: 2px;
 }
