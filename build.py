@@ -12,9 +12,7 @@ SITENAME = 'dragoncoder047&rsquo;s site'
 SITESUBTITLE = 'projects, ideas, and everything else'
 SITEURL = 'https://dragoncoder047.github.io'
 LOGO = '/images/patrick.svg'
-LOGO_MIMETYPE = 'image/svg+xml'
-LOGO_SIZE = (141, 85)
-LOGO_ALT = 'Patrick the purple dragon'
+LOGO_AREA_HTML = f'<a href="/"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2></div></div></a>'
 ICON = '/images/patrick_head_silhouette.svg'
 ICON_MIMETYPE = 'image/svg+xml'
 THEME_CSS_FILE = '/static/css/theme.css'
@@ -54,7 +52,7 @@ SOCIAL = (
 )
 
 MENUITEMS = (
-    #    ('Archives', f'/archives.html'),
+    #('Archives', f'/archives.html'),
     ('Projects', '#', (
         ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste')
