@@ -6,7 +6,6 @@
 @import url('files.css');
 @import url('fonts.css');
 @import url('nav.css');
-
 html {
     font-size: 1em;
 }
@@ -43,7 +42,8 @@ header {
     flex-direction: column;
 }
 
-#sitename-text h1, #sitename-text h2 {
+#sitename-text h1,
+#sitename-text h2 {
     font-size: 1.5em;
     color: var(--theme-1);
     padding-left: 0.5em;
@@ -58,7 +58,8 @@ main {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 1em;
-    line-height: 1.2em; /* 1.15em, although standard, is a little too tight */
+    line-height: 1.2em;
+    /* 1.15em, although standard, is a little too tight */
 }
 
 footer {
@@ -122,7 +123,10 @@ a {
     color: var(--color-link);
 }
 
-a[href^="http"]::after {
+
+/* replace that with your domain */
+
+a[href^="http"]:not([href*="dragoncoder047.github.io"])::after {
     font-family: Icons;
     content: "open_in_new";
     color: var(--theme-3-darker);

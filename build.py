@@ -10,7 +10,7 @@ SITEURL = f'http://{BIND}:{PORT}'
 AUTHOR = 'dragoncoder047'
 SITENAME = 'dragoncoder047&rsquo;s site'
 SITESUBTITLE = 'projects, ideas, and everything else'
-SITEURL =  'https://dragoncoder047.github.io'
+SITEURL = 'https://dragoncoder047.github.io'
 LOGO = '/images/patrick.svg'
 LOGO_MIMETYPE = 'image/svg+xml'
 LOGO_SIZE = (141, 85)
@@ -39,6 +39,8 @@ AUTHOR_FEED_RSS = None
 SEO_REPORT = True
 
 DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = False
+AUTHOR_SAVE_AS = AUTHORS_SAVE_AS = TAG_SAVE_AS = TAGS_SAVE_AS = CATEGORY_SAVE_AS = CATEGORIES_SAVE_AS = ARCHIVES_SAVE_AS = ''
+FILENAME_METADATA = r'(?P<date>\d{4}-\d{2}-\d{2})_(?P<slug>.*)'
 
 # Blogroll
 LINKS = (
@@ -52,7 +54,7 @@ SOCIAL = (
 )
 
 MENUITEMS = (
-#    ('Archives', f'/archives.html'),
+    #    ('Archives', f'/archives.html'),
     ('Projects', '#', (
         ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste')
@@ -89,6 +91,7 @@ def kroki_fence(source, language, css_class, options, md, **kwargs):
         attr = f' width="{options["width"]}" height="{options["height"]}"'
     return f'<img src="https://kroki.io/{lang}/svg/{data}"{attr} />'
 
+
 def circuit_fence(source, language, css_class, options, md, **kwargs):
     return '<span style="color: red; background: yellow;">TODO</span>'
 
@@ -100,7 +103,7 @@ MARKDOWN = {
         'pymdownx.caret': {},
         'pymdownx.details': {},
         'pymdownx.highlight': {
-            'use_pygments': False, # I use Prism.js
+            'use_pygments': False,  # I use Prism.js
         },
         'pymdownx.inlinehilite': {},
         "pymdownx.superfences": {
@@ -109,7 +112,7 @@ MARKDOWN = {
                     'name': 'mermaid',
                     'class': 'mermaid',
                     'format': pymdownx.superfences.fence_div_format
-                }, # covered by kroki, but needed for compatibility with github
+                },  # covered by kroki, but needed for compatibility with github
                 {
                     'name': 'lifeviewer',
                     'class': 'lifeviewer',
@@ -157,6 +160,3 @@ PLUGINS = [
 if __name__ == '__main__':
     import os
     os.system(f'pelican {PATH} -o {OUTPUT_PATH} -s {__file__}')
-    files_to_remove = ['authors.html', 'categories.html', 'tags.html', 'archives.html']
-    for f in files_to_remove:
-        os.system(f'rm {f}')
