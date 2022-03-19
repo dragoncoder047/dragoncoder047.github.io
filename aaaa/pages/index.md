@@ -18,4 +18,4 @@ For a while in March 2022 I was really interested in the [Thue](https://en.wikip
 
 ## Phoo
 
-A little scripting language I invented. Javascript source code on Github [here](https://github.com/dragoncoder047/phoo). Based off of another scripting language called Quackery, code for that [here](https://github.com/GordonCharlton/Quackery). Currently a work in progress, completely untested, and probably broken. No demo page yet.
+A little scripting language I invented. Javascript source code on Github [here](https://github.com/dragoncoder047/phoo). Based off of another scripting language called Quackery, code for that [here](https://github.com/GordonCharlton/Quackery). Currently a work in progress, completely untested, and probably broken. No documentation (shame on me) and no demo page yet.
