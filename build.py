@@ -12,7 +12,7 @@ SITENAME = 'dragoncoder047&rsquo;s site'
 SITESUBTITLE = 'projects, ideas, and everything else'
 SITEURL = 'https://dragoncoder047.github.io'
 LOGO = '/images/patrick.svg'
-LOGO_AREA_HTML = f'<a href="/"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2></div></div></a>'
+LOGO_AREA_HTML = f'<a href="/"><div class="flex-row"><img src="{LOGO}" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2></div></div></a>'
 ICON = '/images/patrick_head_silhouette.svg'
 ICON_MIMETYPE = 'image/svg+xml'
 THEME_CSS_FILE = '/static/css/theme.css'
@@ -38,7 +38,7 @@ SEO_REPORT = True
 
 DISPLAY_PAGES_ON_MENU = DISPLAY_CATEGORIES_ON_MENU = False
 AUTHOR_SAVE_AS = AUTHORS_SAVE_AS = TAG_SAVE_AS = TAGS_SAVE_AS = CATEGORY_SAVE_AS = CATEGORIES_SAVE_AS = ARCHIVES_SAVE_AS = ''
-FILENAME_METADATA = r'(?P<date>\d{4}-\d{2}-\d{2})_(?P<slug>.*)'
+FILENAME_METADATA = r'(?P<slug>.*)'
 
 # Blogroll
 LINKS = (
