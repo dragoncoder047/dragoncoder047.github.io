@@ -53,6 +53,7 @@ SOCIAL = (
 
 MENUITEMS = (
     #('Archives', f'/archives.html'),
+    ('Blog', '/blog'),
     ('Projects', '#', (
         ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste')

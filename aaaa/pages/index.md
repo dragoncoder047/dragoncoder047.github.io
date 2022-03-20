@@ -8,6 +8,8 @@ I haven't done much yet, on Github or otherwise, but I have plenty of ideas. Som
 
 Below are some of the more notable ideas I have done, along with links to their description pages. I will note here that this list may, at times, be out of date. The best place to check is [my Github repositories list](https://github.com/dragoncoder047?tab=repositories) which includes everything and is sorted by when I last did something with it.
 
+**NEW** March 20: I have [a blog](/blog)! May as well check that too.
+
 ---
 
 ## Thuepaste
