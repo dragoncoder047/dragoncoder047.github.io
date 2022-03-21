@@ -249,6 +249,19 @@ dd+dd {
 }
 
 
+/* figures */
+
+figure {
+    border: 1px dotted gray;
+}
+
+figcaption {
+    font-style: italic;
+    font-weight: lighter;
+    opacity: 50%;
+}
+
+
 /* strikeout */
 
 del {
@@ -267,6 +280,14 @@ del {
 .flex-row {
     display: flex;
     flex-direction: row;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
 }
 
 
