@@ -1,0 +1,69 @@
+:root {
+    counter-reset: h1 h2 h3 h4 h5 h6;
+    --hn-before: "";
+    --hn-sep: ".";
+    --hn-after: ". ";
+}
+
+:is(h1, h2, h3, h4, h5, h6)::before {
+    display: none;
+    opacity: 50%;
+    font-weight: lighter;
+}
+
+.numbered-headings :is(h1, h2, h3, h4, h5, h6)::before {
+    display: inline;
+}
+
+h1 {
+    counter-increment: h1;
+    counter-reset: h2 h3 h4 h5 h6;
+}
+
+h1::before {
+    content: var(--hn-before) counter(h1) var(--hn-after);
+}
+
+h2 {
+    counter-increment: h2;
+    counter-reset: h3 h4 h5 h6;
+}
+
+h2::before {
+    content: var(--hn-before) counter(h1) var(--hn-sep) counter(h2) var(--hn-after);
+}
+
+h3 {
+    counter-increment: h3;
+    counter-reset: h4 h5 h6;
+}
+
+h3::before {
+    content: var(--hn-before) counter(h1) var(--hn-sep) counter(h2) var(--hn-sep) counter(h3) var(--hn-after);
+}
+
+h4 {
+    counter-increment: h4;
+    counter-reset: h5 h6;
+}
+
+h4::before {
+    content: var(--hn-before) counter(h1) var(--hn-sep) counter(h2) var(--hn-sep) counter(h3) var(--hn-sep) counter(h4) var(--hn-after);
+}
+
+h5 {
+    counter-increment: h5;
+    counter-reset: h6;
+}
+
+h5::before {
+    content: var(--hn-before) counter(h1) var(--hn-sep) counter(h2) var(--hn-sep) counter(h3) var(--hn-sep) counter(h4) var(--hn-sep) counter(h5) var(--hn-after);
+}
+
+h6 {
+    counter-increment: h6;
+}
+
+h6::before {
+    content: var(--hn-before) counter(h1) var(--hn-sep) counter(h2) var(--hn-sep) counter(h3) var(--hn-sep) counter(h4) var(--hn-sep) counter(h5) var(--hn-sep) counter(h6) var(--hn-after);
+}
