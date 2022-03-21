@@ -6,6 +6,7 @@
 @import url('files.css');
 @import url('fonts.css');
 @import url('nav.css');
+@import url('numbered_headings.css');
 html {
     font-size: 1em;
 }
