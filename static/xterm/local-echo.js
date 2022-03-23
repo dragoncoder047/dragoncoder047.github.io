@@ -693,10 +693,10 @@ const LocalEchoController = (function () {
                 this.history.push(this._input);
             }
             //BUG #50.
-            var moreLines = /\n/.match(this._input.slice(this._cursor)).length || 0;
-            if (moreLines) {
-                this.term.write(`\x1b[${moreLines}B`);
-            }
+            // var moreLines = /\n/.match(this._input.slice(this._cursor)).length || 0;
+            // if (moreLines) {
+            //     this.term.write(`\x1b[${moreLines}B`);
+            // }
             if (this._activePrompt) {
                 this._activePrompt.resolve(this._input);
                 this._activePrompt = null;
