@@ -1,6 +1,19 @@
 const LocalEchoController = (function () {
 
+    /////////////////////////////////////////////////////////////ansi-regex.js
 
+    function ansiRegex({onlyFirst = false} = {}) {
+        const pattern = [
+            '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
+            '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))'
+        ].join('|');
+
+        return new RegExp(pattern, onlyFirst ? undefined : 'g');
+    }
+
+    function removeEscapeCodes(text) {
+        return text.replace(ansiRegex(), '');
+    }
 
     ////////////////////////////////////////////////////////////////////////Utils.js
 
@@ -70,7 +83,8 @@ const LocalEchoController = (function () {
      * Counts the lines in the given input
      */
     function countLines(input, maxCols) {
-        return offsetToColRow(input, input.length, maxCols).row + 1;
+        // patch for #24
+        return offsetToColRow(input, removeEscapeCodes(input).length, maxCols).row + 1;
     }
 
     /**
@@ -292,7 +306,6 @@ const LocalEchoController = (function () {
                 rows: 0,
             };
 
-            // Monkey patch by @dragoncoder047 - Allow external complete function. Works better with Phoo
             this.incompleteTest = options.incompleteTest || isIncompleteInput;
 
             this._disposables = [];
@@ -441,7 +454,7 @@ const LocalEchoController = (function () {
          * Prints a list of items using a wide-format
          */
         printWide(items, padding = 2) {
-            if (items.length == 0) return println("");
+            if (items.length == 0) return this.println("");
 
             // Compute item sizes and matrix row/cols
             const itemWidth =
@@ -487,7 +500,8 @@ const LocalEchoController = (function () {
          */
         applyPromptOffset(input, offset) {
             const newInput = this.applyPrompts(input.substring(0, offset));
-            return newInput.length;
+            //patch for #24
+            return removeEscapeCodes(newInput).length;
         }
 
         /**
@@ -677,6 +691,11 @@ const LocalEchoController = (function () {
         handleReadComplete() {
             if (this.history) {
                 this.history.push(this._input);
+            }
+            //BUG #50.
+            var moreLines = /\n/.match(this._input.slice(this._cursor)).length || 0;
+            if (moreLines) {
+                this.term.write(`\x1b[${moreLines}B`);
             }
             if (this._activePrompt) {
                 this._activePrompt.resolve(this._input);
