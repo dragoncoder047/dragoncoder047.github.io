@@ -486,7 +486,7 @@ const LocalEchoController = (function () {
          * additions to the input.
          */
         applyPromptOffset(input, offset) {
-            const newInput = this.applyPrompts(input.substr(0, offset));
+            const newInput = this.applyPrompts(input.substring(0, offset));
             return newInput.length;
         }
 
@@ -651,12 +651,12 @@ const LocalEchoController = (function () {
             const { _cursor, _input } = this;
             if (backspace) {
                 if (_cursor <= 0) return;
-                const newInput = _input.substr(0, _cursor - 1) + _input.substr(_cursor);
+                const newInput = _input.substring(0, _cursor - 1) + _input.substring(_cursor);
                 this.clearInput();
                 this._cursor -= 1;
                 this.setInput(newInput, false);
             } else {
-                const newInput = _input.substr(0, _cursor) + _input.substr(_cursor + 1);
+                const newInput = _input.substring(0, _cursor) + _input.substring(_cursor + 1);
                 this.setInput(newInput);
             }
         }
@@ -666,7 +666,7 @@ const LocalEchoController = (function () {
          */
         handleCursorInsert(data) {
             const { _cursor, _input } = this;
-            const newInput = _input.substr(0, _cursor) + data + _input.substr(_cursor);
+            const newInput = _input.substring(0, _cursor) + data + _input.substring(_cursor);
             this._cursor += data.length;
             this.setInput(newInput);
         }
@@ -733,7 +733,7 @@ const LocalEchoController = (function () {
 
             // Handle ANSI escape sequences
             if (ord == 0x1b) {
-                switch (data.substr(1)) {
+                switch (data.substring(1)) {
                     case "[A": // Up arrow
                         if (this.history) {
                             let value = this.history.getPrevious();
@@ -787,7 +787,7 @@ const LocalEchoController = (function () {
                         ofs = closestLeftBoundary(this._input, this._cursor);
                         if (ofs != null) {
                             this.setInput(
-                                this._input.substr(0, ofs) + this._input.substr(this._cursor)
+                                this._input.substring(0, ofs) + this._input.substring(this._cursor)
                             );
                             this.setCursor(ofs);
                         }
@@ -811,7 +811,7 @@ const LocalEchoController = (function () {
 
                     case "\t": // TAB
                         if (this._autocompleteHandlers.length > 0) {
-                            const inputFragment = this._input.substr(0, this._cursor);
+                            const inputFragment = this._input.substring(0, this._cursor);
                             const hasTailingSpace = hasTailingWhitespace(inputFragment);
                             const candidates = collectAutocompleteCandidates(
                                 this._autocompleteHandlers,
@@ -832,7 +832,7 @@ const LocalEchoController = (function () {
                                 // Just a single candidate? Complete
                                 const lastToken = getLastToken(inputFragment);
                                 this.handleCursorInsert(
-                                    candidates[0].substr(lastToken.length) + " "
+                                    candidates[0].substring(lastToken.length) + " "
                                 );
                             } else if (candidates.length <= this.maxAutocompleteEntries) {
 
@@ -844,7 +844,7 @@ const LocalEchoController = (function () {
                                 if (sameFragment) {
                                     const lastToken = getLastToken(inputFragment);
                                     this.handleCursorInsert(
-                                        sameFragment.substr(lastToken.length)
+                                        sameFragment.substring(lastToken.length)
                                     );
                                 }
 
