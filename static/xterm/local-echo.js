@@ -15,6 +15,16 @@ const LocalEchoController = (function () {
         return text.replace(ansiRegex(), '');
     }
 
+
+
+    //////////////////////////////////////////////////////////////////shell-parse.js
+
+
+    //monkey patch by @dragoncoder047 - works better with Phoo
+    function parse(text) {
+        return text.split(/\s/);
+    }
+
     ////////////////////////////////////////////////////////////////////////Utils.js
 
 
@@ -145,8 +155,7 @@ const LocalEchoController = (function () {
 
         // Last token
 
-        // Monkey patch by @dragoncoder047 - only splits on words - Works better with Phoo
-        const tokens = input.split(/\s+/);
+        const tokens = parse(input);
         return tokens.pop() || "";
     }
 
@@ -154,8 +163,7 @@ const LocalEchoController = (function () {
      * Returns the auto-complete candidates for the given input
      */
     function collectAutocompleteCandidates(callbacks, input) {
-        // Monkey patch by @dragoncoder047 - only splits on words - Works better with Phoo
-        const tokens = input.split(/\s+/);
+        const tokens = parse(input);
         let index = tokens.length - 1;
         let expr = tokens[index] || "";
 
@@ -235,7 +243,8 @@ const LocalEchoController = (function () {
             // Keep track of entries
             this.entries.push(entry);
             if (this.entries.length > this.size) {
-                this.entries.pop(0);
+                // patch for #34
+                this.entries.shift();
             }
             this.cursor = this.entries.length;
         }
@@ -454,7 +463,7 @@ const LocalEchoController = (function () {
          * Prints a list of items using a wide-format
          */
         printWide(items, padding = 2) {
-            if (items.length == 0) return this.println("");
+            if (items.length == 0) this.println("");
 
             // Compute item sizes and matrix row/cols
             const itemWidth =
@@ -518,7 +527,7 @@ const LocalEchoController = (function () {
 
             // Get the line we are currently in
             const promptCursor = this.applyPromptOffset(this._input, this._cursor);
-            const { col, row } = offsetToColRow(
+            const { row } = offsetToColRow(
                 currentPrompt,
                 promptCursor,
                 this._termSize.cols
@@ -609,7 +618,6 @@ const LocalEchoController = (function () {
 
             // Apply prompt formatting to get the visual status of the display
             const inputWithPrompt = this.applyPrompts(this._input);
-            const inputLines = countLines(inputWithPrompt, this._termSize.cols);
 
             // Estimate previous cursor position
             const prevPromptOffset = this.applyPromptOffset(this._input, this._cursor);
@@ -692,11 +700,12 @@ const LocalEchoController = (function () {
             if (this.history) {
                 this.history.push(this._input);
             }
-            //BUG #50.
-            // var moreLines = /\n/.match(this._input.slice(this._cursor)).length || 0;
-            // if (moreLines) {
-            //     this.term.write(`\x1b[${moreLines}B`);
-            // }
+            // BUG #50.
+            var moreLines = countLines(this._input.slice(this._cursor), this._termSize.cols);
+            if (moreLines) {
+                this.term.write(`\x1b[${moreLines}B`);
+            }
+            ///
             if (this._activePrompt) {
                 this._activePrompt.resolve(this._input);
                 this._activePrompt = null;
