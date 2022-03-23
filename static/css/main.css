@@ -142,7 +142,8 @@ footer a::after {
 }
 
 a:visited {
-    color: var(--color-link-visited);
+    color: var(--color-link);
+    text-decoration: solid var(--color-link-visited) underline;
 }
 
 
