@@ -514,13 +514,9 @@ const LocalEchoController = (function () {
          * additions to the input.
          */
         applyPromptOffset(input, offset) {
-            const lines = countLines(input, this._termSize.cols);
-            const prompt = removeEscapeCodes((this._activePrompt || {}).prompt || "");
-            const continuationPrompt = removeEscapeCodes((this._activePrompt || {}).continuationPrompt || "");
-            return offset + prompt.length + lines * continuationPrompt.length;
-            // const newInput = this.applyPrompts(input.substring(0, offset));
-            // //patch for #24
-            // return removeEscapeCodes(newInput).length;
+            const newInput = this.applyPrompts(input.substring(0, offset));
+            //patch for #24
+            return removeEscapeCodes(newInput).length;
         }
 
         /**
@@ -707,14 +703,16 @@ const LocalEchoController = (function () {
                 this.history.push(this._input);
             }
             // BUG #50.
-            const curRow = offsetToColRow(this._input, this._cursor, this._termSize.cols).row;
-            const maxRow = offsetToColRow(this._input, this._input.length, this._termSize.cols).row;
-            this.term.write(`\x1b[${maxRow - curRow}B\r\n`);
+            var moreLines = countLines(this._input.slice(this._cursor), this._termSize.cols);
+            if (moreLines) {
+                this.term.write(`\x1b[${moreLines}B`);
+            }
             ///
             if (this._activePrompt) {
                 this._activePrompt.resolve(this._input);
                 this._activePrompt = null;
             }
+            this.term.write("\r\n");
             this._active = false;
         }
 
