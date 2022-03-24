@@ -2,7 +2,7 @@ const LocalEchoController = (function () {
 
     /////////////////////////////////////////////////////////////ansi-regex.js
 
-    function ansiRegex({onlyFirst = false} = {}) {
+    function ansiRegex(onlyFirst = false) {
         const pattern = [
             '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
             '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))'
@@ -17,7 +17,7 @@ const LocalEchoController = (function () {
 
 
 
-    //////////////////////////////////////////////////////////////////shell-parse.js
+    //////////////////////////////////////////////////////////////////what would be shell-parse.js
 
 
     //monkey patch by @dragoncoder047 - works better with Phoo
@@ -48,7 +48,7 @@ const LocalEchoController = (function () {
     }
 
     /**
-     * The closest left (or right) word boundary of the given input at the
+     * The closest left word boundary of the given input at the
      * given offset.
      */
     function closestLeftBoundary(input, offset) {
@@ -57,6 +57,11 @@ const LocalEchoController = (function () {
             .find(x => x < offset);
         return found == null ? 0 : found;
     }
+
+    /**
+     * The closest right word boundary of the given input at the
+     * given offset.
+     */
     function closestRightBoundary(input, offset) {
         const found = wordBoundaries(input, false).find(x => x > offset);
         return found == null ? input.length : found;
@@ -98,7 +103,7 @@ const LocalEchoController = (function () {
     }
 
     /**
-     * Checks if there is an incomplete input
+     * Checks if there is an incomplete input using Bash-style rules.
      *
      * An incomplete input is considered:
      * - An input that contains unterminated single quotes
@@ -139,10 +144,10 @@ const LocalEchoController = (function () {
     }
 
     /**
-     * Returns true if the expression ends on a tailing whitespace
+     * Returns true if the expression ends on a trailing whitespace
      */
     function hasTailingWhitespace(input) {
-        return input.match(/[^\\][ \t]$/m) != null;
+        return input.match(/[^\\]\s$/m) != null;
     }
 
     /**
@@ -415,13 +420,14 @@ const LocalEchoController = (function () {
          * This can be active in addition to `.read()` and will be resolved in
          * priority before it.
          */
-        readChar(prompt) {
+        readChar(prompt, allowedChars) {
             return new Promise((resolve, reject) => {
                 this.term.write(prompt);
                 this._activeCharPrompt = {
                     prompt,
                     resolve,
-                    reject
+                    reject,
+                    allowedChars, // monkey patch by @dragoncoder047
                 };
             });
         }
@@ -508,9 +514,13 @@ const LocalEchoController = (function () {
          * additions to the input.
          */
         applyPromptOffset(input, offset) {
-            const newInput = this.applyPrompts(input.substring(0, offset));
-            //patch for #24
-            return removeEscapeCodes(newInput).length;
+            const lines = countLines(input, this._termSize.cols);
+            const prompt = removeEscapeCodes((this._activePrompt || {}).prompt || "");
+            const continuationPrompt = removeEscapeCodes((this._activePrompt || {}).continuationPrompt || "");
+            return offset + prompt.length + lines * continuationPrompt.length;
+            // const newInput = this.applyPrompts(input.substring(0, offset));
+            // //patch for #24
+            // return removeEscapeCodes(newInput).length;
         }
 
         /**
@@ -535,7 +545,7 @@ const LocalEchoController = (function () {
 
             // First move on the last line
             const moveRows = allRows - row - 1;
-            for (var i = 0; i < moveRows; ++i) this.term.write("\x1B[E");
+            this.term.write(`\x1B[${moveRows}E`);
 
             // Clear current input line(s)
             this.term.write("\r\x1B[K");
@@ -554,7 +564,7 @@ const LocalEchoController = (function () {
 
             // Write the new input lines, including the current prompt
             const newPrompt = this.applyPrompts(newInput);
-            this.print(newPrompt);
+            this.term.write(newPrompt);
 
             // Trim cursor overflow
             if (this._cursor > newInput.length) {
@@ -571,9 +581,9 @@ const LocalEchoController = (function () {
             );
             const moveUpRows = newLines - row - 1;
 
-            this.term.write("\r");
-            for (var i = 0; i < moveUpRows; ++i) this.term.write("\x1B[F");
-            for (var i = 0; i < col; ++i) this.term.write("\x1B[C");
+            this.term.write(`\x1b[${this._termSize.cols}D`); // \r doesn't work here if convertEol = true (see #25)
+            this.term.write(`\x1B[${moveUpRows}F`);
+            this.term.write(`\x1B[${col}C`);
 
             // Replace input
             this._input = newInput;
@@ -636,18 +646,16 @@ const LocalEchoController = (function () {
             );
 
             // Adjust vertically
-            if (newRow > prevRow) {
-                for (let i = prevRow; i < newRow; ++i) this.term.write("\x1B[B");
-            } else {
-                for (let i = newRow; i < prevRow; ++i) this.term.write("\x1B[A");
-            }
+            if (newRow > prevRow)
+                this.term.write(`\x1B[${newRow - prevRow}B`);
+            else
+                this.term.write(`\x1B[${prevRow - newRow}A`);
 
             // Adjust horizontally
-            if (newCol > prevCol) {
-                for (let i = prevCol; i < newCol; ++i) this.term.write("\x1B[C");
-            } else {
-                for (let i = newCol; i < prevCol; ++i) this.term.write("\x1B[D");
-            }
+            if (newCol > prevCol)
+                this.term.write(`\x1B[${newCol - prevCol}C`);
+            else
+                this.term.write(`\x1B[${prevCol - newCol}D`);
 
             // Set new offset
             this._cursor = newCursor;
@@ -657,13 +665,11 @@ const LocalEchoController = (function () {
          * Move cursor at given direction
          */
         handleCursorMove(dir) {
-            if (dir > 0) {
-                const num = Math.min(dir, this._input.length - this._cursor);
-                this.setCursor(this._cursor + num);
-            } else if (dir < 0) {
-                const num = Math.max(dir, -this._cursor);
-                this.setCursor(this._cursor + num);
-            }
+            let num;
+            if (dir === 0) return;
+            if (dir > 0) num = Math.min(dir, this._input.length - this._cursor);
+            else num = Math.max(dir, -this._cursor);
+            this.setCursor(this._cursor + num);
         }
 
         /**
@@ -701,16 +707,14 @@ const LocalEchoController = (function () {
                 this.history.push(this._input);
             }
             // BUG #50.
-            var moreLines = countLines(this._input.slice(this._cursor), this._termSize.cols);
-            if (moreLines) {
-                this.term.write(`\x1b[${moreLines}B`);
-            }
+            const curRow = offsetToColRow(this._input, this._cursor, this._termSize.cols).row;
+            const maxRow = offsetToColRow(this._input, this._input.length, this._termSize.cols).row;
+            this.term.write(`\x1b[${maxRow - curRow}B\r\n`);
             ///
             if (this._activePrompt) {
                 this._activePrompt.resolve(this._input);
                 this._activePrompt = null;
             }
-            this.term.write("\r\n");
             this._active = false;
         }
 
@@ -736,23 +740,27 @@ const LocalEchoController = (function () {
 
             // If we have an active character prompt, satisfy it in priority
             if (this._activeCharPrompt != null) {
-                this._activeCharPrompt.resolve(data);
-                this._activeCharPrompt = null;
-                this.term.write("\r\n");
-                return;
+                if (this._activeCharPrompt.allowedChars === undefined || this._activeCharPrompt.allowedChars.indexOf(data) > -1) {
+                    this._activeCharPrompt.resolve(data);
+                    this._activeCharPrompt = null;
+                    this.term.write("\r\n");
+                    return;
+                }
+                else this.term.write('\a'); // bell
             }
 
             // If this looks like a pasted input, expand it
             if (data.length > 3 && data.charCodeAt(0) !== 0x1b) {
                 const normData = data.replace(/[\r\n]+/g, "\r");
-                Array.from(normData).forEach(c => this.handleData(c));
+                const self = this;
+                [].forEach.call(normData, c => self.handleData(c));
             } else {
                 this.handleData(data);
             }
         }
 
         /**
-         * Handle a single piece of information from the terminal.
+         * Handle a single piece of information from the terminal. Max 2 chars
          */
         handleData(data) {
             if (!this._active) return;
@@ -885,9 +893,7 @@ const LocalEchoController = (function () {
                                 // If we have more than maximum auto-complete candidates, print
                                 // them only if the user acknowledges a warning
                                 this.printAndRestartPrompt(() =>
-                                    this.readChar(
-                                        `Display all ${candidates.length} possibilities? (y or n)`
-                                    ).then(yn => {
+                                    this.readChar(`Display all ${candidates.length} possibilities? (y or n)`, 'yYnN\r').then(yn => {
                                         if (yn == "y" || yn == "Y") {
                                             this.printWide(candidates);
                                         }
