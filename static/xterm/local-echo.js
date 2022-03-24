@@ -255,7 +255,8 @@ const LocalEchoController = (function () {
                 rows: 0,
             };
 
-            this.incompleteTest = options.incompleteTest || isIncompleteInput;
+            this.incompleteTest = options.incompleteTest || (x => false);
+            this.tokenizer = options.tokenize || (x => x);
 
             this._disposables = [];
 
