@@ -627,12 +627,12 @@ const LocalEchoController = (function () {
             const { col: newCol, row: newRow } = offsetToColRow(inputWithPrompt, newPromptOffset, this._termSize.cols);
 
             // Adjust vertically
-            if (newRow > prevRow) this.term.write(`\x1B[${newRow - prevRow - 1}B`);
-            else this.term.write(`\x1B[${prevRow - newRow - 1}A`);
+            if (newRow > prevRow) this.term.write(`\x1B[${newRow - prevRow - 2}B`);
+            else this.term.write(`\x1B[${prevRow - newRow - 2}A`);
 
             // Adjust horizontally
-            if (newCol > prevCol) this.term.write(`\x1B[${newCol - prevCol - 1}C`);
-            else this.term.write(`\x1B[${prevCol - newCol - 1}D`);
+            if (newCol > prevCol) this.term.write(`\x1B[${newCol - prevCol}C`);
+            else this.term.write(`\x1B[${prevCol - newCol}D`);
 
             // Set new offset
             this._cursor = newCursor;
