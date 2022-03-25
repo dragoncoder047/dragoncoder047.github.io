@@ -260,7 +260,7 @@ const LocalEchoController = (function () {
         getPrevious() {
             const idx = Math.max(0, this.cursor - 1);
             this.cursor = idx;
-            return this.entries[idx];
+            return this.entries[idx] || '';
         }
 
         /**
@@ -269,7 +269,7 @@ const LocalEchoController = (function () {
         getNext() {
             const idx = Math.min(this.entries.length, this.cursor + 1);
             this.cursor = idx;
-            return this.entries[idx];
+            return this.entries[idx] || '';
         }
     }
 
@@ -771,7 +771,6 @@ const LocalEchoController = (function () {
                         if (offsetToColRow(this._input, this._cursor, this._termSize.cols).row === offsetToColRow(this._input, this._input.length, this._termSize.cols).row) {
                             if (this.history) {
                                 let value = this.history.getNext();
-                                if (!value) value = "";
                                 this.setInput(value);
                                 this.setCursor(value.length);
                             }
