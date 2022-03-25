@@ -575,7 +575,7 @@ const LocalEchoController = (function () {
                 newCursor,
                 this._termSize.cols
             );
-            const moveUpRows = newLines - row - 2; //  - 1 is too much for some reason
+            const moveUpRows = newLines - row - 0; //  - 1 is too much for some reason
 
             this.term.write(`\x1b[${this._termSize.cols}D`); // \r doesn't work here if convertEol = true (see #25)
             this.term.write(`\x1B[${moveUpRows}F`);
