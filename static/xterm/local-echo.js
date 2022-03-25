@@ -1,9 +1,3 @@
-/*
-
-This is a monkey-patched version that always displays the prompt at the bottom.
-
-*/
-
 const LocalEchoController = (function () {
 
     /////////////////////////////////////////////////////////////ansi-regex.js
@@ -26,7 +20,7 @@ const LocalEchoController = (function () {
     //////////////////////////////////////////////////////////////////what would be shell-parse.js
 
 
-    //monkey patch by @dragoncoder047 - works better with Phoo
+    // monkey patch by @dragoncoder047 - works better with Phoo
     function parse(text) {
         return text.split(/\s/);
     }
@@ -43,11 +37,8 @@ const LocalEchoController = (function () {
         const rx = /\w+/g;
 
         while ((match = rx.exec(input))) {
-            if (leftSide) {
-                words.push(match.index);
-            } else {
-                words.push(match.index + match[0].length);
-            }
+            if (leftSide) words.push(match.index);
+            else words.push(match.index + match[0].length);
         }
 
         return words;
@@ -101,6 +92,18 @@ const LocalEchoController = (function () {
     }
 
     /**
+     * Converts column and row in the input back to position offset.
+     */
+    function colRowToOffset(input, col, row) { // Used only in patch for #51, see below.
+        let off = 0;
+        let lines = removeEscapeCodes(input).split('\n');
+        for (let i = 0; i < row; i++) {
+            off += lines[i].length + 1;
+        }
+        return off + col;
+    }
+
+    /**
      * Counts the lines in the given input
      */
     function countLines(input, maxCols) {
@@ -120,39 +123,22 @@ const LocalEchoController = (function () {
      */
     function isIncompleteInput(input) {
         // Empty input is not incomplete
-        if (input.trim() == "") {
-            return false;
-        }
-
+        if (input.trim() == "") return false;
         // Check for dangling single-quote strings
-        if ((input.match(/'/g) || []).length % 2 !== 0) {
-            return true;
-        }
+        if ((input.match(/[^\\]'/g) || []).length % 2 !== 0) return true;
         // Check for dangling double-quote strings
-        if ((input.match(/"/g) || []).length % 2 !== 0) {
-            return true;
-        }
+        if ((input.match(/[^\\]"/g) || []).length % 2 !== 0) return true;
         // Check for dangling boolean or pipe operations
-        if (
-            input
-                .split(/(\|\||\||&&)/g)
-                .pop()
-                .trim() == ""
-        ) {
-            return true;
-        }
+        if (input.split(/(\|\||\||&&)/g).pop().trim() == "") return true;
         // Check for tailing slash
-        if (input.endsWith("\\") && !input.endsWith("\\\\")) {
-            return true;
-        }
-
+        if (input.endsWith("\\") && !input.endsWith("\\\\")) return true;
         return false;
     }
 
     /**
      * Returns true if the expression ends on a trailing whitespace
      */
-    function hasTailingWhitespace(input) {
+    function hasTrailingWhitespace(input) {
         return input.match(/[^\\]\s$/m) != null;
     }
 
@@ -162,7 +148,7 @@ const LocalEchoController = (function () {
     function getLastToken(input) {
         // Empty expressions
         if (input.trim() === "") return "";
-        if (hasTailingWhitespace(input)) return "";
+        if (hasTrailingWhitespace(input)) return "";
 
         // Last token
 
@@ -182,7 +168,7 @@ const LocalEchoController = (function () {
         if (input.trim() === "") {
             index = 0;
             expr = "";
-        } else if (hasTailingWhitespace(input)) {
+        } else if (hasTrailingWhitespace(input)) {
             // Expressions with danging space
             index += 1;
             expr = "";
@@ -205,7 +191,7 @@ const LocalEchoController = (function () {
 
     function getSharedFragment(fragment, candidates) {
 
-        // end loop when fragment length = first candidate length
+        // end recursive loop when fragment length = first candidate length
         if (fragment.length >= candidates[0].length) return fragment;
 
         // save old fragemnt
@@ -219,9 +205,7 @@ const LocalEchoController = (function () {
             // return null when there's a wrong candidate
             if (!candidates[i].startsWith(oldFragment)) return null;
 
-            if (!candidates[i].startsWith(fragment)) {
-                return oldFragment;
-            }
+            if (!candidates[i].startsWith(fragment)) return oldFragment;
         }
 
         return getSharedFragment(fragment, candidates);
@@ -233,7 +217,7 @@ const LocalEchoController = (function () {
     /////////////////////////////////////////////////////////////////HistoryController.js
 
     /**
-     * The history controller provides an ring-buffer
+     * The history controller provides a ring-buffer
      */
     class HistoryController {
         constructor(size) {
@@ -250,7 +234,10 @@ const LocalEchoController = (function () {
             if (entry.trim() === "") return;
             // Skip duplicate entries
             const lastEntry = this.entries[this.entries.length - 1];
-            if (entry == lastEntry) return;
+            if (entry == lastEntry) {
+                this.rewind(); // patch for #26
+                return;
+            }
             // Keep track of entries
             this.entries.push(entry);
             if (this.entries.length > this.size) {
@@ -345,6 +332,7 @@ const LocalEchoController = (function () {
             this.term = term;
             this.attach();
         }
+
         dispose() {
             this.detach();
         }
@@ -407,19 +395,20 @@ const LocalEchoController = (function () {
          * Return a promise that will resolve when the user has completed
          * typing a single line
          */
-        read(prompt, continuationPrompt = "> ") {
+        read(prompt1, prompt2 = '') {
+            const self = this;
             return new Promise((resolve, reject) => {
-                this.term.write(prompt);
-                this._activePrompt = {
-                    prompt,
-                    continuationPrompt,
+                self.term.write(prompt);
+                self._activePrompt = {
+                    prompt: prompt1,
+                    continuationPrompt: prompt2 || prompt1,
                     resolve,
                     reject
                 };
 
-                this._input = "";
-                this._cursor = 0;
-                this._active = true;
+                self._input = "";
+                self._cursor = 0;
+                self._active = true;
             });
         }
 
@@ -431,9 +420,10 @@ const LocalEchoController = (function () {
          * priority before it.
          */
         readChar(prompt, allowedChars) {
+            const self = this;
             return new Promise((resolve, reject) => {
-                this.term.write(prompt);
-                this._activeCharPrompt = {
+                self.term.write(prompt);
+                self._activeCharPrompt = {
                     prompt,
                     resolve,
                     reject,
@@ -463,16 +453,17 @@ const LocalEchoController = (function () {
         /**
          * Prints a message and changes line
          */
-        println(message) {
-            this.print(message + "\n");
+        println(text) {
+            this.print(text + "\n");
         }
 
         /**
          * Prints a message and properly handles new-lines
          */
-        print(message) {
-            const normInput = message.replace(/[\r\n]+/g, "\n");
-            this.term.write(normInput.replace(/\n/g, "\r\n"));
+        print(text) {
+            this.clearInput();
+            this.term.write(text);
+            this.setInput(this._input);
         }
 
         /**
@@ -525,7 +516,7 @@ const LocalEchoController = (function () {
          */
         applyPromptOffset(input, offset) {
             const newInput = this.applyPrompts(input.substring(0, offset));
-            //patch for #24
+            // patch for #24
             return removeEscapeCodes(newInput).length;
         }
 
@@ -780,21 +771,35 @@ const LocalEchoController = (function () {
             if (ord == 0x1b) {
                 switch (data.substring(1)) {
                     case "[A": // Up arrow
-                        if (this.history) {
-                            let value = this.history.getPrevious();
-                            if (value) {
-                                this.setInput(value);
-                                this.setCursor(value.length);
+                        // Here applied patch for #51
+                        if (offsetToColRow(this._input, this._cursor, this._termSize.cols).row === 0) {
+                            if (this.history) {
+                                let value = this.history.getPrevious();
+                                if (value) {
+                                    this.setInput(value);
+                                    this.setCursor(0);
+                                }
                             }
+                        }
+                        else {
+                            var { col, row } = offsetToColRow(this._input, this._cursor, this._termSize.cols);
+                            this.setCursor(colRowToOffset(this._input, col, row - 1));
                         }
                         break;
 
                     case "[B": // Down arrow
-                        if (this.history) {
-                            let value = this.history.getNext();
-                            if (!value) value = "";
-                            this.setInput(value);
-                            this.setCursor(value.length);
+                        // Here applied patch for #51
+                        if (offsetToColRow(this._input, this._cursor, this._termSize.cols).row === offsetToColRow(this._input, this._input.length, this._termSize.cols).row) {
+                            if (this.history) {
+                                let value = this.history.getNext();
+                                if (!value) value = "";
+                                this.setInput(value);
+                                this.setCursor(value.length);
+                            }
+                        }
+                        else {
+                            var { col, row } = offsetToColRow(this._input, this._cursor, this._termSize.cols);
+                            this.setCursor(colRowToOffset(this._input, col, row + 1));
                         }
                         break;
 
@@ -831,9 +836,7 @@ const LocalEchoController = (function () {
                     case "\x7F": // CTRL + BACKSPACE
                         ofs = closestLeftBoundary(this._input, this._cursor);
                         if (ofs != null) {
-                            this.setInput(
-                                this._input.substring(0, ofs) + this._input.substring(this._cursor)
-                            );
+                            this.setInput(this._input.substring(0, ofs) + this._input.substring(this._cursor));
                             this.setCursor(ofs);
                         }
                         break;
@@ -843,11 +846,8 @@ const LocalEchoController = (function () {
             } else if (ord < 32 || ord === 0x7f) {
                 switch (data) {
                     case "\r": // ENTER
-                        if (this.incompleteTest(this._input)) {
-                            this.handleCursorInsert("\n");
-                        } else {
-                            this.handleReadComplete();
-                        }
+                        if (this.incompleteTest(this._input)) this.handleCursorInsert("\n");
+                        else this.handleReadComplete();
                         break;
 
                     case "\x7F": // BACKSPACE
@@ -857,11 +857,8 @@ const LocalEchoController = (function () {
                     case "\t": // TAB
                         if (this._autocompleteHandlers.length > 0) {
                             const inputFragment = this._input.substring(0, this._cursor);
-                            const hasTrailingSpace = hasTailingWhitespace(inputFragment);
-                            const candidates = collectAutocompleteCandidates(
-                                this._autocompleteHandlers,
-                                inputFragment
-                            );
+                            const hasTrailingSpace = hasTrailingWhitespace(inputFragment);
+                            const candidates = collectAutocompleteCandidates(this._autocompleteHandlers, inputFragment);
 
                             // Sort candidates
                             candidates.sort();
@@ -888,16 +885,12 @@ const LocalEchoController = (function () {
                                 // print complete the shared fragment
                                 if (sameFragment) {
                                     const lastToken = getLastToken(inputFragment);
-                                    this.handleCursorInsert(
-                                        sameFragment.substring(lastToken.length)
-                                    );
+                                    this.handleCursorInsert(sameFragment.substring(lastToken.length));
                                 }
 
                                 // If we are less than maximum auto-complete candidates, print
                                 // them to the user and re-start prompt
-                                this.printAndRestartPrompt(() => {
-                                    self.printWide(candidates);
-                                });
+                                this.printAndRestartPrompt(() => self.printWide(candidates));
                             } else {
                                 // If we have more than maximum auto-complete candidates, print
                                 // them only if the user acknowledges a warning
@@ -923,10 +916,9 @@ const LocalEchoController = (function () {
                         break;
                 }
 
-                // Handle visible characters
-            } else {
-                this.handleCursorInsert(data);
             }
+            // Handle visible characters
+            else this.handleCursorInsert(data);
         }
     }
 
