@@ -66,6 +66,10 @@ const Readline = (function factory() {
         return off + col;
     }
 
+    function textWrap(text, maxCols) {
+        throw 'todo';
+    }
+
     function countLines(input, maxCols) {
         // patch for #24
         return offsetToColRow(input, removeEscapeCodes(input).length, maxCols).row + 1;
@@ -230,6 +234,7 @@ const Readline = (function factory() {
         read(prompt1, prompt2 = '') {
             const self = this;
             return new Promise((resolve, reject) => {
+                self.term.write('\x1b[E');
                 self.term.write(prompt1);
                 self._activePrompt = {
                     prompt: prompt1,
@@ -242,6 +247,78 @@ const Readline = (function factory() {
                 self._active = true;
             });
         }
+        readChar(prompt, allowedChars) {
+            const self = this;
+            return new Promise((resolve, reject) => {
+                self.term.write('\x1b[E');
+                self.term.write(prompt);
+                self._activeCharPrompt = {
+                    prompt,
+                    resolve,
+                    reject,
+                    allowedChars
+                };
+            });
+        }
+        abortRead(reason = "aborted") {
+            if (this._activePrompt != null || this._activeCharPrompt != null) {
+                this.term.write("\r\n");
+            }
+            if (this._activePrompt != null) {
+                this._activePrompt.reject(reason);
+                this._activePrompt = null;
+            }
+            if (this._activeCharPrompt != null) {
+                this._activeCharPrompt.reject(reason);
+                this._activeCharPrompt = null;
+            }
+            this._active = false;
+        }
+        println(text) {
+            this.print(text + "\n");
+        }
+        print(text) {
+            this.clear();
+            this.term.write(text);
+            this.redraw();
+        }
+        printWide(items, padding = 2) {
+            if (items.length == 0) this.println("");
+
+            // Compute item sizes and matrix row/cols
+            const itemWidth =
+                items.reduce((width, item) => Math.max(width, item.length), 0) + padding;
+            const wideCols = Math.floor(this._termSize.cols / itemWidth);
+            const wideRows = Math.ceil(items.length / wideCols);
+
+            // Print matrix
+            let i = 0;
+            for (let row = 0; row < wideRows; ++row) {
+                let rowStr = "";
+
+                // Prepare columns
+                for (let col = 0; col < wideCols; ++col) {
+                    if (i < items.length) {
+                        let item = items[i++];
+                        item += " ".repeat(itemWidth - item.length);
+                        rowStr += item;
+                    }
+                }
+                this.println(rowStr);
+            }
+        }
+        applyPrompts(input) {
+            const p1 = (this._activePrompt || {}).prompt || "";
+            const p2 = (this._activePrompt || {}).continuationPrompt || "";
+
+            return p1 + input.replace(/\n/g, "\n" + p2);
+        }
+        applyPromptOffset(input, offset) {
+            const newInput = this.applyPrompts(input.substring(0, offset));
+            // patch for #24
+            return removeEscapeCodes(newInput).length;
+        }
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     }
 
     return Readline;
