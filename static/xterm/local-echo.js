@@ -198,7 +198,7 @@ const LocalEchoController = (function () {
         const oldFragment = fragment;
 
         // get new fragment
-        fragment += candidates[0].slice(fragment.length, fragment.length + 1);
+        fragment += candidates[0].substring(fragment.length, fragment.length + 1);
 
         for (let i = 0; i < candidates.length; i++) {
 
@@ -614,21 +614,21 @@ const LocalEchoController = (function () {
             // Apply prompt formatting to get the visual status of the display
             const inputWithPrompt = this.applyPrompts(this._input);
 
-            // Estimate previous cursor position
+            // Get previous cursor position
             const prevPromptOffset = this.applyPromptOffset(this._input, this._cursor);
             const { col: prevCol, row: prevRow } = offsetToColRow(inputWithPrompt, prevPromptOffset, this._termSize.cols);
 
-            // Estimate next cursor position
+            // Get next cursor position
             const newPromptOffset = this.applyPromptOffset(this._input, newCursor);
             const { col: newCol, row: newRow } = offsetToColRow(inputWithPrompt, newPromptOffset, this._termSize.cols);
 
             // Adjust vertically
-            if (newRow > prevRow) this.term.write(`\x1B[${newRow - prevRow - 2}B`);
-            else this.term.write(`\x1B[${prevRow - newRow - 2}A`);
+            if (newRow > prevRow) this.term.write(`\x1B[${newRow - prevRow - 3}B`);
+            else this.term.write(`\x1B[${prevRow - newRow - 3}A`);
 
             // Adjust horizontally
-            if (newCol > prevCol) this.term.write(`\x1B[${newCol - prevCol}C`);
-            else this.term.write(`\x1B[${prevCol - newCol}D`);
+            if (newCol > prevCol) this.term.write(`\x1B[${newCol - prevCol + 1}C`);
+            else this.term.write(`\x1B[${prevCol - newCol + 1}D`);
 
             // Set new offset
             this._cursor = newCursor;
@@ -680,7 +680,7 @@ const LocalEchoController = (function () {
                 this.history.push(this._input);
             }
             // BUG #50.
-            var moreLines = countLines(this._input.slice(this._cursor), this._termSize.cols);
+            var moreLines = countLines('a'.repeat(offsetToRowCol(this._input, this._cursor, this._termSize.cols).col) + this._input.substring(this._cursor), this._termSize.cols);
             if (moreLines) {
                 this.term.write(`\x1b[${moreLines}B`);
             }
