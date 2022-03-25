@@ -398,7 +398,7 @@ const LocalEchoController = (function () {
         read(prompt1, prompt2 = '') {
             const self = this;
             return new Promise((resolve, reject) => {
-                self.term.write(prompt);
+                self.term.write(prompt1);
                 self._activePrompt = {
                     prompt: prompt1,
                     continuationPrompt: prompt2 || prompt1,
@@ -575,7 +575,7 @@ const LocalEchoController = (function () {
                 newCursor,
                 this._termSize.cols
             );
-            const moveUpRows = newLines - row - 1;
+            const moveUpRows = newLines - row - 2; //  - 1 is too much for some reason
 
             this.term.write(`\x1b[${this._termSize.cols}D`); // \r doesn't work here if convertEol = true (see #25)
             this.term.write(`\x1B[${moveUpRows}F`);
