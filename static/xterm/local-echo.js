@@ -257,7 +257,7 @@ const LocalEchoController = (function () {
                 // patch for #34
                 this.entries.shift();
             }
-            this.cursor = this.entries.length;
+            this.rewind();
         }
 
         /**
@@ -554,8 +554,7 @@ const LocalEchoController = (function () {
             this.term.write(`\x1B[${moveRows}E`);
 
             // Clear current input line(s)
-            this.term.write("\r\x1B[K");
-            for (var i = 1; i < allRows; ++i) this.term.write("\x1B[F\x1B[K");
+            this.term.write("\r\x1B[K" + "\x1B[F\x1B[K".repeat(allRows));
         }
 
         /**
@@ -601,6 +600,7 @@ const LocalEchoController = (function () {
          */
         printAndRestartPrompt(callback) {
             const cursor = this._cursor;
+            const self = this;
 
             // Complete input
             this.setCursor(this._input.length);
@@ -608,18 +608,15 @@ const LocalEchoController = (function () {
 
             // Prepare a function that will resume prompt
             const resume = () => {
-                this._cursor = cursor;
-                this.setInput(this._input);
+                self._cursor = cursor;
+                self.setInput(this._input);
             };
 
             // Call the given callback to echo something, and if there is a promise
             // returned, wait for the resolution before resuming prompt.
             const ret = callback();
-            if (ret == null) {
-                resume();
-            } else {
-                ret.then(resume);
-            }
+            if (ret instanceof Promise) ret.then(resume);
+            else resume();
         }
 
         /**
@@ -689,7 +686,7 @@ const LocalEchoController = (function () {
                 this.clearInput();
                 this._cursor -= 1;
                 this.setInput(newInput, false);
-            } else {
+            } else { // right-delete
                 const newInput = _input.substring(0, _cursor) + _input.substring(_cursor + 1);
                 this.setInput(newInput);
             }
@@ -748,7 +745,10 @@ const LocalEchoController = (function () {
 
             // If we have an active character prompt, satisfy it in priority
             if (this._activeCharPrompt != null) {
-                if (this._activeCharPrompt.allowedChars === undefined || this._activeCharPrompt.allowedChars.indexOf(data) > -1) {
+                const acpAC = this._activeCharPrompt.allowedChars;
+                if (acpAC === undefined ||
+                    (typeof acpAC === 'string' && acpAC.indexOf(data) > -1) ||
+                    (acpAC instanceof RegExp && acpAC.test(data))) {
                     this._activeCharPrompt.resolve(data);
                     this._activeCharPrompt = null;
                     this.term.write("\r\n");
@@ -768,12 +768,13 @@ const LocalEchoController = (function () {
         }
 
         /**
-         * Handle a single piece of information from the terminal. Max 2 chars
+         * Handle a single piece of information from the terminal. Max 3 chars
          */
         handleData(data) {
             if (!this._active) return;
             const ord = data.charCodeAt(0);
             let ofs;
+            const self = this;
 
             // Handle ANSI escape sequences
             if (ord == 0x1b) {
@@ -856,7 +857,7 @@ const LocalEchoController = (function () {
                     case "\t": // TAB
                         if (this._autocompleteHandlers.length > 0) {
                             const inputFragment = this._input.substring(0, this._cursor);
-                            const hasTailingSpace = hasTailingWhitespace(inputFragment);
+                            const hasTrailingSpace = hasTailingWhitespace(inputFragment);
                             const candidates = collectAutocompleteCandidates(
                                 this._autocompleteHandlers,
                                 inputFragment
@@ -869,7 +870,7 @@ const LocalEchoController = (function () {
                             // a different way.
                             if (candidates.length === 0) {
                                 // No candidates? Just add a space if there is none already
-                                if (!hasTailingSpace) {
+                                if (!hasTrailingSpace) {
                                     this.handleCursorInsert(" ");
                                 }
                             } else if (candidates.length === 1) {
@@ -880,10 +881,10 @@ const LocalEchoController = (function () {
                                 );
                             } else if (candidates.length <= this.maxAutocompleteEntries) {
 
-                                // search for a shared fragement
+                                // search for a shared fragment
                                 const sameFragment = getSharedFragment(inputFragment, candidates);
 
-                                // if there's a shared fragement between the candidates
+                                // if there's a shared fragment between the candidates
                                 // print complete the shared fragment
                                 if (sameFragment) {
                                     const lastToken = getLastToken(inputFragment);
@@ -895,15 +896,15 @@ const LocalEchoController = (function () {
                                 // If we are less than maximum auto-complete candidates, print
                                 // them to the user and re-start prompt
                                 this.printAndRestartPrompt(() => {
-                                    this.printWide(candidates);
+                                    self.printWide(candidates);
                                 });
                             } else {
                                 // If we have more than maximum auto-complete candidates, print
                                 // them only if the user acknowledges a warning
                                 this.printAndRestartPrompt(() =>
-                                    this.readChar(`Display all ${candidates.length} possibilities? (y or n)`, 'yYnN\r').then(yn => {
-                                        if (yn == "y" || yn == "Y") {
-                                            this.printWide(candidates);
+                                    self.readChar(`Display all ${candidates.length} possibilities? (y/n)`, /[yn\r\n]/i).then(yn => {
+                                        if (/y/i.test(yn)) {
+                                            self.printWide(candidates);
                                         }
                                     })
                                 );
