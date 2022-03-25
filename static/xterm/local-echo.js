@@ -650,9 +650,9 @@ const LocalEchoController = (function () {
 
             // Adjust vertically
             if (newRow > prevRow)
-                this.term.write(`\x1B[${newRow - prevRow}B`);
+                this.term.write(`\x1B[${newRow - prevRow - 1}B`);
             else
-                this.term.write(`\x1B[${prevRow - newRow}A`);
+                this.term.write(`\x1B[${prevRow - newRow - 1}A`);
 
             // Adjust horizontally
             if (newCol > prevCol)
