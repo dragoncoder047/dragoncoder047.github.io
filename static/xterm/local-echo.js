@@ -534,18 +534,14 @@ const LocalEchoController = (function () {
 
             // Get the line we are currently in
             const promptCursor = this.applyPromptOffset(this._input, this._cursor);
-            const { row } = offsetToColRow(
-                currentPrompt,
-                promptCursor,
-                this._termSize.cols
-            );
+            const { row } = offsetToColRow(currentPrompt, promptCursor, this._termSize.cols);
 
             // First move on the last line
             const moveRows = allRows - row - 1;
             this.term.write(`\x1B[${moveRows}E`);
 
             // Clear current input line(s)
-            this.term.write(`\x1b[${this._termSize.cols}D\x1B[K` + "\x1B[F\x1B[K".repeat(allRows - 1));
+            this.term.write("\x1B[K" + "\x1B[F\x1B[K".repeat(allRows - 1));
         }
 
         /**
@@ -573,8 +569,8 @@ const LocalEchoController = (function () {
             const { col, row } = offsetToColRow(newPrompt, newCursor, this._termSize.cols);
             const moveUpRows = newLines - row; //  - 1 is bad for some reason
 
-            this.term.write(`\x1B[${moveUpRows}F`);
-            this.term.write(`\x1B[${col}G`);
+            this.term.write(`\x1B[${moveUpRows - 1}F`);
+            this.term.write(`\x1B[${col + 1}G`);
 
             // Replace input
             this._input = newInput;
