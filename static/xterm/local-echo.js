@@ -554,7 +554,7 @@ const LocalEchoController = (function () {
             this.term.write(`\x1B[${moveRows}E`);
 
             // Clear current input line(s)
-            this.term.write("\r\x1B[K" + "\x1B[F\x1B[K".repeat(allRows));
+            this.term.write(`\x1b[${this._termSize.cols}D\x1B[K` + "\x1B[F\x1B[K".repeat(allRows));
         }
 
         /**
@@ -759,7 +759,7 @@ const LocalEchoController = (function () {
 
             // If this looks like a pasted input, expand it
             if (data.length > 3 && data.charCodeAt(0) !== 0x1b) {
-                const normData = data.replace(/[\r\n]+/g, "\r");
+                const normData = data.replace(/[\r\n]+/g, "\n");
                 const self = this;
                 [].forEach.call(normData, c => self.handleData(c));
             } else {
