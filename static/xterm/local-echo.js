@@ -554,9 +554,9 @@ const LocalEchoController = (function () {
          * This function clears all the lines that the current input occupies and
          * then replaces them with the new input.
          */
-        setInput(newInput, clearInput = true) {
+        setInput(newInput) {
             // Clear current input
-            if (clearInput) this.clearInput();
+            this.clearInput();
 
             // Write the new input lines, including the current prompt
             const newPrompt = this.applyPrompts(newInput);
@@ -570,16 +570,11 @@ const LocalEchoController = (function () {
             // Move the cursor to the appropriate row/col
             const newCursor = this.applyPromptOffset(newInput, this._cursor);
             const newLines = countLines(newPrompt, this._termSize.cols);
-            const { col, row } = offsetToColRow(
-                newPrompt,
-                newCursor,
-                this._termSize.cols
-            );
-            const moveUpRows = newLines - row - 0; //  - 1 is too much for some reason
+            const { col, row } = offsetToColRow(newPrompt, newCursor, this._termSize.cols);
+            const moveUpRows = newLines - row; //  - 1 is bad for some reason
 
-            this.term.write(`\x1b[${this._termSize.cols}D`); // \r doesn't work here if convertEol = true (see #25)
             this.term.write(`\x1B[${moveUpRows}F`);
-            this.term.write(`\x1B[${col}C`);
+            this.term.write(`\x1B[${col}G`);
 
             // Replace input
             this._input = newInput;
@@ -676,7 +671,7 @@ const LocalEchoController = (function () {
                 const newInput = _input.substring(0, _cursor - 1) + _input.substring(_cursor);
                 this.clearInput();
                 this._cursor -= 1;
-                this.setInput(newInput, false);
+                this.setInput(newInput);
             } else { // right-delete
                 const newInput = _input.substring(0, _cursor) + _input.substring(_cursor + 1);
                 this.setInput(newInput);
@@ -725,7 +720,7 @@ const LocalEchoController = (function () {
             const { rows, cols } = data;
             this.clearInput();
             this._termSize = { cols, rows };
-            this.setInput(this._input, false);
+            this.setInput(this._input);
         }
 
         /**
