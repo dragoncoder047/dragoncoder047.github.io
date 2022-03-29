@@ -38,6 +38,12 @@ header {
     padding: 0.2em;
 }
 
+@media screen and (max-height: 10em) {
+    header {
+        position: relative;
+    }
+}
+
 #sitename-text {
     display: flex;
     flex-direction: column;
