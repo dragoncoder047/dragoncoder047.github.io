@@ -13,7 +13,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #999;
+    color: /* #999 */ #555;
 }
 
 .token.punctuation {
