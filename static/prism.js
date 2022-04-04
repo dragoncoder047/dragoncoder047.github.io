@@ -8135,7 +8135,7 @@ Prism.languages.phoo = {
         lookbehind: true,
     },
     string: {
-        pattern: /(\s|^)\$\s+(\S)((?!\2)[\s\S])+?\2\S+(?=\s|$)/,
+        pattern: /(\s|^)\$\s+(\S)((?!\2)[\s\S])+?\2\S*(?=\s|$)/,
         lookbehind: true,
     },
     url: {
