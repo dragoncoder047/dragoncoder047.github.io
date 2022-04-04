@@ -14,6 +14,18 @@
 }
 
 @font-face {
+    font-family: "Xanh Mono";
+    src: url("/static/fonts/XanhMono-Regular.ttf") format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Xanh Mono";
+    src: url("/static/fonts/XanhMono-Italic.ttf") format('truetype');
+    font-style: italic;
+}
+
+@font-face {
     font-family: VT323;
     src: url("/static/fonts/VT323-Regular.ttf") format('truetype');
 }
