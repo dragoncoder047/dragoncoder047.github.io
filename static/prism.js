@@ -8139,11 +8139,11 @@ Prism.languages.phoo = {
         lookbehind: true,
     },
     url: {
-        pattern: /((\s|^)import(from|\*)?\s+)\S+(?=\s)/,
+        pattern: /((\s|^)import(from|\*)?\s+)\S+(?=\s|$)/,
         lookbehind: true,
     },
     'attr-value': {
-        pattern: /(\s|^)\.\S+(?=\s)/,
+        pattern: /(\s|^)\.\S+(?=\s|$)/,
         lookbehind: true,
     }
 };
