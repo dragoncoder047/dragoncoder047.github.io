@@ -35,10 +35,11 @@ bar()
 ```js
 function r() {
     let x = 0;
-    const aaaa = () => { x++; aaaa(); };
-    try { aaaa(); } catch(e) {}
+    const recur = () => { x++; recur(); };
+    try { recur(); } catch(e) {}
     return x;
 }
+alert(`max recursion: ${r()}`);
 ```
 
 ```lolcode
