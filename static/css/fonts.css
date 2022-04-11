@@ -49,3 +49,8 @@
     font-family: "IBM Mono";
     src: url("/static/fonts/Web437_IBM_CGA.woff") format('woff');
 }
+
+@font-face {
+    font-family: "Computro Mono";
+    src: url("/static/fonts/ComputoMonospace-p73xO.ttf") format('truetype');
+}
