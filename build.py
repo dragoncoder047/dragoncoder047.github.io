@@ -56,7 +56,8 @@ MENUITEMS = (
     ('Blog', '/blog'),
     ('Projects', '#', (
         ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
-        ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste')
+        ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
+        ('Armdroid', f'https://{AUTHOR}.github.io/armdroid')
     )),
 )
 

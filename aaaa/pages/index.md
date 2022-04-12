@@ -1,7 +1,7 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2020-4-4
+Modified: 2020-4-12
 
 Just so you know who you are dealing with... I am a high schooler. I enjoy programming in Javascript and Python as well as building robots and other mechanical things.
 
@@ -13,12 +13,18 @@ Below are some of the more notable ideas I have done, along with links to their 
 
 ---
 
+## Armdroid
+
+In early 2022 I discovered two old Armdroid 1000's and their accessories in the back of my engineering teacher's storage closet. So I put together a site with pictures of the robots and links to other resources I found on the Web. [Have a look at it here.](/armdroid/)
+
+---
+
 ## Phoo
 
-A little scripting language I invented based on the principle that everything is a stack. Javascript source code on Github [here](https://github.com/dragoncoder047/phoo). Based off of another scripting language called Quackery, code for that [here](https://github.com/GordonCharlton/Quackery). Currently the only documentation is a Typescript declaration file and JSDoc comments in the code. The demo page is [here](/phoo/) but as of when I wrote this it is still broken.
+A little scripting language I invented based on the principle that everything is a stack. Javascript source code [on Github](https://github.com/dragoncoder047/phoo). Based off of another scripting language called Quackery, [code for that here](https://github.com/GordonCharlton/Quackery). Currently the only documentation is a Typescript declaration file and JSDoc comments in the code. [The demo page is here](/phoo/) but as of when I wrote this it is still broken.
 
 ---
 
 ## Thuepaste
 
-For a while in March 2022 I was really interested in the [Thue](https://en.wikipedia.org/wiki/Thue_(programming_language)) programming language and wrote a little interpreter for it (which you can find [here](/thuepaste/)). I tried to write a function that would determine if any given Thue-machine would halt without actually running it (result: fail, fail, fail). Aside from making more demo programs, I don't think I'll get back to this anytime soon.
+For a while in March 2022 I was really interested in the [Thue](https://en.wikipedia.org/wiki/Thue_(programming_language)) programming language and wrote a little interpreter for it (which you can [find here](/thuepaste/)). I tried to write a function that would determine if any given Thue-machine would halt without actually running it (result: fail, fail, fail). Aside from making more demo programs, I don't think I'll get back to this anytime soon.
