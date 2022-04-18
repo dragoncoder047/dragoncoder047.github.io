@@ -5,6 +5,7 @@ pelican-share-post
 pelican-related-posts
 pymdown-extensions
 markdown-figcap
+mdx-include
 python-markdown-comments
 minchin.pelican.plugins.nojekyll
 cython
