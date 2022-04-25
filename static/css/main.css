@@ -260,12 +260,21 @@ dd+dd {
 
 figure {
     border: 1px dotted gray;
+    padding: 0.7em;
+}
+
+figure:not(.float-right):not(.float-left) img {
+    max-width: 80%;
+}
+
+figure.float-right img,
+figure.float-left img {
+    max-width: 20%;
 }
 
 figcaption {
     font-style: italic;
-    font-weight: lighter;
-    opacity: 50%;
+    opacity: 70%;
 }
 
 
