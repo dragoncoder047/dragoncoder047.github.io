@@ -1,12 +1,7 @@
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-    background: #7F7F7F7F;
-}
-
-::-webkit-scrollbar:hover {
     width: 10px;
     height: 10px;
+    background: #7F7F7F7F;
 }
 
 ::-webkit-scrollbar-thumb {
