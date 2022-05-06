@@ -12,7 +12,7 @@
 		if (!pre || !/pre/i.test(pre.nodeName) || !run_transform_hooks[lang]) {
 			return;
 		}
-		var callback = window[pre.getAttribute('data-callback')] || run_transform_hooks[lang](env);
+		var callback = window[pre.getAttribute('data-run-callback')] || run_transform_hooks[lang](env);
 		var btn = document.createElement('button');
 		btn.addEventListener('click', callback);
 		btn.textContent = 'Run this code';
