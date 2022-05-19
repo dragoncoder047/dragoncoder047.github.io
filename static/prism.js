@@ -1535,6 +1535,8 @@ Prism.languages.python['string-interpolation'].inside['interpolation'].inside.re
 
 Prism.languages.py = Prism.languages.python;
 
+Prism.languages.py3 = Prism.languages.python;
+
 (function () {
 
 	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !document.querySelector) {
