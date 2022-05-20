@@ -1,1 +1,3 @@
 *.html linguist-generated
+drafts/* linguist-generated
+pages/* linguist-generated
