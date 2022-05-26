@@ -44,7 +44,7 @@ Prism.languages.phoo = {
     },
     builtin: [
         {
-            pattern: /(\s|^)(to|macro|alias|pick|roll|2?drop|1?[+-]|\*\*?|[/&|^~=<>]|negate|\/?mod|nand|<<|>>|put|take|lower|upper|\.\.|\[]|\{}|concat|split|peek|poke|find|die|num>\$|\$>num|chr|type|big|compile|time|nestdepth|get|set|call|await|new|word|name|resolve|self|stacksize|window)(?=\s|$)/,
+            pattern: /(\s|^)(to|macro|alias|pick|roll|2?drop|1?[+-]|\*\*?|[/&|^~=<>]|negate|\/?mod|nand|<<|>>|put|take|lower|upper|\+\+|\[]|\{}|concat|split|peek|poke|find|die|num>\$|\$>num|chr|type|big|compile|time|nestdepth|get|set|call@?|await|new@?|word|name|resolve|self|stacksize|window|promise|functionize)(?=\s|$)/,
             lookbehind: true,
         },
         {
