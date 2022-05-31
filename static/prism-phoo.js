@@ -52,7 +52,7 @@ Prism.languages.phoo = {
 		}
 	],
 	symbol: {
-		pattern: /(\s|^)(stack|table|const|now!)(?=\s|$)/,
+		pattern: /(\s|^)(stack|table|const|now!|var,?|is)(?=\s|$)/,
 		lookbehind: true,
 	},
 	keyword: {
