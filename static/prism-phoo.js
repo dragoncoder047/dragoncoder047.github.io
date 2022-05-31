@@ -57,7 +57,7 @@ Prism.languages.phoo = {
         lookbehind: true,
     },
     keyword: {
-        pattern: /(\s|^)(done|again|iff?|else|until|while|switch|case|default|'|times|try|in_scope|import(\*|from)?)(?=\s|$)/,
+        pattern: /(\s|^)(done|again|iff?|else|until|while|switch|case|default|'|times|try|in_scope|(?:re)?use)(?=\s|$)/,
         lookbehind: true,
     },
     meta: {
