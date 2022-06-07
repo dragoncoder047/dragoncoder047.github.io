@@ -13,7 +13,8 @@ jobs:
       - name: pull theme repo
         run: |
           cd pelicantheme
-          git pull
+          git fetch --all
+          git reset --hard origin/main
           cd ..
       - name: set up python
         uses: actions/setup-python@v3
