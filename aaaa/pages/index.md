@@ -17,7 +17,7 @@ Below are some of the more notable ideas I have done, along with links to their 
 
 ## Phoo
 
-A little scripting language I invented based on the principle that everything is a stack. Javascript source code [on Github](https://github.com/dragoncoder047/phoo). Based off of another scripting language called Quackery, [code for that here](https://github.com/GordonCharlton/Quackery). Phoo's [documentation](/phoo/docs/index.html) is primitive, cobbled together by a little Python script, and I haven't written a good tutorial, but Phoo works well and the code is impressively concise compared to vanilla Javascript.
+A little scripting language I invented based on the principle that everything is a stack. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Based off of another scripting language called Quackery, [code for that here](https://github.com/GordonCharlton/Quackery). Phoo's [documentation](https://phoo-lang.github.io/docs/) is primitive, cobbled together by a little Python script, and I haven't written a good tutorial, but Phoo works well and the code is impressively concise compared to vanilla Javascript.
 
 ---
 
