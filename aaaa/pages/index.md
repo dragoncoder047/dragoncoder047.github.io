@@ -1,7 +1,7 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2020-06-24
+Modified: 2020-09-07
 
 Hi, I guess.
 
@@ -15,19 +15,19 @@ Below are some of the more notable ideas I have done, along with links to their 
 
 ## Langton-Music
 
-In late June 2022 I had the idea to try and create music from Langton's Ant and other types of two-dimensional Turing machines. The little simulator I built isn't very polished in terms of UI, but it works. I haven't had much of a chance to play around with it. You can find it [here](/ca-experiments/langton-music/index.html).
+In late June 2022 I had the idea to try and create music from Langton's Ant and other types of two-dimensional Turing machines. The little simulator I built isn't polished in terms of UI, but it works. I haven't had much of a chance to play around with it. In September I redesigned it completely and the new version is [here](/langton-music/index.html). (You can find the old June version [here](/ca-experiments/langton-music/index.html).)
 
 ---
 
 ## Phoo
 
-A little scripting language I invented based on the principle that everything is a stack. I haven't used it "in" anything yet, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo's [documentation](https://phoo-lang.github.io/docs/index.html) is primitive, cobbled together by a little Python script, but Phoo works well and the code is impressively concise compared to vanilla Javascript.
+A little scripting language I invented based on the principle that everything is a stack. I haven't used it "in" anything yet, and the shell is kind of broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo's [documentation](https://phoo-lang.github.io/docs/index.html) is primitive, cobbled together by a little Python script, but Phoo works well and the code is impressively concise compared to vanilla Javascript.
 
 ---
 
 ## Armdroid
 
-In early 2022 I discovered two old Armdroid 1000's and their accessories in the back of my engineering teacher's storage closet. So I put together a site with pictures of the robots and links to other resources I found on the Web. [Have a look at it here.](/armdroid/) I'm on summer break right now and don't have access to the Armdroids, so don't expect any updates soon.
+In early 2022 I discovered two old Armdroid 1000's and their accessories in the back of my engineering teacher's storage closet. So I put together a site with pictures of the robots and links to other resources I found on the Web. [Have a look at it here.](/armdroid/)
 
 ---
 
