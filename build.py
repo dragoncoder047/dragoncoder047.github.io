@@ -57,7 +57,8 @@ MENUITEMS = (
     ('Projects', '#', (
         ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
-        ('Armdroid', f'https://{AUTHOR}.github.io/armdroid')
+        ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
+        ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music')
     )),
 )
 
