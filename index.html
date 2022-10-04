@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en_us">
     <head>
-                <title>dragoncoder047&rsquo;s site - dragoncoder047's homepage</title>
+                <title>dragoncoder047's homepage</title>
             <meta charset="utf-8" />
             <meta name="generator" content="Pelican" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
     
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
-    <meta property="og:title" content="dragoncoder047&rsquo;s site - dragoncoder047&#39;s homepage" />
+    <meta property="og:title" content="dragoncoder047&#39;s homepage" />
     <meta property="og:description" content="Hi, I guess. Just so you know who you are dealing with… I am a high school student. I enjoy programming in Javascript and Python as well as building robots and other mechanical things. I haven’t done much yet, on Github or otherwise, but I have plenty of ideas …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="page" />
@@ -64,15 +64,14 @@
     <h1>dragoncoder047's homepage</h1>
     
 
-        <p><em>Last updated: Mon 07 September 2020</em></p>
+        <p><em>Last updated: Sun 04 October 2020</em></p>
 
     <p>Hi, I guess.</p>
 <p>Just so you know who you are dealing with&hellip; I am a high school student. I enjoy programming in Javascript and Python as well as building robots and other mechanical things.</p>
 <p>I haven&rsquo;t done much yet, on Github or otherwise, but I have plenty of ideas. Some of them work out, others don&rsquo;t, and this site is partially the result.</p>
 <p>Below are some of the more notable ideas I have done, along with links to their description pages. I will note here that this list may, at times, be out of date. The best place to check is <a href="https://github.com/dragoncoder047?tab=repositories">my Github repositories list</a> which includes everything and is sorted by when I last did something with it.</p>
-<hr>
-<h2 id="langton-music">Langton-Music</h2>
-<p>In late June 2022 I had the idea to try and create music from Langton&rsquo;s Ant and other types of two-dimensional Turing machines. The little simulator I built isn&rsquo;t polished in terms of UI, but it works. I haven&rsquo;t had much of a chance to play around with it. In September I redesigned it completely and the new version is <a href="/langton-music/index.html">here</a>. (You can find the old June version <a href="/ca-experiments/langton-music/index.html">here</a>.)</p>
+<h2 id="yisp">Yisp</h2>
+<p>Yisp is going to be a Lisp-ish scripting language interpreter for microcontrollers, adapted from David Johnson-Davies&rsquo; uLisp. This serves as my self-introduction to C++ and I am going to use it in susequent microcontroller projects (most of which still &ldquo;in the womb&rdquo; in terms of how far they have been developed &ndash; not worthy of being listed here yet). The code is <a href="https://github.com/dragoncoder047/yisp">here</a>, but it&rsquo;s incomplete, and I&rsquo;ve never even tried to compile it yet so it may even be syntactically incorrect. Use at your own risk.</p>
 <hr>
 <h2 id="phoo">Phoo</h2>
 <p>A little scripting language I invented based on the principle that everything is a stack. I haven&rsquo;t used it &ldquo;in&rdquo; anything yet, and the shell is kind of broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code <a href="https://github.com/phoo-lang/phoo">on Github</a>. Phoo started as a Javascript port of another scripting language called <a href="https://github.com/GordonCharlton/Quackery">Quackery</a>, but took a left turn early on in development and is nothing like Quackery anymore. Phoo&rsquo;s <a href="https://phoo-lang.github.io/docs/index.html">documentation</a> is primitive, cobbled together by a little Python script, but Phoo works well and the code is impressively concise compared to vanilla Javascript.</p>
@@ -80,8 +79,14 @@
 <h2 id="armdroid">Armdroid</h2>
 <p>In early 2022 I discovered two old Armdroid 1000&rsquo;s and their accessories in the back of my engineering teacher&rsquo;s storage closet. So I put together a site with pictures of the robots and links to other resources I found on the Web. <a href="/armdroid/">Have a look at it here.</a></p>
 <hr>
+<h2 id="schemascii">Schemascii</h2>
+<p>In late September 2022 I was fooling around with the parts of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted &ndash; Jovansonlee Cesar&rsquo;s <a href="https://github.com/ivanceras/svgbob">svgbob</a> &ndash; doesn&rsquo;t wuite work the way I want it to, so I decided to write my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (which is what this site is, and what I plan to do once Schemascii is complete.)</p>
+<hr>
+<h2 id="langton-music">Langton-Music</h2>
+<p>In late June 2022 I had the idea to try and create music from Langton&rsquo;s Ant and other types of two-dimensional Turing machines. The little simulator I built isn&rsquo;t polished in terms of UI, but it works. I haven&rsquo;t had much of a chance to play around with it. In September I redesigned it completely and the new version is <a href="/langton-music/index.html">here</a>. (You can find the old June version <a href="/ca-experiments/langton-music/index.html">here</a>.)</p>
+<hr>
 <h2 id="thuepaste">Thuepaste</h2>
-<p>For a while in March 2022 I was really interested in the <a href="https://en.wikipedia.org/wiki/Thue_(programming_language)">Thue</a> programming language and wrote a little interpreter for it (which you can <a href="/thuepaste/">find here</a>). I tried to write a function that would determine if any given Thue-machine would halt without actually running it (result: fail, fail, fail). Aside from making more demo programs, I don&rsquo;t think I&rsquo;ll get back to this much at all.</p>
+<p>For a while in March 2022 I was really interested in the <a href="https://en.wikipedia.org/wiki/Thue_(programming_language)">Thue</a> programming language and wrote a little interpreter for it (which you can <a href="/thuepaste/">find here</a>). I tried to write a function that would determine if any given Thue-machine would halt without actually running it, and no matter what I tried, it either crashed or hung. My idea seems like it would work, I just can&rsquo;t figure out how to implement it. Aside from making more demo programs, I don&rsquo;t think I&rsquo;ll get back to this much at all.</p>
             <section id="extras">
                     <div class="blogroll">
                         <ul>
