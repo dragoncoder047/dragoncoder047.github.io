@@ -1,7 +1,7 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2022-10-04
+Modified: 2022-10-14
 
 Hi, I guess.
 
@@ -10,12 +10,6 @@ Just so you know who you are dealing with... I am a high school student. I enjoy
 I haven't done much yet, on Github or otherwise, but I have plenty of ideas. Some of them work out, others don't, and this site is partially the result.
 
 Below are some of the more notable ideas I have done, along with links to their description pages. I will note here that this list may, at times, be out of date. The best place to check is [my Github repositories list](https://github.com/dragoncoder047?tab=repositories) which includes everything and is sorted by when I last did something with it.
-
-## Yisp
-
-Yisp is going to be a Lisp-ish scripting language interpreter for microcontrollers, adapted from David Johnson-Davies' uLisp. This serves as my self-introduction to C++ and I am going to use it in susequent microcontroller projects (most of which still "in the womb" in terms of how far they have been developed -- not worthy of being listed here yet). The code is [here](https://github.com/dragoncoder047/yisp), but it's incomplete, and I've never even tried to compile it yet so it may even be syntactically incorrect. Use at your own risk.
-
----
 
 ## Phoo
 
