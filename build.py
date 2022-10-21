@@ -17,6 +17,7 @@ ICON = '/images/patrick_head_silhouette.svg'
 ICON_MIMETYPE = 'image/svg+xml'
 THEME_CSS_FILE = '/static/css/theme.css'
 THEME_MAIN_CSS = '/static/css/main.css'
+EXTRA_JS = '/static/misc.js'
 THEME_STATIC_DIR = 'static/'
 USE_FOLDER_AS_CATEGORY = False
 
