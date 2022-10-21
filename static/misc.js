@@ -9,3 +9,9 @@ function fillEntirePage() {
         document.querySelector('#content').removeAttribute('id');
     });
 }
+
+// Dark mode hack
+if (window.matchMedia('(prefers-color-scheme: dark)')) {
+    document.querySelector('link[rel="icon"]').setAttribute('href', '/images/patrick_head_silhouette_white.svg');
+    document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', '/images/patrick_head_silhouette_white.svg');
+}
