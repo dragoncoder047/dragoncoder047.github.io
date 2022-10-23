@@ -46,7 +46,7 @@
 }
 
 
-/* @media screen and (prefers-color-scheme: light) {
+@media screen and (prefers-color-scheme: light) {
      :root {
         --theme-1-darker: purple;
         --theme-1: #a0a;
@@ -61,4 +61,4 @@
         --lightgray: #444;
         --darkgray: #888;
     }
-} */
+}
