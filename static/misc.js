@@ -32,6 +32,7 @@ function fillEntirePage() {
             giscusFrame.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
         }
     }
-    updateThemedStuff();
+    updateThemedStuff(); // change icon immediately
+    setTimeout(updateThemedStuff, 1000); // allow time for giscus frame to load
     dmmq.addEventListener('change', updateThemedStuff);
 })();
