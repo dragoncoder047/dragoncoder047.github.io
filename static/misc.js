@@ -15,8 +15,9 @@ function fillEntirePage() {
     var dmmq = window.matchMedia('(prefers-color-scheme: dark)');
     var icon = document.querySelector('link[rel="icon"]');
     var appleIcon = document.querySelector('link[rel="apple-touch-icon"]');
-    var giscusFrame = document.querySelector('iframe.giscus-frame');
+    var giscusFrame;
     function updateThemedStuff() {
+        if (!giscusFrame) giscusFrame = document.querySelector('iframe.giscus-frame');
         if (dmmq.matches) {
             // Dark theme
             icon.setAttribute('href', '/images/patrick_head_silhouette_white.svg');
