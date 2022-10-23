@@ -33,6 +33,6 @@ function fillEntirePage() {
         }
     }
     updateThemedStuff(); // change icon immediately
-    setTimeout(updateThemedStuff, 1000); // allow time for giscus frame to load
+    setInterval(updateThemedStuff, 1000); // allow time for giscus frame to load; and afterwards if it takes longer
     dmmq.addEventListener('change', updateThemedStuff);
 })();
