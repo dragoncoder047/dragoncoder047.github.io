@@ -11,7 +11,15 @@ function fillEntirePage() {
 }
 
 // Dark mode hack
-if (window.matchMedia('(prefers-color-scheme: dark)')) {
-    document.querySelector('link[rel="icon"]').setAttribute('href', '/images/patrick_head_silhouette_white.svg');
-    document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', '/images/patrick_head_silhouette_white.svg');
+var dmmq = window.matchMedia('(prefers-color-scheme: dark)');
+function updateIcon() {
+    if (dmmq.matches) {
+        document.querySelector('link[rel="icon"]').setAttribute('href', '/images/patrick_head_silhouette_white.svg');
+        document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', '/images/patrick_head_silhouette_white.svg');
+    } else {
+        document.querySelector('link[rel="icon"]').setAttribute('href', '/images/patrick_head_silhouette.svg');
+        document.querySelector('link[rel="apple-touch-icon"]').setAttribute('href', '/images/patrick_head_silhouette.svg');
+    }
 }
+updateIcon();
+dmmq.addEventListener('change', updateIcon);
