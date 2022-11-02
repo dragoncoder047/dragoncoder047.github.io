@@ -1,15 +1,21 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2022-10-14
+Modified: 2022-11-2
 
 Hi, I guess.
 
 Just so you know who you are dealing with... I am a high school student. I enjoy programming in Javascript and Python as well as building robots and other mechanical things.
 
-I haven't done much yet, on Github or otherwise, but I have plenty of ideas. Some of them work out, others don't, and this site is partially the result.
+I haven't done much yet, on Github or otherwise, but I have plenty of ideas. Some of them work out, plenty don't, and this site is partially the result.
 
 Below are some of the more notable ideas I have done, along with links to their description pages. I will note here that this list may, at times, be out of date. The best place to check is [my Github repositories list](https://github.com/dragoncoder047?tab=repositories) which includes everything and is sorted by when I last did something with it.
+
+## TEHSSL
+
+I want to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. After a couple of false starts with Lisp and Tcl, I decided to write my own language. It's written in C, using glibc extensions, and hopefully (!!) it will actually fit on an Arduino with room to spare for other interface code. (Once I get it finished, that is.) Whether or not it works on an Arduino, I will prbably set TEHSSL up to be able to compile it as standalone and run it on a regular computer. Either way, the code is on GitHub: <https://github.com/dragoncoder047/tehssl>
+
+---
 
 ## Phoo
 
@@ -25,7 +31,7 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 ## Schemascii
 
-In late September 2022 I was fooling around with the parts of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't wuite work the way I want it to, so I decided to write my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (which is what this site is, and what I plan to do once Schemascii is complete.)
+In late September 2022 I was fooling around with the parts of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I want it to, so I decided to write my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (which is what this site is, and what I plan to do once Schemascii is complete.) The code for Schemascii is on GitHub: <https://github.com/dragoncoder047/schemascii>
 
 ---
 
