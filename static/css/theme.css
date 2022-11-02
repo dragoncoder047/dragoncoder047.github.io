@@ -36,6 +36,7 @@
         --theme-2-darker: #06f;
         --theme-2: blue;
         --theme-3: goldenrod;
+        --theme-3-darker: orange;
         --theme-4: green;
         --theme-4-darker: lime;
         --black: white;
@@ -54,8 +55,12 @@
         --theme-1-lightest: #f5f;
         --color-bg: white;
         --color-fg: #0a0a0a;
+        --theme-2-darker: #06f;
         --theme-2: blue;
         --theme-3: goldenrod;
+        --theme-3-darker: orange;
+        --theme-4: green;
+        --theme-4-darker: lime;
         --black: white;
         --white: black;
         --lightgray: #444;
