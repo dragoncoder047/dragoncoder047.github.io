@@ -40,6 +40,8 @@ function fillEntirePage() {
 (function () {
     // Images click
     for (var image of document.querySelectorAll("img")) {
-        image.addEventListener("click", function () { window.open(this.src, "_blank"); });
+        (function (i, src) {
+            i.addEventListener("click", function () { window.open(src, "_blank"); });
+        })(image, image.getAttribute("src"));
     }
 })();
