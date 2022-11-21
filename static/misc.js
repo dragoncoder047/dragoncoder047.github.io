@@ -36,3 +36,10 @@ function fillEntirePage() {
     setInterval(updateThemedStuff, 1000); // allow time for giscus frame to load; and afterwards if it takes longer
     dmmq.addEventListener('change', updateThemedStuff);
 })();
+
+(function () {
+    // Images click
+    for (var image of document.querySelectorAll("img")) {
+        image.addEventListener("click", function () { window.open(this.src, "_blank"); });
+    }
+})();
