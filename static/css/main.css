@@ -263,8 +263,8 @@ figure {
     padding: 0.7em;
 }
 
-figure:not(.float-right):not(.float-left) img {
-    max-width: 80%;
+img {
+    max-width: 60%;
 }
 
 figure.float-right img,
