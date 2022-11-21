@@ -265,6 +265,7 @@ figure {
 
 img {
     max-width: 60%;
+    cursor: zoom-in;
 }
 
 figure.float-right img,
