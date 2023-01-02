@@ -56,7 +56,7 @@ MENUITEMS = (
     #('Archives', f'/archives.html'),
     ('Blog', '/blog'),
     ('Projects', '#', (
-        ('Phoo', f'https://github.com/{AUTHOR}/phoo'),
+        ('Phoo', 'https://phoo-lang.github.io/'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music')
@@ -94,6 +94,12 @@ def kroki_fence(source, language, css_class, options, md, **kwargs):
     return f'<img src="https://kroki.io/{lang}/svg/{data}"{attr} />'
 
 
+def named_kroki(name):
+    def named_fence(source, language, css_class, options, md, **kwargs):
+        return kroki_fence(source, language, css_class, options | {'type': name}, md, **kwargs)
+    return {'name': name, 'class': name, 'format': named_fence}
+
+
 def circuit_fence(source, language, css_class, options, md, **kwargs):
     return '<span style="color: red; background: yellow;">TODO</span>'
 
@@ -110,11 +116,9 @@ MARKDOWN = {
         'pymdownx.inlinehilite': {},
         "pymdownx.superfences": {
             "custom_fences": [
-                {
-                    'name': 'mermaid',
-                    'class': 'mermaid',
-                    'format': pymdownx.superfences.fence_div_format
-                },  # covered by kroki, but needed for compatibility with github
+                # covered by kroki, but needed for compatibility with github
+                named_kroki('mermaid'),
+                named_kroki('svgbob'),
                 {
                     'name': 'lifeviewer',
                     'class': 'lifeviewer',
