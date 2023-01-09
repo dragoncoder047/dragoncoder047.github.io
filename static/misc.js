@@ -1,3 +1,4 @@
+// Why do I keep these here anymore??
 window.gebid = document.getElementById.bind(document);
 window.qsel = document.querySelector.bind(document);
 window.qselall = document.querySelectorAll.bind(document);
@@ -10,7 +11,10 @@ function fillEntirePage() {
     });
 }
 
+//---------------------------------------------------------------------------------------------------------------
+
 (function () {
+    if (/armdroid/.test(location.pathname)) return; // The Armdroid site is its own sub thing so ignore it
     // Dark mode hack
     var dmmq = window.matchMedia('(prefers-color-scheme: dark)');
     var icon = document.querySelector('link[rel="icon"]');
@@ -37,13 +41,13 @@ function fillEntirePage() {
     dmmq.addEventListener('change', updateThemedStuff);
 })();
 
+//--------------------------------------------------------------------------------------------------------
+
 (function () {
     // Images click
     for (var image of document.querySelectorAll("img[src]")) {
-        var a = document.createElement("a");
-        a.setAttribute("target", "_blank");
-        a.setAttribute("href", image.getAttribute("src"));
-        image.parentNode.insertBefore(a, image);
-        a.append(image);
+        image.addEventListener('click', function() {
+            window.open(this.getAttribute('src'), '_blank');
+        });
     }
 })();
