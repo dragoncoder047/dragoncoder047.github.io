@@ -1,15 +1,11 @@
-// Why do I keep these here anymore??
-window.gebid = document.getElementById.bind(document);
-window.qsel = document.querySelector.bind(document);
-window.qselall = document.querySelectorAll.bind(document);
-
-function fillEntirePage() {
-    window.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('header').remove();
-        document.querySelector('footer').remove();
-        document.querySelector('#content').removeAttribute('id');
-    });
-}
+(function () {
+    // Images click
+    for (var image of document.querySelectorAll("img[src]")) {
+        image.addEventListener('click', function() {
+            window.open(this.getAttribute('src'), '_blank');
+        });
+    }
+})();
 
 //---------------------------------------------------------------------------------------------------------------
 
@@ -39,15 +35,4 @@ function fillEntirePage() {
     updateThemedStuff(); // change icon immediately
     setInterval(updateThemedStuff, 1000); // allow time for giscus frame to load; and afterwards if it takes longer
     dmmq.addEventListener('change', updateThemedStuff);
-})();
-
-//---------------------------------------------------------------------------------------------------------------
-
-(function () {
-    // Images click
-    for (var image of document.querySelectorAll("img[src]")) {
-        image.addEventListener('click', function() {
-            window.open(this.getAttribute('src'), '_blank');
-        });
-    }
 })();
