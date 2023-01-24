@@ -1,29 +1,29 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2023-01-14
+Modified: 2023-01-24
 
 Hi, I guess.
 
-Just so you know who you are dealing with... I am a high school student. I enjoy programming in Javascript and Python as well as reverse-engineering, hacking, and building robots.
+Just so you know who you are dealing with... I am a high school student. I enjoy programming in Python, C++, and Javascript, as well as reverse-engineering, hacking, and building robots.
 
 Below are some of the more notable ideas I have done, along with links to their description pages. I will note here that this list may, at times, be out of date. The best place to check is [my Github repositories list](https://github.com/dragoncoder047?tab=repositories) which includes everything and is sorted by when I last did something with it.
 
 ## LILduino
 
-I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. After a couple of false starts with Lisp and Tcl, and writing my own language, I discovered [LIL](http://runtimeterror.com/tech/lil/). It's written in C and even though it has no garbage collector (memory is managed very carefully by duplicating and freeing values when needed) it works very well. I wrote a bunch of C++ "extension modules" that hook into Arduino functions and libraries (GPIO, SD, cards, infrared communication, regular expressions, etc.), and basically have turned LIL into a crude operating system for any microprocessor that has enough horsepower to run it. Code here: <https://github.com/dragoncoder047/lilduino>
+I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. After several false starts with Lisp, Tcl, and writing my own language, I discovered [LIL](http://runtimeterror.com/tech/lil/). It's written in C and even though it has no garbage collector (memory is managed very carefully by duplicating and freeing values when needed) it works very well. I wrote a bunch of C++ "extension modules" that hook into Arduino functions and libraries (GPIO, SD, cards, infrared communication, regular expressions, etc.), and basically have turned LIL into a crude operating system for any microprocessor that has enough horsepower to run it. Code here: <https://github.com/dragoncoder047/lilduino>
 
 ---
 
 ## Phoo
 
-A little scripting language I invented based on the principle that everything is a stack. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo is a whole lot faster than Quackery and works well and the code is impressively concise compared to the equivalent Javascript or Python. I haven't used Phoo "in" anything yet, and the shell is kind of broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Phoo's [documentation](https://phoo-lang.github.io/docs/index.html) is a bit primitive, cobbled together by a little Python script, but everything that needs to be documented is documented thouroughly.
+A little scripting language I invented based on the principle that everything is a stack. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo is a whole lot faster than Quackery and works well and the code is impressively concise compared to the equivalent Javascript or Python. I haven't used Phoo "in" anything yet, and the shell is kind of broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Phoo's [documentation](https://phoo-lang.github.io/docs/index.html) is a bit primitive, cobbled together by a little Python script, but everything that needs to be documented is documented relatively thouroughly on that link for the outward-facing Phoo words, and as JSDoc comments for Phoo's internals.
 
 ---
 
 ## Armdroid
 
-In early 2022 I discovered two old Armdroid 1000's and their accessories in the back of my engineering teacher's storage closet. So I put together a site with pictures of the robots and links to other resources I found on the Web. [Have a look at it here.](/armdroid/) This site also documents my efforts to reverse-engineer the Armdroid and control it with an Arduino Uno, which have been mildly successful.
+In early 2022 I discovered two old Armdroid 1000's and their accessories in the back of my engineering teacher's storage closet, remnants from the days that my school taught [PLTW Computer Integrated Manufaturing](https://www.pltw.org/computer-integrated-manufacturing-course-outline). I put together a website with pictures of the robots and links to other resources I found on the Web. [Have a look at it here.](/armdroid/) This site also documents my efforts to reverse-engineer the Armdroid and control it with an Arduino Uno, which have been mildly successful.
 
 ---
 
@@ -41,4 +41,4 @@ In late June 2022 I had the idea to try and create music from Langton's Ant and 
 
 ## Thuepaste
 
-For a while in March 2022 I was really interested in the [Thue](https://en.wikipedia.org/wiki/Thue_(programming_language)) programming language and wrote [a little interpreter for it](/thuepaste/) and a few demo programs, which are included along with a bunch of other demos I found on the internet. I came up with an idea for an algorithm that would determine the probablilty of any given Thue-machine halting, but without actually running it. But no matter what approach I took to trying to implement it, it either crashed, got stuck in a loop for hours, ran out of memory, or did some other horrible thing to my browser to make it so slow I had to kill and restart it on multiple occasions. My idea seems like it would work, I just can't figure out how to implement it. Aside from making more demo programs, I don't think I'll get back to this much at all.
+For a brief spat in March 2022 I got myself obsessed with the [Thue programming language](https://en.wikipedia.org/wiki/Thue_(programming_language)) and wrote [a little interpreter for it](/thuepaste/) and a few demo programs, which are included along with a bunch of other demos I found on the internet. I came up with an idea for an algorithm that would determine the probablilty of any given Thue-machine halting, but without actually running it. Unfortunately, no matter what approach I took to trying to implement it, it either crashed, got stuck in a loop for hours, ran out of memory, or did some other horrible thing to my browser to make it so slow I had to force-quit and restart it on multiple occasions. My idea seems like it would work, I just can't figure out how to implement it. Aside from making more demo programs, I don't think I'll get back to this much at all.
