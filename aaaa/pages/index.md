@@ -29,7 +29,7 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 ## Schemascii
 
-In late September 2022 I was fooling around with the PCB's of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none I know of run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I want it to, so I decided to write my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (which is what this site is, and what I plan to do once Schemascii is complete.) The code for Schemascii is on GitHub: <https://github.com/dragoncoder047/schemascii>
+In late September 2022 I was fooling around with the PCB's of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none I know of run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I want it to, so I wrote my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (such as my blog). There is also a CLI program for rendering standalone images. Schemascii is on GitHub: <https://github.com/dragoncoder047/schemascii>
 
 ---
 
