@@ -15,9 +15,9 @@ I wanted to be able to embed a scripting language on an Arduino so I don't have 
 
 ---
 
-## Phoo
+## Schemascii
 
-A little scripting language I invented based on the principle that everything is a stack. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo is a whole lot faster than Quackery and works well and the code is impressively concise compared to the equivalent Javascript or Python. I haven't used Phoo "in" anything yet, and the shell is kind of broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Phoo's [documentation](https://phoo-lang.github.io/docs/index.html) is a bit primitive, cobbled together by a little Python script, but everything that needs to be documented is documented relatively thouroughly on that link for the outward-facing Phoo words, and as JSDoc comments for Phoo's internals.
+In late September 2022 I was fooling around with the PCB's of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none I know of run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I want it to, so I wrote my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (such as my blog). There is also a CLI program for rendering standalone images. Schemascii is on GitHub: <https://github.com/dragoncoder047/schemascii>
 
 ---
 
@@ -27,15 +27,15 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 ---
 
-## Schemascii
-
-In late September 2022 I was fooling around with the PCB's of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none I know of run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I want it to, so I wrote my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (such as my blog). There is also a CLI program for rendering standalone images. Schemascii is on GitHub: <https://github.com/dragoncoder047/schemascii>
-
----
-
 ## Langton-Music
 
 In late June 2022 I had the idea to try and create music from Langton's Ant and other types of two-dimensional Turing machines. The little simulator I built isn't terribly polished in terms of UI (it uses the browser-default styles for pretty much everything), but it works, and I actually managed to set it up so it is installable as a progressive web app. I haven't had much of a chance to play around with it. [You can find it here](/langton-music/index.html). Bug reports and feature requests can go on [GitHub Issues](https://github.com/dragoncoder047/langton-music/issues/), and everything else can go on [this conwaylife.com forum thread](https://conwaylife.com/forums/viewtopic.php?f=11&p=147432).
+
+---
+
+## Phoo
+
+A little scripting language I invented based on the principle that everything is a stack. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo is a whole lot faster than Quackery and works well and the code is impressively concise compared to the equivalent Javascript or Python. I haven't used Phoo "in" anything yet, and the shell is kind of broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Phoo's [documentation](https://phoo-lang.github.io/docs/index.html) is a bit primitive, cobbled together by a little Python script, but everything that needs to be documented is documented relatively thouroughly on that link for the outward-facing Phoo words, and as JSDoc comments for Phoo's internals.
 
 ---
 
