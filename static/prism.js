@@ -1537,6 +1537,8 @@ Prism.languages.py = Prism.languages.python;
 
 Prism.languages.py3 = Prism.languages.python;
 
+Prism.languages.python3 = Prism.languages.python;
+
 (function () {
 
 	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !document.querySelector) {
