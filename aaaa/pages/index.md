@@ -1,7 +1,7 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2023-01-24
+Modified: 2023-03-07
 
 Hi, I guess.
 
@@ -29,7 +29,7 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 ## Langton-Music
 
-In late June 2022 I had the idea to try and create music from Langton's Ant and other types of two-dimensional Turing machines. The little simulator I built isn't terribly polished in terms of UI (it uses the browser-default styles for pretty much everything), but it works, and I actually managed to set it up so it is installable as a progressive web app. I haven't had much of a chance to play around with it. [You can find it here](/langton-music/index.html). Bug reports and feature requests can go on [GitHub Issues](https://github.com/dragoncoder047/langton-music/issues/), and everything else can go on [this conwaylife.com forum thread](https://conwaylife.com/forums/viewtopic.php?f=11&p=147432).
+In late June 2022 I had the idea to try and create music from Langton's Ant and other types of two-dimensional Turing machines. The little simulator I built isn't terribly polished in terms of UI, but it works, and I actually managed to set it up so it is installable as a progressive web app. I haven't had much of a chance to play around with it. [You can find it here](/langton-music/index.html). Bug reports and feature requests can go on [GitHub Issues](https://github.com/dragoncoder047/langton-music/issues/), and everything else can go on [this conwaylife.com forum thread](https://conwaylife.com/forums/viewtopic.php?f=11&p=147432).
 
 ---
 
