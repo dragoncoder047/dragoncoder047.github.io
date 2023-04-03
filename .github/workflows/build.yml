@@ -1,9 +1,6 @@
 name: build site using Pelican
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - static/**
+  workflow_dispatch:
 jobs:
   build-site:
     runs-on: ubuntu-latest

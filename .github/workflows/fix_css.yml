@@ -1,10 +1,6 @@
 name: fix up CSS files
 on:
-  push:
-    branches: [main]
-    paths:
-      - static/css/saturate.py
-      - static/css/*_orig.css
+  workflow_dispatch:
 jobs:
   fix-up-css:
     runs-on: ubuntu-latest

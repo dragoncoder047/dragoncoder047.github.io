@@ -1,7 +1,7 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2023-03-07
+Modified: 2023-04-03
 
 Hi, I guess.
 
@@ -9,15 +9,21 @@ Just so you know who you are dealing with... I am a high school student. I enjoy
 
 Below are some of the more notable ideas I have done, along with links to their description pages. I will note here that this list may, at times, be out of date. The best place to check is [my Github repositories list](https://github.com/dragoncoder047?tab=repositories) which includes everything and is sorted by when I last did something with it.
 
+## uLisp fork
+
+I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. uLisp didn't quite work because at the time it ws difficult to add extensions, so I fooled around for a while and then settled on LIL (see below). In late March 2023 a new version of uLisp was released that allows people to add their own extension files a lot easier, and so I decided I would use uLisp as a scripting language for my microcontroller (because it works and is well-supported) instead of LIL. In the process of working with it, I found a lot of bugs and was able to fix them, and also offer improvements, some of which have been merged upstream. I also wrote some of my own extensions. And, after I got sick of the stupid Arduino serial monitor, I wrote my own Python bridge program that gives you a little nicer interaction experience when connected to a microcontroller running uLisp. The code is here: <https://github.com/dragoncoder047/ulisp-esp32>
+
+---
+
 ## LILduino
 
-I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. After several false starts with Lisp, Tcl, and writing my own language, I discovered [LIL](http://runtimeterror.com/tech/lil/). It's written in C and even though it has no garbage collector (memory is managed very carefully by duplicating and freeing values when needed) it works very well. I wrote a bunch of C++ "extension modules" that hook into Arduino functions and libraries (GPIO, SD, cards, infrared communication, regular expressions, etc.), and basically have turned LIL into a crude operating system for any microprocessor that has enough horsepower to run it. Code here: <https://github.com/dragoncoder047/lilduino>
+After several false starts with older versions of uLisp and writing my own languages, I found that [LIL](http://runtimeterror.com/tech/lil/) runs on a microcontroller. I wrote a few C++ extension modules that hook into Arduino functions and libraries (GPIO, SD, cards, infrared communication, regular expressions, etc.), and basically have turned LIL into a crude operating system for any microprocessor that has enough horsepower to run it. Code here: <https://github.com/dragoncoder047/lilduino>
 
 ---
 
 ## Schemascii
 
-In late September 2022 I was fooling around with the PCB's of the Armdroid and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none I know of run in a Web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I want it to, so I wrote my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (such as my blog). There is also a CLI program for rendering standalone images. Schemascii is on GitHub: <https://github.com/dragoncoder047/schemascii>
+In late September 2022 I was fooling around with the PCB's of the Armdroid (see below) and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none I know of run in a web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I want it to, so I wrote my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (such as my blog). There is also a CLI program for rendering standalone images. Schemascii is on GitHub: <https://github.com/dragoncoder047/schemascii>
 
 ---
 
