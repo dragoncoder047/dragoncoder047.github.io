@@ -56,7 +56,6 @@ MENUITEMS = (
     #('Archives', f'/archives.html'),
     ('Blog', '/blog'),
     ('Projects', '#', (
-        ('Phoo', 'https://phoo-lang.github.io/'),
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music'),
