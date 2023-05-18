@@ -1,17 +1,23 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
 Status: hidden
-Modified: 2023-04-03
+Modified: 2023-05-18
 
 Hi, I guess.
 
-Just so you know who you are dealing with... I am a high school student. I enjoy programming in Python, C++, and Javascript, as well as reverse-engineering, hacking, and building robots.
+Just so you know who you are dealing with... I am a high school student. I enjoy programming in Python, C/C++, and Javascript, as well as reverse-engineering, hacking, and building robots.
 
 Below are some of the more notable ideas I have done, along with links to their description pages. I will note here that this list may, at times, be out of date. The best place to check is [my Github repositories list](https://github.com/dragoncoder047?tab=repositories) which includes everything and is sorted by when I last did something with it.
 
+## PICKLE and Tinobsy
+
+PICKLE is my latest idea of a programming language, designed around some clever syntactic features that allows embedding of arbitrary string data inside the code, as well as user-definable custom operators and operator overloading. Currently PICKLE itself is only described in [a series of blog posts](https://dragoncoder047.github.io/blog/post/2023-02-23-pickles.html), but Tinobsy, the underlying type system and garbage collector that will soon form PICKLE, has been impted [here](https://github.com/dragoncoder047/tinobsy/).
+
+---
+
 ## uLisp fork
 
-I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. uLisp didn't quite work because at the time it ws difficult to add extensions, so I fooled around for a while and then settled on LIL (see below). In late March 2023 a new version of uLisp was released that allows people to add their own extension files a lot easier, and so I decided I would use uLisp as a scripting language for my microcontroller (because it works and is well-supported) instead of LIL. In the process of working with it, I found a lot of bugs and was able to fix them, and also offer improvements, some of which have been merged upstream. I also wrote some of my own extensions. And, after I got sick of the stupid Arduino serial monitor, I wrote my own Python bridge program that gives you a little nicer interaction experience when connected to a microcontroller running uLisp. The code is here: <https://github.com/dragoncoder047/ulisp-esp32>
+I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. At the time, uLisp didn't quite work because it was difficult to add extensions, so I fooled around for a while and then settled on LIL (see below). In late March 2023 a new version of uLisp was released that makes extensions a lot easier, and so I decided I would use uLisp after all as a scripting language for my microcontroller (because it works and is well-supported) instead of LIL. In the process of working with it, I found a lot of bugs and was able to fix them, and also offer improvements, some of which have been merged upstream. I also wrote some of my own extensions. And, after I got sick of the stupid Arduino serial monitor, I wrote my own Python bridge program that gives you a little nicer interaction experience when connected to a microcontroller running uLisp (although it does have a considerable number of bugs in and of itself). The code is here: <https://github.com/dragoncoder047/ulisp-esp32>
 
 ---
 
@@ -41,10 +47,10 @@ In late June 2022 I had the idea to try and create music from Langton's Ant and 
 
 ## Phoo
 
-A little scripting language I invented based on the principle that everything is a stack. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo is a whole lot faster than Quackery and works well and the code is impressively concise compared to the equivalent Javascript or Python. I haven't used Phoo "in" anything yet, and the shell is kind of broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/phoo-lang/phoo). Phoo's [documentation](https://phoo-lang.github.io/docs/index.html) is a bit primitive, cobbled together by a little Python script, but everything that needs to be documented is documented relatively thouroughly on that link for the outward-facing Phoo words, and as JSDoc comments for Phoo's internals.
+A little scripting language I invented based on the principle that everything is a stack. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo, when it works, is a whole lot faster than Quackery and the code is impressively concise compared to the equivalent Javascript or Python; but unfortunately when it breaks, it gives sone of the most cryptic and unhelpful error messages of any programming language I've ever seen, second only to a C++ coredump -- not to mention it's a pain to debug in the Javascript debuger. (You learn from your failures!) I haven't used Phoo "in" anything yet, and the shell is broken, but Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/dragoncoder047/phoo). Phoo's [documentation](https://dragoncoder047.github.io/phoo/docs/index.html) is a bit primitive, cobbled together by a little Python script, but everything that needs to be documented is documented relatively thouroughly on that link for the outward-facing Phoo words, and as JSDoc comments for Phoo's internals.
 
 ---
 
 ## Thuepaste
 
-For a brief spat in March 2022 I got myself obsessed with the [Thue programming language](https://en.wikipedia.org/wiki/Thue_(programming_language)) and wrote [a little interpreter for it](/thuepaste/) and a few demo programs, which are included along with a bunch of other demos I found on the internet. I came up with an idea for an algorithm that would determine the probablilty of any given Thue-machine halting, but without actually running it. Unfortunately, no matter what approach I took to trying to implement it, it either crashed, got stuck in a loop for hours, ran out of memory, or did some other horrible thing to my browser to make it so slow I had to force-quit and restart it on multiple occasions. My idea seems like it would work, I just can't figure out how to implement it. Aside from making more demo programs, I don't think I'll get back to this much at all.
+For a brief spat in March 2022 I got myself obsessed with the [Thue programming language](https://en.wikipedia.org/wiki/Thue_(programming_language)) and wrote [a little interpreter for it](/thuepaste/) and a few demo programs, which are included along with a bunch of other demos I found on the internet. I came up with an idea for an algorithm that would determine the probablilty of any given Thue-machine halting, but without actually running it. Unfortunately, no matter what approach I took to trying to implement it, it either crashed, got stuck in a loop for hours, or ran out of memory. My idea seems like it would work, I just can't figure out how to implement it. Aside from making more demo programs, I don't think I'll get back to this much at all.
