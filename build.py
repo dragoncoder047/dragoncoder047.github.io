@@ -59,7 +59,7 @@ MENUITEMS = (
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music'),
-        ('Schemascii', f'https://github.com/dragoncoder047/schemascii'),
+        ('Schemascii', f'https://{AUTHOR}.github.io/schemascii'),
     )),
 )
 
