@@ -1,7 +1,6 @@
 *.html linguist-generated
 drafts/* linguist-generated
 pages/* linguist-generated
-*.md linguist-detectable
 static/lv-lugin.js linguist-vendored
 static/prism.js linguist-vendored
 static/css/pygments_orig.css linguist-vendored
