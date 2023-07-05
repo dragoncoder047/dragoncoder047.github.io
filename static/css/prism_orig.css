@@ -94,8 +94,7 @@ pre[data-line] {
     margin-top: 1em;
     /* Same as .prism’s padding-top */
 
-    background: hsla(24, 20%, 50%, .08);
-    background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+    background: rgb(0, 0, 255, 50%);
 
     pointer-events: none;
 
@@ -114,35 +113,6 @@ pre[data-line] {
     }
 }
 
-.line-highlight:before,
-.line-highlight[data-end]:after {
-    content: attr(data-start);
-    position: absolute;
-    top: .4em;
-    left: .6em;
-    min-width: 1em;
-    padding: 0 .5em;
-    background-color: hsla(24, 20%, 50%, .4);
-    color: hsl(24, 20%, 95%);
-    font: bold 65%/1.5 sans-serif;
-    text-align: center;
-    vertical-align: .3em;
-    border-radius: 999px;
-    text-shadow: none;
-    box-shadow: 0 1px white;
-}
-
-.line-highlight[data-end]:after {
-    content: attr(data-end);
-    top: auto;
-    bottom: .4em;
-}
-
-.line-numbers .line-highlight:before,
-.line-numbers .line-highlight:after {
-    content: none;
-}
-
 pre[id].linkable-line-numbers span.line-numbers-rows {
     pointer-events: all;
 }
@@ -152,7 +122,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: rgba(128, 128, 128, .2);
+    background-color: rgb(0, 0, 255, 50%);
 }
 
 pre[class*="language-"].line-numbers {
@@ -191,10 +161,11 @@ pre[class*="language-"].line-numbers>code {
 
 .line-numbers-rows>span:before {
     content: counter(linenumber);
-    color: #999;
+    color: inherit;
     display: block;
     padding-right: 0.8em;
     text-align: right;
+    opacity: 70%;
 }
 
 .token a {
@@ -249,13 +220,10 @@ div.code-toolbar>.toolbar>.toolbar-item>button {
 div.code-toolbar>.toolbar>.toolbar-item>a,
 div.code-toolbar>.toolbar>.toolbar-item>button,
 div.code-toolbar>.toolbar>.toolbar-item>span {
-    color: #bbb;
+    color: inherit;
     font-size: .8em;
     padding: 0 .5em;
-    background: #f5f2f0;
-    background: rgba(224, 224, 224, 0.2);
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2);
-    border-radius: .5em;
+    background: rgba(0, 0, 0, 50%);
 }
 
 div.code-toolbar>.toolbar>.toolbar-item>a:hover,
