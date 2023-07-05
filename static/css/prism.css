@@ -13,11 +13,11 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=clike+javascri
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #999;
+    color: #999999;
 }
 
 .token.punctuation {
-    color: #ccc;
+    color: #cccccc;
 }
 
 .token.tag,
@@ -124,7 +124,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: rgb(0, 0, 255, 50%);
+    background-color: rgb(90, 150, 255, 70%);
 }
 
 pre[class*="language-"].line-numbers {
@@ -147,7 +147,7 @@ pre[class*="language-"].line-numbers>code {
     width: 3em;
     /* works for line-numbers below 1000 lines */
     letter-spacing: -1px;
-    border-right: 1px solid #999;
+    border-right: 1px solid #999999;
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -225,7 +225,7 @@ div.code-toolbar>.toolbar>.toolbar-item>span {
     color: inherit;
     font-size: .8em;
     padding: 0 .5em;
-    background: rgba(0, 0, 0, 50%);
+    background: rgba(127, 127, 127, 50%);
 }
 
 div.code-toolbar>.toolbar>.toolbar-item>a:hover,
@@ -246,28 +246,28 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .rainbow-braces .token.punctuation.brace-level-1,
 .rainbow-braces .token.punctuation.brace-level-5,
 .rainbow-braces .token.punctuation.brace-level-9 {
-    color: #E50;
+    color: /* #EE5500 */ #ee5500;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-2,
 .rainbow-braces .token.punctuation.brace-level-6,
 .rainbow-braces .token.punctuation.brace-level-10 {
-    color: #0B3;
+    color: /* #00BB33 */ #00bb33;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-3,
 .rainbow-braces .token.punctuation.brace-level-7,
 .rainbow-braces .token.punctuation.brace-level-11 {
-    color: #26F;
+    color: /* #2266FF */ #004eff;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-4,
 .rainbow-braces .token.punctuation.brace-level-8,
 .rainbow-braces .token.punctuation.brace-level-12 {
-    color: #E0E;
+    color: /* #EE00EE */ #ee00ee;
     opacity: 1;
 }
 /* ----------- */
@@ -283,11 +283,11 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #999;
+    color: #666666;
 }
 
 .token.punctuation {
-    color: #ccc;
+    color: #333333;
 }
 
 .token.tag,
@@ -394,7 +394,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: rgb(0, 0, 255, 50%);
+    background-color: rgb(90, 150, 255, 70%);
 }
 
 pre[class*="language-"].line-numbers {
@@ -417,7 +417,7 @@ pre[class*="language-"].line-numbers>code {
     width: 3em;
     /* works for line-numbers below 1000 lines */
     letter-spacing: -1px;
-    border-right: 1px solid #999;
+    border-right: 1px solid #666666;
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -495,7 +495,7 @@ div.code-toolbar>.toolbar>.toolbar-item>span {
     color: inherit;
     font-size: .8em;
     padding: 0 .5em;
-    background: rgba(0, 0, 0, 50%);
+    background: rgba(127, 127, 127, 50%);
 }
 
 div.code-toolbar>.toolbar>.toolbar-item>a:hover,
@@ -516,28 +516,28 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .rainbow-braces .token.punctuation.brace-level-1,
 .rainbow-braces .token.punctuation.brace-level-5,
 .rainbow-braces .token.punctuation.brace-level-9 {
-    color: #E50;
+    color: #5d2100;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-2,
 .rainbow-braces .token.punctuation.brace-level-6,
 .rainbow-braces .token.punctuation.brace-level-10 {
-    color: #0B3;
+    color: #009027;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-3,
 .rainbow-braces .token.punctuation.brace-level-7,
 .rainbow-braces .token.punctuation.brace-level-11 {
-    color: #26F;
+    color: #00174c;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-4,
 .rainbow-braces .token.punctuation.brace-level-8,
 .rainbow-braces .token.punctuation.brace-level-12 {
-    color: #E0E;
+    color: #5d005d;
     opacity: 1;
 }
 }
