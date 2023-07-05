@@ -103,6 +103,14 @@ def named_kroki(name):
 def circuit_fence(source, language, css_class, options, md, **kwargs):
     return '<span style="color: red; background: yellow;">TODO</span>'
 
+def default_fence(source, language, css_class, options, md, **kwargs):
+    source = source.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+    classes = kwargs.get('classes', [])
+    attrs = kwargs.get('attrs', {})
+    other_attrs = ''.join(map(lambda x: f' {x[0]}=\"{x[1]}\"', attrs.items()))
+    classes.append("highlight")
+    classes.append("language-" + language)
+    return f"<pre class=\"{' '.join(classes)}\"{other_attrs}><code>{source}</code></pre>"
 
 MARKDOWN = {
     'extension_configs': {
@@ -128,6 +136,11 @@ MARKDOWN = {
                     'name': 'kroki',
                     'class': 'kroki',
                     'format': kroki_fence
+                },
+                {
+                    'name': '*',
+                    'format': default_fence,
+                    'class': 'foo'  # need something here or it doesn't work
                 }
             ]
         },
