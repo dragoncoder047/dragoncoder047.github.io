@@ -13,11 +13,11 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=clike+javascri
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #999999;
+    color: /* not changed */ #999999;
 }
 
 .token.punctuation {
-    color: #cccccc;
+    color: /* not changed */ #cccccc;
 }
 
 .token.tag,
@@ -96,7 +96,7 @@ pre[data-line] {
     margin-top: 1em;
     /* Same as .prism’s padding-top */
 
-    background: rgb(0, 0, 255, 50%);
+    background: /* not changed */ #706000;
 
     pointer-events: none;
 
@@ -124,7 +124,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: rgb(90, 150, 255, 70%);
+    background-color: /* not changed */ #706000;
 }
 
 pre[class*="language-"].line-numbers {
@@ -147,7 +147,7 @@ pre[class*="language-"].line-numbers>code {
     width: 3em;
     /* works for line-numbers below 1000 lines */
     letter-spacing: -1px;
-    border-right: 1px solid #999999;
+    border-right: 1px solid /* not changed */ #999999;
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -246,14 +246,14 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .rainbow-braces .token.punctuation.brace-level-1,
 .rainbow-braces .token.punctuation.brace-level-5,
 .rainbow-braces .token.punctuation.brace-level-9 {
-    color: /* #EE5500 */ #ee5500;
+    color: /* not changed */ #ee5500;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-2,
 .rainbow-braces .token.punctuation.brace-level-6,
 .rainbow-braces .token.punctuation.brace-level-10 {
-    color: /* #00BB33 */ #00bb33;
+    color: /* not changed */ #00bb33;
     opacity: 1;
 }
 
@@ -267,11 +267,13 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .rainbow-braces .token.punctuation.brace-level-4,
 .rainbow-braces .token.punctuation.brace-level-8,
 .rainbow-braces .token.punctuation.brace-level-12 {
-    color: /* #EE00EE */ #ee00ee;
+    color: /* not changed */ #ee00ee;
     opacity: 1;
 }
 /* ----------- */
 @media screen and (prefers-color-scheme: light) {
+/* PrismJS 1.28.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=clike+javascript+python&plugins=line-highlight+line-numbers+autolinker+show-language+autoloader+toolbar+copy-to-clipboard+download-button+match-braces */
 /**
  * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
  * Based on https://github.com/chriskempson/tomorrow-theme
@@ -283,35 +285,35 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-    color: #666666;
+    color: /* #999999 */ #666666;
 }
 
 .token.punctuation {
-    color: #333333;
+    color: /* #cccccc */ #323232;
 }
 
 .token.tag,
 .token.attr-name,
 .token.namespace,
 .token.deleted {
-    color: #690002;
+    color: /* #e2777a */ #690002;
 }
 
 .token.function-name {
-    color: #003f7f;
+    color: /* #6196cc */ #003f7f;
 }
 
 .token.boolean,
 .token.number,
 .token.function {
-    color: #5b2500;
+    color: /* #f08d49 */ #5b2500;
 }
 
 .token.property,
 .token.class-name,
 .token.constant,
 .token.symbol {
-    color: #533900;
+    color: /* #f8c555 */ #533900;
 }
 
 .token.selector,
@@ -319,7 +321,7 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .token.atrule,
 .token.keyword,
 .token.builtin {
-    color: #7c007e;
+    color: /* #cc99cd */ #7c007e;
 }
 
 .token.string,
@@ -327,13 +329,13 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .token.attr-value,
 .token.regex,
 .token.variable {
-    color: #008532;
+    color: /* #7ec699 */ #008532;
 }
 
 .token.operator,
 .token.entity,
 .token.url {
-    color: #007e7d;
+    color: /* #67cdcc */ #007e7d;
 }
 
 .token.important,
@@ -366,7 +368,7 @@ pre[data-line] {
     margin-top: 1em;
     /* Same as .prism’s padding-top */
 
-    background: rgb(0, 0, 255, 50%);
+    background: /* #706000 */ #dbbc00;
 
     pointer-events: none;
 
@@ -394,7 +396,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: rgb(90, 150, 255, 70%);
+    background-color: /* #706000 */ #dbbc00;
 }
 
 pre[class*="language-"].line-numbers {
@@ -417,7 +419,7 @@ pre[class*="language-"].line-numbers>code {
     width: 3em;
     /* works for line-numbers below 1000 lines */
     letter-spacing: -1px;
-    border-right: 1px solid #666666;
+    border-right: 1px solid /* #999999 */ #666666;
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -516,28 +518,28 @@ div.code-toolbar>.toolbar>.toolbar-item>span:focus {
 .rainbow-braces .token.punctuation.brace-level-1,
 .rainbow-braces .token.punctuation.brace-level-5,
 .rainbow-braces .token.punctuation.brace-level-9 {
-    color: #5d2100;
+    color: /* #EE5500 */ #5d2100;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-2,
 .rainbow-braces .token.punctuation.brace-level-6,
 .rainbow-braces .token.punctuation.brace-level-10 {
-    color: #009027;
+    color: /* #00BB33 */ #009027;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-3,
 .rainbow-braces .token.punctuation.brace-level-7,
 .rainbow-braces .token.punctuation.brace-level-11 {
-    color: #00174c;
+    color: /* #2266FF */ #00174c;
     opacity: 1;
 }
 
 .rainbow-braces .token.punctuation.brace-level-4,
 .rainbow-braces .token.punctuation.brace-level-8,
 .rainbow-braces .token.punctuation.brace-level-12 {
-    color: #5d005d;
+    color: /* #EE00EE */ #5d005d;
     opacity: 1;
 }
 }

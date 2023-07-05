@@ -94,7 +94,7 @@ pre[data-line] {
     margin-top: 1em;
     /* Same as .prism’s padding-top */
 
-    background: rgb(0, 0, 255, 50%);
+    background: #706000;
 
     pointer-events: none;
 
@@ -122,7 +122,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: rgb(90, 150, 255, 70%);
+    background-color: #706000;
 }
 
 pre[class*="language-"].line-numbers {
