@@ -97,6 +97,7 @@ pre[data-line] {
     /* Same as .prism’s padding-top */
 
     background: /* not changed */ #706000;
+    z-index: -1; /* Show text over it; */
 
     pointer-events: none;
 
@@ -171,7 +172,7 @@ pre[class*="language-"].line-numbers>code {
 }
 
 .token a {
-    color: inherit;
+    color: inherit!important;
 }
 
 div.code-toolbar {
@@ -369,6 +370,7 @@ pre[data-line] {
     /* Same as .prism’s padding-top */
 
     background: /* #706000 */ #dbbc00;
+    z-index: -1; /* Show text over it; */
 
     pointer-events: none;
 
@@ -443,7 +445,7 @@ pre[class*="language-"].line-numbers>code {
 }
 
 .token a {
-    color: inherit;
+    color: inherit!important;
 }
 
 div.code-toolbar {

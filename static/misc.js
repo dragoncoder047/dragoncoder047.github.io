@@ -1,3 +1,6 @@
+window.addEventListener("DOMContentLoaded", () => {
+
+
 (function () {
     // Images click
     for (var image of document.querySelectorAll("img[src]")) {
@@ -36,3 +39,17 @@
     setInterval(updateThemedStuff, 1000); // allow time for giscus frame to load; and afterwards if it takes longer
     dmmq.addEventListener('change', updateThemedStuff);
 })();
+
+
+
+});
+
+if (window.Prism) {
+    var timeout;
+    window.addEventListener("resize", () => {
+        // debounce
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => Prism.highlightAll(), 200);
+    });
+    // make sure that the line highlight boxes resize appropriately.
+}
