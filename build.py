@@ -61,6 +61,7 @@ MENUITEMS = (
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music'),
         ('Schemascii', f'https://{AUTHOR}.github.io/schemascii'),
     )),
+    ('uLisp Extensions', f'{SITEURL}/pages/ulisp_howto.html'),
 )
 
 DEFAULT_PAGINATION = 10

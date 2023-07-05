@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Adding (catch) / (throw) to uLisp</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
+    <meta property="og:title" content="Adding (catch) / (throw) to uLisp" />
+    <meta property="og:description" content="The Lisp primitives (catch) and (throw) can be used for non-local control flow. How to add Add a variable Thrown next to the existing object *GCStack; in the forward references section. This variable holds the tag and the value that was thrown if (throw) is ever called. object *GlobalEnv; object …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="page" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/pages/ulisp_howto/catch_throw.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s site - Adding (catch) / (throw) to uLisp" />
+    <meta name="twitter:description" content="The Lisp primitives (catch) and (throw) can be used for non-local control flow. How to add Add a variable Thrown next to the existing object *GCStack; in the forward references section. This variable holds the tag and the value that was thrown if (throw) is ever called. object *GlobalEnv; object …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="/"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s site</h1><h2>projects, ideas, and everything else</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/">Home</a></li>
+                        <li><a href="/blog">Blog</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/pages/ulisp_howto.html">uLisp Extensions</a>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1>Adding (catch) / (throw) to uLisp</h1>
+    
+
+
+    <p>The Lisp primitives <code class="language-lisp highlight">(catch)</code> and <code class="language-lisp highlight">(throw)</code> can be used for non-local control flow.</p>
+<h2 id="how-to-add">How to add</h2>
+<ol>
+<li>
+<p>Add a variable <code>Thrown</code> next to the existing <code class="language-cpp highlight">object *GCStack;</code> in the forward references section. This variable holds the tag and the value that was thrown if <code class="language-lisp highlight">(throw)</code> is ever called.</p>
+<pre class="highlight language-cpp" data-line="2"><code>object *GlobalEnv;
+object *Thrown;
+object *GCStack = NULL;
+object *GlobalString;
+object *GlobalStringTail;
+int GlobalStringIndex = 0;</code></pre>
+</li>
+<li>
+<p>Make sure <code>Thrown</code> gets marked during garbage collection, in case that ever gets triggered during a <code class="language-lisp highlight">(throw)</code> but before <code class="language-lisp highlight">(catch)</code> catches it:</p>
+<pre class="highlight language-cpp" data-line="8"><code>void gc (object *form, object *env) {
+    #if defined(printgcs)
+    int start = Freespace;
+    #endif
+    markobject(tee);
+    markobject(GlobalEnv);
+    markobject(GCStack);
+    markobject(Thrown);
+    markobject(form);
+    markobject(env);
+    sweep();
+    #if defined(printgcs)
+    pfl(pserial); pserial('{'); pint(Freespace - start, pserial); pserial('}');
+    #endif
+}</code></pre>
+</li>
+<li>
+<p>Add a new flag <code>INCATCH</code> to the <code class="language-cpp highlight">enum flag</code>.</p>
+</li>
+<li>Because there are already 8 flags, search for &ldquo;Flags&rdquo; and find all the lines that look like <code class="language-cpp highlight">char temp = Flags;</code> and change them to <code class="language-cpp highlight">uint16_t temp = Flags</code>, as well as changing  the <code>Flags</code> variable itself to <code class="language-cpp highlight">uint16_t</code>.</li>
+<li>
+<p>Now all that&rsquo;s left to do is add the functions and table entries:</p>
+<pre class="highlight language-cpp"><code>
+/*
+    (catch 'tag form*)
+    Evaluates the forms, and of any of them call (throw) with the same
+    tag, returns the "thrown" value. If none throw, returns the value returned by the
+    last form.
+*/
+object *sp_catch (object *args, object *env) {
+    object *current_GCStack = GCStack;
+
+    jmp_buf dynamic_handler;
+    jmp_buf *previous_handler = handler;
+    handler = &amp;dynamic_handler;
+
+    uint16_t temp = Flags;
+    builtin_t catchcon = Context;
+    setflag(INCATCH);
+
+    object *tag = first(args);
+    object *forms = rest(args);
+    push(tag, GCStack);
+    tag = eval(tag, env);
+    car(GCStack) = tag;
+    push(forms, GCStack);
+
+    object *result;
+
+    if (!setjmp(dynamic_handler)) {
+        // First: run forms
+        result = eval(tf_progn(forms, env), env);
+        // If we get here nothing was thrown
+        GCStack = current_GCStack;
+        handler = previous_handler;
+        Flags = temp;
+        return result;
+    } else {
+        // Something was thrown, check if it is the same tag
+        GCStack = current_GCStack;
+        handler = previous_handler;
+        Flags = temp;
+        if (Thrown == NULL) {
+            // Not a (throw) --&gt; propagate the error
+            longjmp(*handler, 1);
+        }
+        else if (!eq(car(Thrown), tag)) {
+            // Wrong tag
+            if (tstflag(INCATCH)) {
+                // Try next-in-line catch
+                GCStack = NULL;
+                longjmp(*handler, 1);
+            } else {
+                // No upper catch
+                Context = catchcon;
+                error(PSTR("no matching tag"), car(Thrown));
+            }
+        } else {
+            // Caught!
+            result = cdr(Thrown);
+            Thrown = NULL;
+            return result;
+        }
+    }
+}
+
+/*
+    (throw 'tag [value])
+    Exits the (catch) form opened with the same tag (using eq).
+    It is an error to call (throw) without first entering a (catch) with
+    the same tag.
+*/
+object *fn_throw (object *args, object *env) {
+    if (!tstflag(INCATCH)) error2(PSTR("not in a catch"));
+    object *tag = first(args);
+    args = rest(args);
+    object *value = NULL;
+    if (args != NULL) value = first(args);
+    Thrown = cons(tag, value);
+    longjmp(*handler, 1);
+    // unreachable
+    return NULL;
+}</code></pre>
+<pre class="highlight language-cpp"><code>const char stringcatch[] PROGMEM = "catch";
+const char stringthrow[] PROGMEM = "throw";</code></pre>
+<pre class="highlight language-cpp"><code>const char doccatch[] PROGMEM = "(catch 'tag form*)\n"
+"Evaluates the forms, and of any of them call (throw) with the same\n"
+"tag, returns the \"thrown\" value. If none throw, returns the value returned by the\n"
+"last form.";
+const char docthrow[] PROGMEM = "(throw 'tag [value])\n"
+"Exits the (catch) form opened with the same tag (using eq).\n"
+"It is an error to call (throw) without first entering a (catch) with\n"
+"the same tag.";</code></pre>
+<pre class="highlight language-cpp"><code>{ stringcatch, sp_catch, 0327, doccatch },
+{ stringthrow, fn_throw, 0212, docthrow },</code></pre>
+</li>
+</ol>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

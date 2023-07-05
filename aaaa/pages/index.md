@@ -1,6 +1,5 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
-Status: hidden
 Modified: 2023-05-18
 
 Hi, I guess.
