@@ -8,7 +8,7 @@ The Lisp primitives `:::lisp (catch)` and `:::lisp (throw)` can be used for non-
 
     ```{.cpp data-line="2"}
     object *GlobalEnv;
-    object *Thrown;
+    object* Thrown;
     object *GCStack = NULL;
     object *GlobalString;
     object *GlobalStringTail;
@@ -40,15 +40,14 @@ The Lisp primitives `:::lisp (catch)` and `:::lisp (throw)` can be used for non-
 5. Now all that's left to do is add the functions and table entries:
 
     ```cpp
-
     /*
         (catch 'tag form*)
         Evaluates the forms, and of any of them call (throw) with the same
         tag, returns the "thrown" value. If none throw, returns the value returned by the
         last form.
     */
-    object *sp_catch (object *args, object *env) {
-        object *current_GCStack = GCStack;
+    object* sp_catch (object* args, object* env) {
+        object* current_GCStack = GCStack;
 
         jmp_buf dynamic_handler;
         jmp_buf *previous_handler = handler;
@@ -58,14 +57,14 @@ The Lisp primitives `:::lisp (catch)` and `:::lisp (throw)` can be used for non-
         builtin_t catchcon = Context;
         setflag(INCATCH);
 
-        object *tag = first(args);
-        object *forms = rest(args);
+        object* tag = first(args);
+        object* forms = rest(args);
         push(tag, GCStack);
         tag = eval(tag, env);
         car(GCStack) = tag;
         push(forms, GCStack);
 
-        object *result;
+        object* result;
 
         if (!setjmp(dynamic_handler)) {
             // First: run forms
@@ -110,11 +109,11 @@ The Lisp primitives `:::lisp (catch)` and `:::lisp (throw)` can be used for non-
         It is an error to call (throw) without first entering a (catch) with
         the same tag.
     */
-    object *fn_throw (object *args, object *env) {
+    object* fn_throw (object* args, object* env) {
         if (!tstflag(INCATCH)) error2(PSTR("not in a catch"));
-        object *tag = first(args);
+        object* tag = first(args);
         args = rest(args);
-        object *value = NULL;
+        object* value = NULL;
         if (args != NULL) value = first(args);
         Thrown = cons(tag, value);
         longjmp(*handler, 1);
@@ -140,6 +139,6 @@ The Lisp primitives `:::lisp (catch)` and `:::lisp (throw)` can be used for non-
     ```
 
     ```cpp
-    { stringcatch, sp_catch, 0327, doccatch },
-    { stringthrow, fn_throw, 0212, docthrow },
+        { stringcatch, sp_catch, 0327, doccatch },
+        { stringthrow, fn_throw, 0212, docthrow },
     ```

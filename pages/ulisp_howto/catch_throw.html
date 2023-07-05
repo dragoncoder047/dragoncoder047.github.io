@@ -77,7 +77,7 @@
 <li>
 <p>Add a variable <code>Thrown</code> next to the existing <code class="language-cpp highlight">object *GCStack;</code> in the forward references section. This variable holds the tag and the value that was thrown if <code class="language-lisp highlight">(throw)</code> is ever called.</p>
 <pre class="highlight language-cpp" data-line="2"><code>object *GlobalEnv;
-object *Thrown;
+object* Thrown;
 object *GCStack = NULL;
 object *GlobalString;
 object *GlobalStringTail;
@@ -107,15 +107,14 @@ int GlobalStringIndex = 0;</code></pre>
 <li>Because there are already 8 flags, search for &ldquo;Flags&rdquo; and find all the lines that look like <code class="language-cpp highlight">char temp = Flags;</code> and change them to <code class="language-cpp highlight">uint16_t temp = Flags</code>, as well as changing  the <code>Flags</code> variable itself to <code class="language-cpp highlight">uint16_t</code>.</li>
 <li>
 <p>Now all that&rsquo;s left to do is add the functions and table entries:</p>
-<pre class="highlight language-cpp"><code>
-/*
+<pre class="highlight language-cpp"><code>/*
     (catch 'tag form*)
     Evaluates the forms, and of any of them call (throw) with the same
     tag, returns the "thrown" value. If none throw, returns the value returned by the
     last form.
 */
-object *sp_catch (object *args, object *env) {
-    object *current_GCStack = GCStack;
+object* sp_catch (object* args, object* env) {
+    object* current_GCStack = GCStack;
 
     jmp_buf dynamic_handler;
     jmp_buf *previous_handler = handler;
@@ -125,14 +124,14 @@ object *sp_catch (object *args, object *env) {
     builtin_t catchcon = Context;
     setflag(INCATCH);
 
-    object *tag = first(args);
-    object *forms = rest(args);
+    object* tag = first(args);
+    object* forms = rest(args);
     push(tag, GCStack);
     tag = eval(tag, env);
     car(GCStack) = tag;
     push(forms, GCStack);
 
-    object *result;
+    object* result;
 
     if (!setjmp(dynamic_handler)) {
         // First: run forms
@@ -177,11 +176,11 @@ object *sp_catch (object *args, object *env) {
     It is an error to call (throw) without first entering a (catch) with
     the same tag.
 */
-object *fn_throw (object *args, object *env) {
+object* fn_throw (object* args, object* env) {
     if (!tstflag(INCATCH)) error2(PSTR("not in a catch"));
-    object *tag = first(args);
+    object* tag = first(args);
     args = rest(args);
-    object *value = NULL;
+    object* value = NULL;
     if (args != NULL) value = first(args);
     Thrown = cons(tag, value);
     longjmp(*handler, 1);
@@ -198,8 +197,8 @@ const char docthrow[] PROGMEM = "(throw 'tag [value])\n"
 "Exits the (catch) form opened with the same tag (using eq).\n"
 "It is an error to call (throw) without first entering a (catch) with\n"
 "the same tag.";</code></pre>
-<pre class="highlight language-cpp"><code>{ stringcatch, sp_catch, 0327, doccatch },
-{ stringthrow, fn_throw, 0212, docthrow },</code></pre>
+<pre class="highlight language-cpp"><code>    { stringcatch, sp_catch, 0327, doccatch },
+    { stringthrow, fn_throw, 0212, docthrow },</code></pre>
 </li>
 </ol>
             <section id="extras">

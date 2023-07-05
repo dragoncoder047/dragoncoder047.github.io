@@ -1,11 +1,15 @@
 {
     "cSpell.words": [
+        "AREF",
+        "DEFUN",
         "howto",
         "INCATCH",
         "longjmp",
         "progn",
+        "PSTAR",
         "PSTR",
         "setjmp",
+        "STRINGFN",
         "tstflag",
         "ulisp"
     ]

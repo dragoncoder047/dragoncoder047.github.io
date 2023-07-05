@@ -17,14 +17,14 @@
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
     <meta property="og:title" content="uLisp Extensions Requiring Major Edits" />
-    <meta property="og:description" content="Click the links below for more information on how to add these extensions to your installation of uLisp. Currently these are written for uLisp 4.4. Add (catch) and (throw) More coming soon!" />
+    <meta property="og:description" content="Click the links below for more information on how to add these extensions to your installation of uLisp. Currently these are written for uLisp 4.4. (catch) and (throw) Backquotes More coming soon! Note on my C++ conventions I put the asterisk in pointer types next to the base type …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://dragoncoder047.github.io/pages/ulisp_howto.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="dragoncoder047&rsquo;s site - uLisp Extensions Requiring Major Edits" />
-    <meta name="twitter:description" content="Click the links below for more information on how to add these extensions to your installation of uLisp. Currently these are written for uLisp 4.4. Add (catch) and (throw) More coming soon!" />
+    <meta name="twitter:description" content="Click the links below for more information on how to add these extensions to your installation of uLisp. Currently these are written for uLisp 4.4. (catch) and (throw) Backquotes More coming soon! Note on my C++ conventions I put the asterisk in pointer types next to the base type …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -73,8 +73,17 @@
 
     <p>Click the links below for more information on how to add these extensions to your installation of uLisp.</p>
 <p>Currently these are written for uLisp 4.4.</p>
-<h2 id="add-catch-and-throw"><a href="https://dragoncoder047.github.io/pages/ulisp_howto/catch_throw.html">Add <code class="language-lisp highlight">(catch)</code> and <code class="language-lisp highlight">(throw)</code></a></h2>
+<ul>
+<li><a href="https://dragoncoder047.github.io/pages/ulisp_howto/catch_throw.html"><code class="language-lisp highlight">(catch)</code> and <code class="language-lisp highlight">(throw)</code></a></li>
+<li><a href="https://dragoncoder047.github.io/pages/ulisp_howto/backquote.html">Backquotes</a></li>
+</ul>
 <h3 id="more-coming-soon">More coming soon!</h3>
+<h2 id="note-on-my-c-conventions">Note on my C++ conventions</h2>
+<ul>
+<li>I put the asterisk in pointer types next to the base type (e.g. <code class="language-cpp highlight">object* foo</code>) instead of next to the variable (e.g. <code class="language-cpp highlight">object *foo</code>) because the variable <em>represents</em> a pointer type in and of itself, and is not just a pointer to an instance of a base type.</li>
+<li>I use 4 spaces for indentation, instead of 2. Blame PEP 8 for this one.</li>
+</ul>
+<p>Neither of these matter as they&rsquo;re both just witespace semantics and you can change them with a quick &ldquo;find-and-replace-all&rdquo; or &ldquo;auto-format&rdquo; in the Arduino IDE.</p>
             <section id="extras">
                     <div class="blogroll">
                         <ul>

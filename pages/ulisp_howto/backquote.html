@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Adding Backquote Templating to uLisp</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
+    <meta property="og:title" content="Adding Backquote Templating to uLisp" />
+    <meta property="og:description" content="The backquote special form and its reader-macro version are incredibly useful in macros and to make Lisp templates. Part 1 - the Functions Move the table entries for cons and append around in the table so they are right after quote. Then, add their entries in the enum builtins. You can …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="page" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/pages/ulisp_howto/backquote.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s site - Adding Backquote Templating to uLisp" />
+    <meta name="twitter:description" content="The backquote special form and its reader-macro version are incredibly useful in macros and to make Lisp templates. Part 1 - the Functions Move the table entries for cons and append around in the table so they are right after quote. Then, add their entries in the enum builtins. You can …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="/"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s site</h1><h2>projects, ideas, and everything else</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/">Home</a></li>
+                        <li><a href="/blog">Blog</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/pages/ulisp_howto.html">uLisp Extensions</a>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1>Adding Backquote Templating to uLisp</h1>
+    
+
+
+    <p>The backquote special form and its reader-macro version are incredibly useful in macros and to make Lisp templates.</p>
+<h2 id="part-1-the-functions">Part 1 - the Functions</h2>
+<ol>
+<li>
+<p>Move the table entries for <code class="language-lisp highlight">cons</code> and <code class="language-lisp highlight">append</code> around in the table so they are right after <code class="language-lisp highlight">quote</code>. Then, add their entries in the <code class="language-cpp highlight">enum builtins</code>. You can also move the <code>string</code> and <code>doc</code> entries but you don&rsquo;t have to.</p>
+<pre class="highlight language-cpp" data-line="2-3"><code>    { string13, sp_quote, 0311, NULL },
+    { string57, fn_cons, 0122, doc57 },
+    { string92, fn_append, 0107, doc92 },
+    { string14, sp_defun, 0327, doc14 },
+    { string15, sp_defvar, 0313, doc15 },</code></pre>
+<pre class="highlight language-cpp" data-line="3"><code>enum builtins: builtin_t { NIL, TEE, NOTHING, OPTIONAL, INITIALELEMENT, ELEMENTTYPE, BIT, AMPREST, LAMBDA, LET, LETSTAR,
+CLOSURE, PSTAR, QUOTE,
+CONS, APPEND,
+DEFUN, DEFVAR, CAR, FIRST, CDR, REST, NTH, AREF, STRINGFN, PINMODE, DIGITALWRITE,
+ANALOGREAD, REGISTER, FORMAT, 
+ };</code></pre>
+</li>
+<li>
+<p>Add these functions and their table entries:</p>
+<pre class="highlight language-cpp"><code>// see https://github.com/kanaka/mal/blob/master/process/guide.md#step-7-quoting
+// and https://github.com/kanaka/mal/issues/103#issuecomment-159047401
+
+object* reverse (object* what) {
+    object* result = NULL;
+    for (; what != NULL; what = cdr(what)) {
+        push(car(what), result);
+    }
+    return result;
+}
+
+object* process_backquote (object* arg, size_t level = 0) {
+    // "If ast is a map or a symbol, return a list containing: the "quote" symbol, then ast."
+    if (arg == NULL || atom(arg)) return quoteit(QUOTE, arg);
+    // "If ast is a list starting with the "unquote" symbol, return its second element."
+    if (listp(arg) &amp;&amp; symbolp(first(arg))) {
+        switch (builtin(first(arg)-&gt;name)) {
+            case BACKQUOTE: return process_backquote(second(arg), level + 1);
+            case UNQUOTE: return level == 0 ? second(arg) : process_backquote(second(arg), level - 1);
+            default: break;
+        }
+    }
+    // "If ast is a list failing previous test, the result will be a list populated by the following process."
+    // "The result is initially an empty list. Iterate over each element elt of ast in reverse order:"
+    object* result = NULL;
+    object* rev_arg = reverse(arg);
+    for (; rev_arg != NULL; rev_arg = cdr(rev_arg)) {
+        object* element = car(rev_arg);
+        // "If elt is a list starting with the "splice-unquote" symbol,
+        // replace the current result with a list containing: the "concat" symbol,
+        // the second element of elt, then the previous result."
+        if (listp(element) &amp;&amp; symbolp(first(element)) &amp;&amp; builtin(first(element)-&gt;name) == UNQUOTE_SPLICING) {
+            object* x = second(element);
+            if (level &gt; 0) x = process_backquote(x, level - 1);
+            result = cons(bsymbol(APPEND), cons(x, cons(result, nil)));
+        }
+        // "Else replace the current result with a list containing:
+        // the "cons" symbol, the result of calling quasiquote with
+        // elt as argument, then the previous result."
+        else result = cons(bsymbol(CONS), cons(process_backquote(element, level), cons(result, nil)));
+    }
+    return result;
+}
+
+// "Add the quasiquote special form. This form does the same than quasiquoteexpand,
+// but evaluates the result in the current environment before returning it, either by
+// recursively calling EVAL with the result and env, or by assigning ast with the result
+// and continuing execution at the top of the loop (TCO)."
+object* tf_backquote (object* args, object* env) {
+    object* result = process_backquote(first(args));
+    // Tail call
+    return result;
+}
+
+object* bq_invalid (object* args, object* env) {
+    (void)args, (void)env;
+    error2(PSTR("not valid outside backquote"));
+    // unreachable
+    return NULL;
+}</code></pre>
+<pre class="highlight language-cpp"><code>const char stringbackquote[] PROGMEM = "backquote";
+const char stringunquote[] PROGMEM = "unquote";
+const char stringuqsplicing[] PROGMEM = "unquote-splicing";</code></pre>
+<pre class="highlight language-cpp"><code>    { stringbackquote, tf_backquote, 0211, NULL },
+    { stringunquote, bq_invalid, 0311, NULL },
+    { stringuqsplicing, bq_invalid, 0311, NULL },</code></pre>
+</li>
+</ol>
+<h2 id="part-2-the-reader-macros">Part 2 - the Reader Macros</h2>
+<ol start="3">
+<li>Move the entries for <code class="language-lisp highlight">backquote</code>, <code class="language-lisp highlight">unquote</code>, and <code class="language-lisp highlight">unquote-splicing</code> up so they are next to <code class="language-lisp highlight">quote</code>, and also then add entries for them in the <code class="language-cpp highlight">enum builtins</code>.</li>
+<li>
+<p>Add 3 new tokens to the <code class="language-cpp highlight">enum tokens</code>: <code>BACKQUO</code>, <code>UNQUO</code>, and <code>UNSPLICE</code>:</p>
+<pre class="highlight language-cpp" data-line="2"><code>enum token { UNUSED, BRA, KET, QUO, DOT,
+BACKQUO, UNQUO, UNSPLICE
+};</code></pre>
+</li>
+<li>
+<p>In <code class="language-cpp highlight">nextitem()</code>, add the following code after the code that returns the existing tokens:</p>
+<pre class="highlight language-cpp" data-line="14-23"><code>object *nextitem (gfun_t gfun) {
+    int ch = gfun();
+    while(issp(ch)) ch = gfun();
+
+    if (ch == ';') {
+        do { ch = gfun(); if (ch == ';' || ch == '(') setflag(NOECHO); }
+        while(ch != '(');
+    }
+    if (ch == '\n') ch = gfun();
+    if (ch == -1) return nil;
+    if (ch == ')') return (object *)KET;
+    if (ch == '(') return (object *)BRA;
+    if (ch == '\'') return (object *)QUO;
+    if (ch == '`') return (object*)BACKQUO;
+    if (ch == '@') return (object*)UNSPLICE; // maintain compatibility with old Dave Astels code
+    if (ch == ',') {
+        ch = gfun();
+        if (ch == '@') return (object *)UNSPLICE;
+        else {
+            LastChar = ch;
+            return (object *)UNQUO;
+        }
+    }</code></pre>
+</li>
+<li>
+<p>In the while loop of <code class="language-cpp highlight">readrest()</code> add this:</p>
+<pre class="highlight language-cpp" data-line="4-6"><code>while (item != (object*)KET) {
+    if (item == (object*)BRA) item = readrest(gfun);
+    else if (item == (object*)QUO) item = cons(bsymbol(QUOTE), cons(read(gfun), NULL));
+    else if (item == (object*)BACKQUO) item = cons(bsymbol(BACKQUOTE), cons(read(gfun), NULL));
+    else if (item == (object*)UNQUO) item = cons(bsymbol(UNQUOTE), cons(read(gfun), NULL));
+    else if (item == (object*)UNSPLICE) item = cons(bsymbol(UNQUOTE_SPLICING), cons(read(gfun), NULL));
+    else if (item == (object*)PERIOD) {</code></pre>
+</li>
+<li>
+<p>And in <code class="language-cpp highlight">read()</code> add this:</p>
+<pre class="highlight language-cpp" data-line=""><code>object* read (gfun_t gfun) {
+    object* item = nextitem(gfun);
+    if (item == (object*)KET) error2(PSTR("unexpected close paren"));
+    if (item == (object*)BRA) return readrest(gfun);
+    if (item == (object*)DOT) return read(gfun);
+    if (item == (object*)QUO) return cons(bsymbol(QUOTE), cons(read(gfun), NULL));
+    if (item == (object*)BACKQUO) return cons(bsymbol(BACKQUOTE), cons(read(gfun), NULL));
+    if (item == (object*)UNQUO) return cons(bsymbol(UNQUOTE), cons(read(gfun), NULL));
+    if (item == (object*)UNSPLICE) return cons(bsymbol(UNQUOTE_SPLICING), cons(read(gfun), NULL));
+    return item;
+}</code></pre>
+</li>
+</ol>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>
