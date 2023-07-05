@@ -153,7 +153,7 @@ The backquote special form and its reader-macro version are incredibly useful in
 
 7. And in `:::cpp read()` add this:
 
-    ```{.cpp data-line=""}
+    ```{.cpp data-line="7-9"}
     object* read (gfun_t gfun) {
         object* item = nextitem(gfun);
         if (item == (object*)KET) error2(PSTR("unexpected close paren"));

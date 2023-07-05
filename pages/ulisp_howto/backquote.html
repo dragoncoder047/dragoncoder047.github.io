@@ -205,7 +205,7 @@ BACKQUO, UNQUO, UNSPLICE
 </li>
 <li>
 <p>And in <code class="language-cpp highlight">read()</code> add this:</p>
-<pre class="highlight language-cpp" data-line=""><code>object* read (gfun_t gfun) {
+<pre class="highlight language-cpp" data-line="7-9"><code>object* read (gfun_t gfun) {
     object* item = nextitem(gfun);
     if (item == (object*)KET) error2(PSTR("unexpected close paren"));
     if (item == (object*)BRA) return readrest(gfun);
