@@ -84,6 +84,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=clike+javascri
 pre[data-line] {
     position: relative;
     padding: 1em 0 1em 3em;
+    z-index: 1;
 }
 
 .line-highlight {
@@ -94,8 +95,8 @@ pre[data-line] {
     margin-top: 1em;
     /* Same as .prism’s padding-top */
 
-    background: #706000;
-    opacity: 40%;
+    background: #160077;
+    z-index: -1;
 
     pointer-events: none;
 
@@ -103,11 +104,15 @@ pre[data-line] {
     white-space: pre;
 }
 
+pre[data-line] code {
+    background: none;
+}
+
 @media print {
     .line-highlight {
         /*
           * This will prevent browsers from replacing the background color with white.
-          * It's necessary because the element is layered on top of the displayed code.
+          * It's necessary because the element is layered under the displayed code.
           */
         -webkit-print-color-adjust: exact;
         color-adjust: exact;
@@ -123,7 +128,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: #706000;
+    background-color: #160077;
 }
 
 pre[class*="language-"].line-numbers {
@@ -170,7 +175,7 @@ pre[class*="language-"].line-numbers>code {
 }
 
 .token a {
-    color: inherit!important;
+    color: inherit !important;
 }
 
 div.code-toolbar {
