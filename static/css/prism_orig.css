@@ -84,8 +84,6 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=clike+javascri
 pre[data-line] {
     position: relative;
     padding: 1em 0 1em 3em;
-    z-index: 1;
-    background: none; /* Allow the line highlight to shine through */
 }
 
 .line-highlight {
@@ -97,6 +95,7 @@ pre[data-line] {
     /* Same as .prism’s padding-top */
 
     background: #706000;
+    opacity: 40%;
 
     pointer-events: none;
 

@@ -44,7 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 });
 
-if (window.Prism) {
+(function() {
     var timeout;
     window.addEventListener("resize", () => {
         // debounce
@@ -52,4 +52,4 @@ if (window.Prism) {
         timeout = setTimeout(() => Prism.highlightAll(), 200);
     });
     // make sure that the line highlight boxes resize appropriately.
-}
+})();
