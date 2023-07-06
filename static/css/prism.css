@@ -97,7 +97,7 @@ pre[data-line] {
     margin-top: 1em;
     /* Same as .prism’s padding-top */
 
-    background: /* not changed */ #160077;
+    background: #00F7;
     z-index: -1;
 
     pointer-events: none;
@@ -130,7 +130,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: /* not changed */ #160077;
+    background-color: #00F7;
 }
 
 pre[class*="language-"].line-numbers {
@@ -375,7 +375,7 @@ pre[data-line] {
     margin-top: 1em;
     /* Same as .prism’s padding-top */
 
-    background: /* #160077 */ #2700d4;
+    background: #00F7;
     z-index: -1;
 
     pointer-events: none;
@@ -408,7 +408,7 @@ pre[id].linkable-line-numbers span.line-numbers-rows>span:before {
 }
 
 pre[id].linkable-line-numbers span.line-numbers-rows>span:hover:before {
-    background-color: /* #160077 */ #2700d4;
+    background-color: #00F7;
 }
 
 pre[class*="language-"].line-numbers {
