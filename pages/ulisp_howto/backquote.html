@@ -75,15 +75,18 @@
 <h2 id="part-1-the-functions">Part 1 - the Functions</h2>
 <ol>
 <li>
-<p>Move the table entries for <code class="language-lisp highlight">cons</code> and <code class="language-lisp highlight">append</code> around in the table so they are right after <code class="language-lisp highlight">quote</code>. Then, add their entries in the <code class="language-cpp highlight">enum builtins</code>. You can also move the <code>string</code> and <code>doc</code> entries but you don&rsquo;t have to.</p>
-<pre class="highlight language-cpp" data-line="2-3"><code>    { string13, sp_quote, 0311, NULL },
+<p>Move the table entries for <code class="language-lisp highlight">cons</code> and <code class="language-lisp highlight">append</code> around in the table so they are right after <code class="language-lisp highlight">quote</code>. Then, add their entries in the <code class="language-cpp highlight">enum builtins</code>. You can also move the <code>string</code> and <code>doc</code> entries but you don&rsquo;t have to. Then, add table and builtins enum entries for the 3 new functions:</p>
+<pre class="highlight language-cpp" data-line="2-6"><code>    { string13, sp_quote, 0311, NULL },
     { string57, fn_cons, 0122, doc57 },
     { string92, fn_append, 0107, doc92 },
+    { stringbackquote, tf_backquote, 0211, NULL },
+    { stringunquote, bq_invalid, 0311, NULL },
+    { stringuqsplicing, bq_invalid, 0311, NULL },
     { string14, sp_defun, 0327, doc14 },
     { string15, sp_defvar, 0313, doc15 },</code></pre>
 <pre class="highlight language-cpp" data-line="3"><code>enum builtins: builtin_t { NIL, TEE, NOTHING, OPTIONAL, INITIALELEMENT, ELEMENTTYPE, BIT, AMPREST, LAMBDA, LET, LETSTAR,
 CLOSURE, PSTAR, QUOTE,
-CONS, APPEND,
+CONS, APPEND, BACKQUOTE, UNQUOTE, UNQUOTE_SPLICING,
 DEFUN, DEFVAR, CAR, FIRST, CDR, REST, NTH, AREF, STRINGFN, PINMODE, DIGITALWRITE,
 ANALOGREAD, REGISTER, FORMAT, 
  };</code></pre>
@@ -153,14 +156,10 @@ object* bq_invalid (object* args, object* env) {
 <pre class="highlight language-cpp"><code>const char stringbackquote[] PROGMEM = "backquote";
 const char stringunquote[] PROGMEM = "unquote";
 const char stringuqsplicing[] PROGMEM = "unquote-splicing";</code></pre>
-<pre class="highlight language-cpp"><code>    { stringbackquote, tf_backquote, 0211, NULL },
-    { stringunquote, bq_invalid, 0311, NULL },
-    { stringuqsplicing, bq_invalid, 0311, NULL },</code></pre>
 </li>
 </ol>
 <h2 id="part-2-the-reader-macros">Part 2 - the Reader Macros</h2>
 <ol start="3">
-<li>Move the entries for <code class="language-lisp highlight">backquote</code>, <code class="language-lisp highlight">unquote</code>, and <code class="language-lisp highlight">unquote-splicing</code> up so they are next to <code class="language-lisp highlight">quote</code>, and also then add entries for them in the <code class="language-cpp highlight">enum builtins</code>.</li>
 <li>
 <p>Add 3 new tokens to the <code class="language-cpp highlight">enum tokens</code>: <code>BACKQUO</code>, <code>UNQUO</code>, and <code>UNSPLICE</code>:</p>
 <pre class="highlight language-cpp" data-line="2"><code>enum token { UNUSED, BRA, KET, QUO, DOT,

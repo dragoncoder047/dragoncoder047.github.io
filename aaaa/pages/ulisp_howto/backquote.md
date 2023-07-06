@@ -4,12 +4,15 @@ The backquote special form and its reader-macro version are incredibly useful in
 
 ## Part 1 - the Functions
 
-1. Move the table entries for `:::lisp cons` and `:::lisp append` around in the table so they are right after `:::lisp quote`. Then, add their entries in the `:::cpp enum builtins`. You can also move the `string` and `doc` entries but you don't have to.
+1. Move the table entries for `:::lisp cons` and `:::lisp append` around in the table so they are right after `:::lisp quote`. Then, add their entries in the `:::cpp enum builtins`. You can also move the `string` and `doc` entries but you don't have to. Then, add table and builtins enum entries for the 3 new functions:
 
-    ```{.cpp data-line="2-3"}
+    ```{.cpp data-line="2-6"}
         { string13, sp_quote, 0311, NULL },
         { string57, fn_cons, 0122, doc57 },
         { string92, fn_append, 0107, doc92 },
+        { stringbackquote, tf_backquote, 0211, NULL },
+        { stringunquote, bq_invalid, 0311, NULL },
+        { stringuqsplicing, bq_invalid, 0311, NULL },
         { string14, sp_defun, 0327, doc14 },
         { string15, sp_defvar, 0313, doc15 },
     ```
@@ -17,7 +20,7 @@ The backquote special form and its reader-macro version are incredibly useful in
     ```{.cpp data-line=3}
     enum builtins: builtin_t { NIL, TEE, NOTHING, OPTIONAL, INITIALELEMENT, ELEMENTTYPE, BIT, AMPREST, LAMBDA, LET, LETSTAR,
     CLOSURE, PSTAR, QUOTE,
-    CONS, APPEND,
+    CONS, APPEND, BACKQUOTE, UNQUOTE, UNQUOTE_SPLICING,
     DEFUN, DEFVAR, CAR, FIRST, CDR, REST, NTH, AREF, STRINGFN, PINMODE, DIGITALWRITE,
     ANALOGREAD, REGISTER, FORMAT, 
      };
@@ -94,16 +97,9 @@ The backquote special form and its reader-macro version are incredibly useful in
     const char stringuqsplicing[] PROGMEM = "unquote-splicing";
     ```
 
-    ```cpp
-        { stringbackquote, tf_backquote, 0211, NULL },
-        { stringunquote, bq_invalid, 0311, NULL },
-        { stringuqsplicing, bq_invalid, 0311, NULL },
-    ```
-
 ## Part 2 - the Reader Macros
 
-3. Move the entries for `:::lisp backquote`, `:::lisp unquote`, and `:::lisp unquote-splicing` up so they are next to `:::lisp quote`, and also then add entries for them in the `:::cpp enum builtins`.
-4. Add 3 new tokens to the `:::cpp enum tokens`: `BACKQUO`, `UNQUO`, and `UNSPLICE`:
+3. Add 3 new tokens to the `:::cpp enum tokens`: `BACKQUO`, `UNQUO`, and `UNSPLICE`:
 
     ```{.cpp data-line=2}
     enum token { UNUSED, BRA, KET, QUO, DOT,
@@ -111,7 +107,7 @@ The backquote special form and its reader-macro version are incredibly useful in
     };
     ```
 
-5. In `:::cpp nextitem()`, add the following code after the code that returns the existing tokens:
+4. In `:::cpp nextitem()`, add the following code after the code that returns the existing tokens:
 
     ```{.cpp data-line="14-23"}
     object *nextitem (gfun_t gfun) {
@@ -139,7 +135,7 @@ The backquote special form and its reader-macro version are incredibly useful in
         }
     ```
 
-6. In the while loop of `:::cpp readrest()` add this:
+5. In the while loop of `:::cpp readrest()` add this:
 
     ```{.cpp data-line="4-6"}
     while (item != (object*)KET) {
@@ -151,7 +147,7 @@ The backquote special form and its reader-macro version are incredibly useful in
         else if (item == (object*)PERIOD) {
     ```
 
-7. And in `:::cpp read()` add this:
+6. And in `:::cpp read()` add this:
 
     ```{.cpp data-line="7-9"}
     object* read (gfun_t gfun) {
