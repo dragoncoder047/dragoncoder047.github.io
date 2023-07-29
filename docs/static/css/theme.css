@@ -1,0 +1,69 @@
+:root {
+    --color-bg: #0a0a0a;
+    --color-fg: #eee;
+    --black: black;
+    --white: white;
+    --lightgray: #888;
+    --darkgray: #444;
+    --theme-1-darker: #505;
+    --theme-1: purple;
+    --theme-1-lighter: #a0a;
+    --theme-1-lightest: magenta;
+    --theme-2-darker: #039;
+    --theme-2: #06f;
+    --theme-3: gold;
+    --theme-3-darker: darkorange;
+    --theme-4: lime;
+    --theme-4-darker: green;
+    --color-heading: var(--theme-2);
+    --color-link: var(--theme-2);
+    --color-link-visited: var(--theme-1);
+    --color-open-tab: var(--theme-3);
+    --color-footer: var(--darkgray);
+    --font-heading: "Xanh Mono", monospace;
+    --font-body: "Open Sans", sans-serif;
+    --font-code: "Ubuntu Mono", monospace;
+}
+
+@media print {
+     :root {
+        --theme-1-darker: purple;
+        --theme-1: #a0a;
+        --theme-1-lighter: magenta;
+        --theme-1-lightest: #f5f;
+        --color-bg: white;
+        --color-fg: #0a0a0a;
+        --theme-2-darker: #06f;
+        --theme-2: blue;
+        --theme-3: goldenrod;
+        --theme-3-darker: orange;
+        --theme-4: green;
+        --theme-4-darker: lime;
+        --black: white;
+        --white: black;
+        --lightgray: #444;
+        --darkgray: #888;
+    }
+}
+
+
+@media screen and (prefers-color-scheme: light) {
+     :root {
+        --theme-1-darker: purple;
+        --theme-1: #a0a;
+        --theme-1-lighter: magenta;
+        --theme-1-lightest: #f5f;
+        --color-bg: white;
+        --color-fg: #0a0a0a;
+        --theme-2-darker: #06f;
+        --theme-2: blue;
+        --theme-3: goldenrod;
+        --theme-3-darker: orange;
+        --theme-4: green;
+        --theme-4-darker: lime;
+        --black: white;
+        --white: black;
+        --lightgray: #444;
+        --darkgray: #888;
+    }
+}

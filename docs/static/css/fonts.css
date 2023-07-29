@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "Nova Square";
+    src: url("/static/fonts/NovaSquare-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Press Start 2P";
+    src: url("/static/fonts/PressStart2P-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Syne Mono";
+    src: url("/static/fonts/SyneMono-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Xanh Mono";
+    src: url("/static/fonts/XanhMono-Regular.ttf") format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Xanh Mono";
+    src: url("/static/fonts/XanhMono-Italic.ttf") format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: VT323;
+    src: url("/static/fonts/VT323-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("/static/fonts/OpenSans-VariableFont.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Ubuntu Mono";
+    src: url("/static/fonts/UbuntuMono-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: Icons;
+    src: url("/static/fonts/MaterialIcons-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "IBM Mono";
+    src: url("/static/fonts/Web437_IBM_CGA.woff") format('woff');
+}
+
+@font-face {
+    font-family: "Computro Mono";
+    src: url("/static/fonts/ComputoMonospace-p73xO.ttf") format('truetype');
+}

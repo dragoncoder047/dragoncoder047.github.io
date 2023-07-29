@@ -1,0 +1,322 @@
+button,
+input:not([type=checkbox]),
+input:not([type=radio]) {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-code);
+    --active-color: var(--theme-1);
+    --hover-color: var(--theme-1-lighter);
+    border: 2px solid gray;
+    border-radius: 3px;
+}
+
+input:focus {
+    outline: none;
+}
+
+input.indicate-validity:invalid {
+    color: red;
+}
+
+input.indicate-validity:valid {
+    color: lime;
+}
+
+button[disabled],
+input[readonly],
+input[disabled] {
+    cursor: not-allowed;
+    color: gray;
+}
+
+
+/* button-like inputs */
+
+button,
+input[type=submit],
+input[type=button],
+input[type=file]::-ms-browse,
+input[type=file]::-webkit-file-upload-button,
+input[type=reset],
+input[type=image] {
+    vertical-align: center;
+    background-color: var(--black);
+    color: var(--black);
+    font-family: var(--font-code);
+    border: 2px solid gray;
+    border-radius: 3px;
+    animation-duration: 0.5s;
+}
+
+button:active,
+input[type=submit]:active,
+input[type=button]:active,
+input[type=reset]:active,
+input[type=image]:active {
+    transform: translateY(3px);
+}
+
+
+/* checkbox, radio, and switch */
+
+input[type=checkbox],
+input[type=radio] {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+input[type=checkbox]::before,
+input[type=radio]::before {
+    color: var(--white);
+    background: var(--color-bg);
+    opacity: 1;
+    display: inline-block;
+    vertical-align: sub;
+    font-family: Icons;
+    font-size: 1.2em;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+input[type=checkbox]:disabled:before,
+input[type=radio]:disabled:before {
+    color: gray;
+}
+
+input[type=checkbox]:not(:disabled):hover::before,
+input[type=radio]:not(:disabled):hover::before {
+    color: var(--theme-1-lighter);
+}
+
+input:not(.switch)[type=checkbox]::before {
+    content: 'check_box_outline_blank';
+}
+
+input:not(.switch)[type=checkbox]:indeterminate::before {
+    content: 'indeterminate_check_box';
+}
+
+input:not(.switch)[type=checkbox]:checked::before {
+    content: 'check_box';
+}
+
+input.switch[type=checkbox]::before {
+    content: 'toggle_off';
+}
+
+input.switch[type=checkbox]:checked::before {
+    content: 'toggle_on';
+}
+
+input[type=radio]::before {
+    content: 'radio_button_unchecked';
+}
+
+input[type=radio]:checked::before {
+    content: 'radio_button_checked';
+}
+
+
+/* color */
+
+input[type=color] {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+}
+
+input[type=color]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type=color]::-webkit-color-swatch {
+    border: 2px solid gray;
+    border-radius: 3px;
+}
+
+
+/* text-like */
+
+::placeholder,
+::-moz-placeholder,
+::-ms-input-placeholder,
+::-webkit-input-placeholder {
+    opacity: 50%;
+    font-style: italic;
+}
+
+input[type=text],
+input[type=number],
+input[type=date],
+input[type=email],
+input[type=url],
+input[type=time],
+textarea {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-code);
+    border: 2px solid gray;
+    border-radius: 3px;
+}
+
+textarea[readonly],
+textarea[disabled] {
+    border-style: dotted;
+    cursor: not-allowed;
+    color: gray;
+}
+
+
+/* textarea:focus {
+    outline: none;
+} */
+
+
+/* range */
+
+input[type=range] {
+    height: 12px;
+    -webkit-appearance: none;
+    margin: 10px;
+    background: transparent;
+    border: none;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    background: var(--white);
+    border-radius: 0px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: var(--active-color);
+    -webkit-appearance: none;
+    margin-top: -5px;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    background: var(--hover-color);
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: var(--white);
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+}
+
+input[type=range]::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: var(--active-color);
+}
+
+input[type=range]::-moz-range-thumb:hover {
+    background: var(--hover-color);
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower,
+input[type=range]::-ms-fill-upper {
+    background: var(--white);
+}
+
+input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    height: 12px;
+    width: 12px;
+    border-radius: 50px;
+    background: var(--active-color);
+}
+
+input[type=range]::-ms-thumb:hover {
+    background: var(--hover-color);
+}
+
+input[type=range][orient=vertical] {
+    -webkit-appearance: inherit;
+    transform: rotate(90deg) translateY(50%);
+}
+
+
+/* meters */
+
+meter::-webkit-meter-bar {
+    border: 2px solid gray;
+    border-radius: 3px;
+    background: var(--black);
+    height: 16px!important;
+    margin-top: -5px;
+}
+
+meter:-moz-meter-optimum::-moz-meter-bar,
+meter::-webkit-meter-optimum-value {
+    background: lime;
+}
+
+meter:-moz-meter-sub-optimum::-moz-meter-bar,
+meter::-webkit-meter-suboptimum-value {
+    background: yellow;
+}
+
+meter:-moz-meter-sub-sub-optimum::-moz-meter-bar,
+meter::-webkit-meter-even-less-good-value {
+    background: red;
+}
+
+
+/* progress */
+
+progress {
+    -webkit-appearance: none;
+    border: 2px solid gray;
+    border-radius: 3px;
+}
+
+progress::-webkit-progress-bar {
+    animation: progress 2s linear infinite;
+    -webkit-animation: progress 2s linear infinite;
+    background-color: var(--black);
+    background-image: repeating-linear-gradient( 135deg, transparent, transparent 33%, #ffffff3f 33%, #ffffff3f 66%, transparent 66%);
+    background-size: 50px 25px, 100% 100%, 100% 100%;
+}
+
+progress:not([value])::-webkit-progress-bar {
+    background-color: blue;
+}
+
+progress::-webkit-progress-value {
+    background: blue;
+}
+
+@keyframes progress {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 50px 0;
+    }
+}
