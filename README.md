@@ -10,6 +10,6 @@ if __name__ == '__main__':
     os.system(f'pelican {PATH} -o {OUTPUT_PATH} -s {__file__}')
 ```
 
-That way, all the makefile has to do is run `build.py`. (It's actually a bit more ompilcated here, because the static files do not live in the theme folder, so they must be copied over manually.)
+That way, all the makefile has to do is run `build.py`. (It's actually a bit more complicated here, because the static files do not live in the theme folder, so they must be copied over manually.)
 
 `markdown/` contains the source files, `docs/` contains the output HTML. I would call it something different, but Github Pages only let you deploy from either the root or `docs/`, and I got tired of all the output HTML cluttering up the root, so `docs/` it is.
