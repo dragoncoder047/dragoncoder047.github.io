@@ -21,8 +21,8 @@ EXTRA_JS = '/static/misc.js'
 THEME_STATIC_DIR = 'static/'
 USE_FOLDER_AS_CATEGORY = False
 
-PATH = 'aaaa/'
-OUTPUT_PATH = './'
+PATH = 'markdown/'
+OUTPUT_PATH = 'docs/'
 
 TIMEZONE = 'America/New_York'
 
@@ -167,7 +167,7 @@ MARKDOWN = {
 
 PLUGINS = [
     # 'seo',
-    'pelican.plugins.share_post',
+    'pelican.plugins.share_post',  # XXX 7/29/23 BS4 issues MarkupResemblesLocatorWarning
     # 'sitemap',
     'pelican.plugins.related_posts',
     'minchin.pelican.plugins.nojekyll',
