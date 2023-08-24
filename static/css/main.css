@@ -274,8 +274,8 @@ img {
     cursor: zoom-in;
 }
 
-figure.float-right img,
-figure.float-left img {
+figure.float-right,
+figure.float-left {
     max-width: 20%;
 }
 
