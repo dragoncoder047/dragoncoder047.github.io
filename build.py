@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 import base64
 import zlib
-import pymdownx.superfences
 
 PORT = 8080
 BIND = '192.168.1.158'
@@ -53,7 +52,7 @@ SOCIAL = (
 )
 
 MENUITEMS = (
-    #('Archives', f'/archives.html'),
+    # ('Archives', f'/archives.html'),
     ('Blog', '/blog'),
     ('Projects', '#', (
         ('Thuepaste', f'https://{AUTHOR}.github.io/thuepaste'),
@@ -104,14 +103,18 @@ def named_kroki(name):
 def circuit_fence(source, language, css_class, options, md, **kwargs):
     return '<span style="color: red; background: yellow;">TODO</span>'
 
+
 def default_fence(source, language, css_class, options, md, **kwargs):
-    source = source.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+    "this is needed because the default superfences block puts the language class on the code element and breaks prismjs"
+    source = source.replace('&', '&amp;').replace(
+        '<', '&lt;').replace('>', '&gt;')
     classes = kwargs.get('classes', [])
     attrs = kwargs.get('attrs', {})
     other_attrs = ''.join(map(lambda x: f' {x[0]}=\"{x[1]}\"', attrs.items()))
     classes.append("highlight")
     classes.append("language-" + language)
     return f"<pre class=\"{' '.join(classes)}\"{other_attrs}><code>{source}</code></pre>"
+
 
 MARKDOWN = {
     'extension_configs': {
@@ -174,7 +177,6 @@ PLUGINS = [
     'pelican.plugins.read_more',
     'jinja2content',
     'series',
-    'pelican.plugins.more_categories'
 ]
 
 if __name__ == '__main__':

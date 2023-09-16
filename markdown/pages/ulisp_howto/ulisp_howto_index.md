@@ -1,11 +1,12 @@
 Title: uLisp Extensions Requiring Major Edits
+Save_as: pages/ulisp_howto.html
 
 Click the links below for more information on how to add these extensions to your installation of uLisp.
 
 Currently these are written for uLisp 4.4.
 
-* [`:::lisp (catch)` and `:::lisp (throw)`]({filename}ulisp_howto/catch_throw.md)
-* [Backquotes]({filename}ulisp_howto/backquote.md)
+* [`:::lisp (catch)` and `:::lisp (throw)`]({filename}catch_throw.md)
+* [Backquotes]({filename}backquote.md)
 
 #### More coming soon!
 
