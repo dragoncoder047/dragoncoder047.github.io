@@ -59,6 +59,7 @@ MENUITEMS = (
         ('Armdroid', f'https://{AUTHOR}.github.io/armdroid'),
         ('Langton\'s Ant Music', f'https://{AUTHOR}.github.io/langton-music'),
         ('Schemascii', f'https://{AUTHOR}.github.io/schemascii'),
+        ('Parasite', f'https://{AUTHOR}.github.io/parasite'),
     )),
     ('uLisp Extensions', f'{SITEURL}/pages/ulisp_howto.html'),
 )

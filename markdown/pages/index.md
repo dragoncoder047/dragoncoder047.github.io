@@ -1,6 +1,6 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
-Modified: 2023-09-16
+Modified: 2023-09-30
 
 Just so you know who you are dealing with...
 
@@ -11,6 +11,12 @@ Below are some of the more notable ideas I have done, along with some relevant l
 ## PICKLE and Tinobsy
 
 PICKLE is my latest idea of a programming language, designed around some clever syntactic features that allows embedding of arbitrary string data inside the code, as well as user-definable custom operators and operator overloading. Currently PICKLE itself is only described in [a series of blog posts](/blog/pickles.html), but Tinobsy, the underlying type system and garbage collector that will soon form PICKLE, has been implemented [here](https://github.com/dragoncoder047/tinobsy/).
+
+---
+
+## Parasite
+
+On August 18, 2023, I dreamed up an idea for a computer game. The basis of the idea would be that the player would be accompanied by a number of non-player agents controlled by neural networks. The level could only be beaten if the non-player agents completed the goal -- the goal cannot ever be completed by the player (that would defeat the purpose of the whole game). I chose snakes as the player characters, and the result was the game Parasite. Unfortunately, I'm a terrible level designer -- there aren't any! You can [play (around with) it here](/parasite/) or [view the source code on github](https://github.com/dragoncoder047/parasite/). If you have any ideas for levels please do send them my way via a github issue.
 
 ---
 
