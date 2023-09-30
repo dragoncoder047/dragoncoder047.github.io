@@ -1,4 +1,4 @@
-docs/* linguist-generated
+docs/** linguist-generated
 static/lv-lugin.js linguist-vendored
 static/prism.js linguist-vendored
 static/css/pygments_orig.css linguist-vendored
