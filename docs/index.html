@@ -47,6 +47,8 @@
                         </li>
                         <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
                         </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
 
                                 </ul>
                         </li>
@@ -66,13 +68,16 @@
     <h1>dragoncoder047's homepage</h1>
     
 
-        <p><em>Last updated: Sat 16 September 2023</em></p>
+        <p><em>Last updated: Sat 30 September 2023</em></p>
 
     <p>Just so you know who you are dealing with&hellip;</p>
 <p>I am a high school student. I enjoy programming in Python, C/C++, and Javascript, as well as reverse-engineering, hacking, and building robots, especially the electronics side of stuff.</p>
 <p>Below are some of the more notable ideas I have done, along with some relevant links. I will note here that this list may, at times, be out of date. The best place to check is <a href="https://github.com/dragoncoder047?tab=repositories">my Github repositories list</a> which includes everything and is sorted by when I last did something with it.</p>
 <h2 id="pickle-and-tinobsy">PICKLE and Tinobsy</h2>
 <p>PICKLE is my latest idea of a programming language, designed around some clever syntactic features that allows embedding of arbitrary string data inside the code, as well as user-definable custom operators and operator overloading. Currently PICKLE itself is only described in <a href="/blog/pickles.html">a series of blog posts</a>, but Tinobsy, the underlying type system and garbage collector that will soon form PICKLE, has been implemented <a href="https://github.com/dragoncoder047/tinobsy/">here</a>.</p>
+<hr>
+<h2 id="parasite">Parasite</h2>
+<p>On August 18, 2023, I dreamed up an idea for a computer game. The basis of the idea would be that the player would be accompanied by a number of non-player agents controlled by neural networks. The level could only be beaten if the non-player agents completed the goal &ndash; the goal cannot ever be completed by the player (that would defeat the purpose of the whole game). I chose snakes as the player characters, and the result was the game Parasite. Unfortunately, I&rsquo;m a terrible level designer &ndash; there aren&rsquo;t any! You can <a href="/parasite/">play (around with) it here</a> or <a href="https://github.com/dragoncoder047/parasite/">view the source code on github</a>. If you have any ideas for levels please do send them my way via a github issue.</p>
 <hr>
 <h2 id="ulisp-fork">uLisp fork</h2>
 <p>I wanted to be able to embed a scripting language on an Arduino so I don&rsquo;t have to use a C compiler on another computer to reprogram it. At the time, uLisp didn&rsquo;t quite work because it was difficult to add extensions, so I fooled around for a while and then settled on LIL (see below). In late March 2023 a new version of uLisp was released that makes extensions a lot easier, and so I decided I would use uLisp after all as a scripting language for my microcontroller (because it works and is well-supported) instead of LIL. In the process of working with it, I found a lot of bugs and was able to fix them, and also offer improvements, some of which have been merged upstream. I also wrote <a href="/pages/ulisp_howto.html">some of my own extensions</a>. And, after I got sick of the primitive Arduino serial monitor, I wrote my own Python bridge program that gives you a little nicer interaction experience when connected to a microcontroller running uLisp (although it does have a considerable number of bugs in and of itself). The code is here: <a href="https://github.com/dragoncoder047/ulisp-esp32">https://github.com/dragoncoder047/ulisp-esp32</a></p>
