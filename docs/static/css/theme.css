@@ -20,9 +20,9 @@
     --color-link-visited: var(--theme-1);
     --color-open-tab: var(--theme-3);
     --color-footer: var(--darkgray);
-    --font-heading: "Xanh Mono", monospace;
+    --font-heading: "Nova Square", sans-serif;
     --font-body: "Open Sans", sans-serif;
-    --font-code: "Ubuntu Mono", monospace;
+    --font-code: "IBM Mono", monospace;
 }
 
 @media print {
