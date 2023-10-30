@@ -22,7 +22,7 @@
     --color-footer: var(--darkgray);
     --font-heading: "Nova Square", sans-serif;
     --font-body: "Open Sans", sans-serif;
-    --font-code: "IBM Mono", monospace;
+    --font-code: VT323, monospace;
 }
 
 @media print {
