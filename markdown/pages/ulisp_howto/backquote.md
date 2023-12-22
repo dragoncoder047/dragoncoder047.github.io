@@ -4,15 +4,15 @@ The backquote special form and its reader-macro version are incredibly useful in
 
 ## Part 1 - the Functions
 
-1. Move the table entries for `:::lisp cons` and `:::lisp append` around in the table so they are right after `:::lisp quote`. Then, add their entries in the `:::cpp enum builtins`. You can also move the `string` and `doc` entries but you don't have to. Then, add table and builtins enum entries for the 3 new functions:
+1. Move the table entries for `:::lisp cons` and `:::lisp append` around in the table so they are right after `:::lisp quote`. Then, add 3 new entries in the `:::cpp enum builtins`. You can also move the `string` and `doc` entries but you don't have to. Then, add table and builtins enum entries for the 3 new functions:
 
     ```{.cpp data-line="2-6"}
         { string13, sp_quote, 0311, NULL },
         { string57, fn_cons, 0122, doc57 },
         { string92, fn_append, 0107, doc92 },
-        { stringbackquote, tf_backquote, 0211, NULL },
-        { stringunquote, bq_invalid, 0311, NULL },
-        { stringuqsplicing, bq_invalid, 0311, NULL },
+        { stringbackquote, tf_backquote, 0211, docbackquote },
+        { stringunquote, bq_invalid, 0311, docunquote },
+        { stringuqsplicing, bq_invalid, 0311, docunquotesplicing },
         { string14, sp_defun, 0327, doc14 },
         { string15, sp_defvar, 0313, doc15 },
     ```
@@ -95,6 +95,16 @@ The backquote special form and its reader-macro version are incredibly useful in
     const char stringbackquote[] PROGMEM = "backquote";
     const char stringunquote[] PROGMEM = "unquote";
     const char stringuqsplicing[] PROGMEM = "unquote-splicing";
+    ```
+
+    ```cpp
+    const char docbackquote[] PROGMEM = "(backquote form) or `form\n"
+    "Expands the unquotes present in the form as a syntactic template. Most commonly used in macros.";
+    const char docunquote[] PROGMEM = "(unquote form) or ,form\n"
+    "Marks a form to be evaluated and the value inserted when (backquote) expands the template.";
+    const char docunquotesplicing[] PROGMEM = "(unquote-splicing form) or ,@form\n"
+    "Marks a form to be evaluated and the value spliced in when (backquote) expands the template.\n"
+    "If the value returned when evaluating form is not a proper list (backquote) will bork very badly.";
     ```
 
 ## Part 2 - the Reader Macros

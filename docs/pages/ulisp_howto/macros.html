@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en_us">
+    <head>
+                <title>Adding Macros to uLisp</title>
+            <meta charset="utf-8" />
+            <meta name="generator" content="Pelican" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="/static/css/main.css" />
+            <link rel="stylesheet" href="/static/css/theme.css" />
+                    <link rel="icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+                    <link rel="apple-touch-icon" href="/images/patrick_head_silhouette.svg" type="image/svg+xml" />
+<script src="/static/misc.js"></script>
+
+
+    
+
+    <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
+    <meta property="og:title" content="Adding Macros to uLisp" />
+    <meta property="og:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Part 1 - the Functions Add these functions and their table entries: bool is_macro_call (object* form, object* env) { if (form == nil) return false; CHECK: if (symbolp(car(form))) { object* pair = findpair(car(form), env); if (pair == NULL) return false; form = cons …" />
+    <meta property="og:image" content="/images/patrick.svg" />
+    <meta property="og:type" content="page" />
+    <meta property="og:url" content="https://dragoncoder047.github.io/pages/ulisp_howto/macros.html" />
+    <meta property="og:locale" content="['']" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="dragoncoder047&rsquo;s site - Adding Macros to uLisp" />
+    <meta name="twitter:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Part 1 - the Functions Add these functions and their table entries: bool is_macro_call (object* form, object* env) { if (form == nil) return false; CHECK: if (symbolp(car(form))) { object* pair = findpair(car(form), env); if (pair == NULL) return false; form = cons …" />
+    <meta name="twitter:image" content="/images/patrick.svg" />
+            <!-- PrismJS -->
+<script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
+<script src="/static/prism-runbutton.js"></script>
+<script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
+    </head>
+
+    <body class="match-braces rainbow-braces">
+        <header>
+                <a href="/"><div class="flex-row"><img src="/images/patrick.svg" width="141" alt="Patrick the purple dragon" height="85" /><div id="sitename-text" class="flex-column"><h1>dragoncoder047&rsquo;s site</h1><h2>projects, ideas, and everything else</h2></div></div></a>
+            <nav>
+                <ul>
+                    <li><a href="https://dragoncoder047.github.io/">Home</a></li>
+                        <li><a href="/blog">Blog</a>
+                        </li>
+                        <li><a href="#">Projects</a>
+                                <ul>
+                                                            <li><a href="https://dragoncoder047.github.io/thuepaste">Thuepaste</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/armdroid">Armdroid</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/langton-music">Langton's Ant Music</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/schemascii">Schemascii</a>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/parasite">Parasite</a>
+                        </li>
+
+                                </ul>
+                        </li>
+                        <li><a href="https://dragoncoder047.github.io/pages/ulisp_howto.html">uLisp Extensions</a>
+                        </li>
+                    <li>
+                        <form action="https://www.google.com/search" method="GET">
+                            <input name="q" type="search" placeholder="Search"></input>
+                            <input type="hidden" name="as_sitesearch" value="https://dragoncoder047.github.io"></input>
+                            <input type="submit" value="Search"></input>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+    <h1>Adding Macros to uLisp</h1>
+    
+
+
+    <p>The Lisp form <code class="language-list highlight">defmacro</code> allows for more powerful syntactic constructs.</p>
+<h2 id="part-1-the-functions">Part 1 - the Functions</h2>
+<ol>
+<li>
+<p>Add these functions and their table entries:</p>
+<pre class="highlight language-cpp"><code>bool is_macro_call (object* form, object* env) {
+    if (form == nil) return false;
+    CHECK:
+    if (symbolp(car(form))) {
+        object* pair = findpair(car(form), env);
+        if (pair == NULL) return false;
+        form = cons(cdr(pair), cdr(form));
+        goto CHECK;
+    }
+    if (!consp(form)) return false;
+    object* lambda = first(form);
+    if (!consp(lambda)) return false;
+    return isbuiltin(first(lambda), MACRO);
+}
+
+object* macroexpand1 (object* form, object* env, bool* done) {
+    if (!is_macro_call(form, env)) {
+        *done = true;
+        return form;
+    }
+    while (symbolp(car(form))) form = cons(cdr(findvalue(car(form), env)), cdr(form));
+    protect(form);
+    form = closure(0, sym(NIL), car(form), cdr(form), &amp;env);
+    object* result = eval(form, env);
+    unprotect();
+    return result;
+}
+
+object* fn_macroexpand1 (object* args, object* env) {
+    bool dummy;
+    return macroexpand1(first(args), env, &amp;dummy);
+}
+
+object* macroexpand (object* form, object* env) {
+    bool done = false;
+    protect(form);
+    while (!done) {
+        form = macroexpand1(form, env, &amp;done);
+        car(GCStack) = form;
+    }
+    unprotect();
+    return form;
+}
+
+object* fn_macroexpand (object* args, object* env) {
+    return macroexpand(first(args), env);
+}</code></pre>
+<pre class="highlight language-cpp"><code>const char stringbackquote[] PROGMEM = "backquote";
+const char stringunquote[] PROGMEM = "unquote";
+const char stringuqsplicing[] PROGMEM = "unquote-splicing";</code></pre>
+<pre class="highlight language-cpp"><code>const char docmacro[] PROGMEM = "(macro (parameter*) form*)\n"
+"Creates an unnamed lambda-macro with parameters. The body is evaluated with the parameters as local variables\n"
+"whose initial values are defined by the values of the forms after the macro form;\n"
+"the resultant Lisp code returned is then evaluated again, this time in the scope of where the macro was called.";
+const char docdefmacro[] PROGMEM = "(defmacro name (parameters) form*)\n"
+"Defines a syntactic macro.";</code></pre>
+<pre class="highlight language-cpp"><code>{ stringmacro, NULL, MINMAX(OTHER_FORMS, 1, UNLIMITED), docmacro },
+{ stringdefmacro, sp_defmacro, MINMAX(SPECIAL_FORMS, 2, UNLIMITED), docdefmacro },
+{ stringmacroexpand1, fn_macroexpand1, MINMAX(FUNCTIONS, 1, 1), docmacroexpand1 },
+{ stringmacroexpand, fn_macroexpand, MINMAX(FUNCTIONS, 1, 1), docmacroexpand },</code></pre>
+</li>
+<li>
+<p>Wire up the evaluator to expand the macros:</p>
+<pre class="highlight language-cpp" data-line="6"><code>// in object* eval (object* form, object* env)
+if (symbolp(form)) {
+    // snip
+}
+// Expand macros
+form = macroexpand(form, env);</code></pre>
+</li>
+</ol>
+<h2 id="part-2-stack-overflow-checking">Part 2 - Stack overflow checking&rsquo;</h2>
+<p>The macro evaluator is recursive and I couldn&rsquo;t find a way to do it with tail-call elimination, so stack overflow checks have to be added. The nice part is that they also prevent normal functions from exploding the stack (like a naive <code class="language-list highlight">(let ((foo (lambda (f) (f f) (f f)))) (foo foo))</code> would).</p>
+<ol start="3">
+<li>
+<p>Add a global variable:</p>
+<pre class="highlight language-cpp"><code>#define MAX_STACK 10000
+void* StackBottom;</code></pre>
+</li>
+<li>
+<p>In setup() add two variables to init the stack bottom:</p>
+<pre class="highlight language-cpp" data-line="1-2"><code>int foo = 0;
+StackBottom = &amp;foo;
+initworkspace();
+initenv();
+initsleep();
+initgfx();</code></pre>
+</li>
+<li>
+<p>Add a check in eval() to prevent stack overflow:</p>
+<pre class="highlight language-cpp" data-line="4-5"><code>// Escape
+if (tstflag(ESCAPE)) { clrflag(ESCAPE); error2(PSTR("escape!"));}
+if (!tstflag(NOESC)) testescape();
+// Stack overflow check
+if (abs(static_cast&lt;int*&gt;(StackBottom) - &amp;TC) &gt; MAX_STACK) error(PSTR("C stack overflow"), form);</code></pre>
+</li>
+</ol>
+<h2 id="part-3-optional-setf-macro-support">Part 3 (Optional) - <code class="language-lisp highlight">setf</code> macro support</h2>
+<ol start="6">
+<li>
+<p>Forward-declare <code>is_macro_call</code> at the top:</p>
+<pre class="highlight language-cpp"><code>bool is_macro_call (object*, object*);</code></pre>
+</li>
+<li>
+<p>Add a last case to <code>place()</code> like so:</p>
+<pre class="highlight language-cpp" data-line="2,9-12"><code>object** place (object* args, object* env, int* bit) {
+    PLACE:
+    *bit = -1;
+    if (atom(args)) return &amp;cdr(findvalue(args, env));
+    object* function = first(args);
+    if (symbolp(function)) {
+        // snip
+    }
+    else if (is_macro_call(args, env)) {
+        function = eval(function, env);
+        goto PLACE;
+    }
+    error2(PSTR("illegal place"));
+    return nil;
+}</code></pre>
+</li>
+</ol>
+            <section id="extras">
+                    <div class="blogroll">
+                        <ul>
+                                <li><a href="https://www.conwaylife.com/">Conwaylife</a></li>
+                                <li><a href="https://www.python.org/">Python</a></li>
+                        </ul>
+                    </div>
+                    <div class="social">
+                        <ul>
+
+                                <li><a href="https://github.com/dragoncoder047">dragoncoder047 on GitHub</a></li>
+                        </ul>
+                    </div>
+            </section>
+        </main>
+        <footer>
+            <address>
+                    Site built by <a href="https://getpelican.com/">Pelican</a>
+            </address>
+            <a href="#" onclick="window.scrollTo({top: 0, left: 0});">Back to top</a>
+        </footer>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-.PHONY: build clean
+.PHONY: build clean deps
 
 build: clean
 	./build.py
@@ -6,3 +6,6 @@ build: clean
 
 clean:
 	rm -rf docs/
+
+deps:
+	sudo python3 -m pip install -r requirements.txt

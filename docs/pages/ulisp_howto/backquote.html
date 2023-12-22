@@ -17,14 +17,14 @@
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
     <meta property="og:title" content="Adding Backquote Templating to uLisp" />
-    <meta property="og:description" content="The backquote special form and its reader-macro version are incredibly useful in macros and to make Lisp templates. Part 1 - the Functions Move the table entries for cons and append around in the table so they are right after quote. Then, add their entries in the enum builtins. You can …" />
+    <meta property="og:description" content="The backquote special form and its reader-macro version are incredibly useful in macros and to make Lisp templates. Part 1 - the Functions Move the table entries for cons and append around in the table so they are right after quote. Then, add 3 new entries in the enum builtins. You …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://dragoncoder047.github.io/pages/ulisp_howto/backquote.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="dragoncoder047&rsquo;s site - Adding Backquote Templating to uLisp" />
-    <meta name="twitter:description" content="The backquote special form and its reader-macro version are incredibly useful in macros and to make Lisp templates. Part 1 - the Functions Move the table entries for cons and append around in the table so they are right after quote. Then, add their entries in the enum builtins. You can …" />
+    <meta name="twitter:description" content="The backquote special form and its reader-macro version are incredibly useful in macros and to make Lisp templates. Part 1 - the Functions Move the table entries for cons and append around in the table so they are right after quote. Then, add 3 new entries in the enum builtins. You …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -77,13 +77,13 @@
 <h2 id="part-1-the-functions">Part 1 - the Functions</h2>
 <ol>
 <li>
-<p>Move the table entries for <code class="language-lisp highlight">cons</code> and <code class="language-lisp highlight">append</code> around in the table so they are right after <code class="language-lisp highlight">quote</code>. Then, add their entries in the <code class="language-cpp highlight">enum builtins</code>. You can also move the <code>string</code> and <code>doc</code> entries but you don&rsquo;t have to. Then, add table and builtins enum entries for the 3 new functions:</p>
+<p>Move the table entries for <code class="language-lisp highlight">cons</code> and <code class="language-lisp highlight">append</code> around in the table so they are right after <code class="language-lisp highlight">quote</code>. Then, add 3 new entries in the <code class="language-cpp highlight">enum builtins</code>. You can also move the <code>string</code> and <code>doc</code> entries but you don&rsquo;t have to. Then, add table and builtins enum entries for the 3 new functions:</p>
 <pre class="highlight language-cpp" data-line="2-6"><code>    { string13, sp_quote, 0311, NULL },
     { string57, fn_cons, 0122, doc57 },
     { string92, fn_append, 0107, doc92 },
-    { stringbackquote, tf_backquote, 0211, NULL },
-    { stringunquote, bq_invalid, 0311, NULL },
-    { stringuqsplicing, bq_invalid, 0311, NULL },
+    { stringbackquote, tf_backquote, 0211, docbackquote },
+    { stringunquote, bq_invalid, 0311, docunquote },
+    { stringuqsplicing, bq_invalid, 0311, docunquotesplicing },
     { string14, sp_defun, 0327, doc14 },
     { string15, sp_defvar, 0313, doc15 },</code></pre>
 <pre class="highlight language-cpp" data-line="3"><code>enum builtins: builtin_t { NIL, TEE, NOTHING, OPTIONAL, INITIALELEMENT, ELEMENTTYPE, BIT, AMPREST, LAMBDA, LET, LETSTAR,
@@ -158,6 +158,13 @@ object* bq_invalid (object* args, object* env) {
 <pre class="highlight language-cpp"><code>const char stringbackquote[] PROGMEM = "backquote";
 const char stringunquote[] PROGMEM = "unquote";
 const char stringuqsplicing[] PROGMEM = "unquote-splicing";</code></pre>
+<pre class="highlight language-cpp"><code>const char docbackquote[] PROGMEM = "(backquote form) or `form\n"
+"Expands the unquotes present in the form as a syntactic template. Most commonly used in macros.";
+const char docunquote[] PROGMEM = "(unquote form) or ,form\n"
+"Marks a form to be evaluated and the value inserted when (backquote) expands the template.";
+const char docunquotesplicing[] PROGMEM = "(unquote-splicing form) or ,@form\n"
+"Marks a form to be evaluated and the value spliced in when (backquote) expands the template.\n"
+"If the value returned when evaluating form is not a proper list (backquote) will bork very badly.";</code></pre>
 </li>
 </ol>
 <h2 id="part-2-the-reader-macros">Part 2 - the Reader Macros</h2>

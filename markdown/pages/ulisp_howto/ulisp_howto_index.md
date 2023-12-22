@@ -7,8 +7,9 @@ Currently these are written for uLisp 4.4.
 
 * [`:::lisp (catch)` and `:::lisp (throw)`]({filename}catch_throw.md)
 * [Backquotes]({filename}backquote.md)
+* [Macros]({filename}macros.md)
 
-#### More coming soon!
+<!--- #### More coming soon! -->
 
 ## Note on my C++ conventions
 
