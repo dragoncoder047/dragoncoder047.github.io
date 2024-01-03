@@ -49,6 +49,7 @@ LINKS = (
 # Social
 SOCIAL = (
     (f'{AUTHOR} on GitHub', f'https://github.com/{AUTHOR}'),
+    (f'{AUTHOR} on YouTube', f'https://youtube.com/@{AUTHOR}'),
 )
 
 MENUITEMS = (
