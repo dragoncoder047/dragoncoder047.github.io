@@ -50,7 +50,7 @@ header {
     }
 }
 
-@media screen {
+@media print {
     header {
         position: relative;
     }

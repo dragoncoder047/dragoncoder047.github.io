@@ -28,10 +28,10 @@ The Lisp form `:::list defmacro` allows for more powerful syntactic constructs.
             return form;
         }
         while (symbolp(car(form))) form = cons(cdr(findvalue(car(form), env)), cdr(form));
-        protect(form);
+        push(form, GCStack);
         form = closure(0, sym(NIL), car(form), cdr(form), &env);
         object* result = eval(form, env);
-        unprotect();
+        pop(GCStack);
         return result;
     }
 
@@ -42,12 +42,12 @@ The Lisp form `:::list defmacro` allows for more powerful syntactic constructs.
 
     object* macroexpand (object* form, object* env) {
         bool done = false;
-        protect(form);
+        push(form, GCStack);
         while (!done) {
             form = macroexpand1(form, env, &done);
             car(GCStack) = form;
         }
-        unprotect();
+        pop(GCStack);
         return form;
     }
 

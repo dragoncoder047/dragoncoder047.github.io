@@ -44,6 +44,12 @@ header {
     }
 }
 
+@media screen and (max-width: 2000px) {
+    header {
+        position: relative;
+    }
+}
+
 @media print {
     header {
         position: relative;
@@ -88,6 +94,7 @@ h5,
 h6 {
     color: var(--color-heading);
     font-family: var(--font-heading);
+    line-height: 115%;
 }
 
 h1 {
