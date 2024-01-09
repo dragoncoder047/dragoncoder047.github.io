@@ -1,5 +1,13 @@
 nav {
     padding-left: 2em;
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 2000px) {
+    nav {
+        flex-direction: column;
+    }
 }
 
 nav+div {
@@ -59,6 +67,7 @@ nav ul li ul:hover,
 nav ul li ul:focus {
     display: block;
     background: var(--theme-1);
+    z-index: 99999999;
 }
 
 nav ul li>ul li,
