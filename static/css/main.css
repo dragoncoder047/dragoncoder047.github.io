@@ -285,7 +285,15 @@ img {
 
 figure.float-right,
 figure.float-left {
-    max-width: 20%;
+    max-width: 25%;
+}
+
+@media screen and (max-width: 800px) {
+    figure.float-right,
+    figure.float-left {
+        max-width: 80%;
+        float: none;
+    }
 }
 
 figcaption {
