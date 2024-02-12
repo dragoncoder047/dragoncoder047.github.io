@@ -1,6 +1,6 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
-Modified: 2023-09-30
+Modified: 2024-02-02
 
 Just so you know who you are dealing with...
 
@@ -20,4 +20,4 @@ Cellular automata is one of my interests, and while I don't spend much time on i
 
 #### Look Mom, I have a YouTube channel! (jumps up and down)
 
-[My YouTube channel](https://youtube.com/@dragoncoder047) -- mostly Lego Technic right now.
+[My YouTube channel](https://youtube.com/@dragoncoder047)
