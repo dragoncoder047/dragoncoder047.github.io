@@ -17,14 +17,14 @@
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
     <meta property="og:title" content="Adding Macros to uLisp" />
-    <meta property="og:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Part 1 - the Functions Add these functions and their table entries: bool is_macro_call (object* form, object* env) { if (form == nil) return false; CHECK: if (symbolp(car(form))) { object* pair = findpair(car(form), env); if (pair == NULL) return false; form = cons …" />
+    <meta property="og:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Note that this does not include backquote support – there is a separate page for that. EDIT: In response to all of the confusion I seem to have caused by posting this error-ridden guide, I have done my best to correct …" />
     <meta property="og:image" content="/images/patrick.svg" />
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://dragoncoder047.github.io/pages/ulisp_howto/macros.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="dragoncoder047&rsquo;s site - Adding Macros to uLisp" />
-    <meta name="twitter:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Part 1 - the Functions Add these functions and their table entries: bool is_macro_call (object* form, object* env) { if (form == nil) return false; CHECK: if (symbolp(car(form))) { object* pair = findpair(car(form), env); if (pair == NULL) return false; form = cons …" />
+    <meta name="twitter:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Note that this does not include backquote support – there is a separate page for that. EDIT: In response to all of the confusion I seem to have caused by posting this error-ridden guide, I have done my best to correct …" />
     <meta name="twitter:image" content="/images/patrick.svg" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -73,7 +73,8 @@
     
 
 
-    <p>The Lisp form <code class="language-list highlight">defmacro</code> allows for more powerful syntactic constructs.</p>
+    <p>The Lisp form <code class="language-list highlight">defmacro</code> allows for more powerful syntactic constructs. Note that this does not include backquote support &ndash; there is a <a href="https://dragoncoder047.github.io/pages/ulisp_howto/backquote.html">separate page</a> for that.</p>
+<p><em>EDIT: In response to <a href="http://forum.ulisp.com/t/what-would-you-like-to-see-in-ulisp-in-2024/1350/36">all of the confusion</a> I seem to have caused by posting this error-ridden guide, I have done my best to correct all of the errors. Hopefully, now it should be possible to to directly follow this guide from a vanilla uLisp to be able to add macros. I apologize for any confusion, compiler problems, and crashes caused by my sloppiness.</em></p>
 <h2 id="part-1-the-functions">Part 1 - the Functions</h2>
 <ol>
 <li>
@@ -134,10 +135,10 @@ const char stringuqsplicing[] PROGMEM = "unquote-splicing";</code></pre>
 "the resultant Lisp code returned is then evaluated again, this time in the scope of where the macro was called.";
 const char docdefmacro[] PROGMEM = "(defmacro name (parameters) form*)\n"
 "Defines a syntactic macro.";</code></pre>
-<pre class="highlight language-cpp"><code>{ stringmacro, NULL, MINMAX(OTHER_FORMS, 1, UNLIMITED), docmacro },
-{ stringdefmacro, sp_defmacro, MINMAX(SPECIAL_FORMS, 2, UNLIMITED), docdefmacro },
-{ stringmacroexpand1, fn_macroexpand1, MINMAX(FUNCTIONS, 1, 1), docmacroexpand1 },
-{ stringmacroexpand, fn_macroexpand, MINMAX(FUNCTIONS, 1, 1), docmacroexpand },</code></pre>
+<pre class="highlight language-cpp"><code>{ stringmacro, NULL, 0017, docmacro },
+{ stringdefmacro, sp_defmacro, 0327, docdefmacro },
+{ stringmacroexpand1, fn_macroexpand1, 0111, docmacroexpand1 },
+{ stringmacroexpand, fn_macroexpand, 0111, docmacroexpand },</code></pre>
 </li>
 <li>
 <p>Wire up the evaluator to expand the macros:</p>

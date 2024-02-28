@@ -1,6 +1,8 @@
 Title: Adding Macros to uLisp
 
-The Lisp form `:::list defmacro` allows for more powerful syntactic constructs.
+The Lisp form `:::list defmacro` allows for more powerful syntactic constructs. Note that this does not include backquote support -- there is a [separate page]({filename}backquote.md) for that.
+
+*EDIT: In response to [all of the confusion](http://forum.ulisp.com/t/what-would-you-like-to-see-in-ulisp-in-2024/1350/36) I seem to have caused by posting this error-ridden guide, I have done my best to correct all of the errors. Hopefully, now it should be possible to to directly follow this guide from a vanilla uLisp to be able to add macros. I apologize for any confusion, compiler problems, and crashes caused by my sloppiness.*
 
 ## Part 1 - the Functions
 
@@ -72,10 +74,10 @@ The Lisp form `:::list defmacro` allows for more powerful syntactic constructs.
     ```
 
     ```cpp
-    { stringmacro, NULL, MINMAX(OTHER_FORMS, 1, UNLIMITED), docmacro },
-    { stringdefmacro, sp_defmacro, MINMAX(SPECIAL_FORMS, 2, UNLIMITED), docdefmacro },
-    { stringmacroexpand1, fn_macroexpand1, MINMAX(FUNCTIONS, 1, 1), docmacroexpand1 },
-    { stringmacroexpand, fn_macroexpand, MINMAX(FUNCTIONS, 1, 1), docmacroexpand },
+    { stringmacro, NULL, 0017, docmacro },
+    { stringdefmacro, sp_defmacro, 0327, docdefmacro },
+    { stringmacroexpand1, fn_macroexpand1, 0111, docmacroexpand1 },
+    { stringmacroexpand, fn_macroexpand, 0111, docmacroexpand },
     ```
 
 2. Wire up the evaluator to expand the macros:
