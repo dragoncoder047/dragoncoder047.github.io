@@ -63,6 +63,7 @@ nav ul li ul {
 
 nav ul li:hover>ul,
 nav ul li:focus-within>ul,
+nav ul li:focus>ul,
 nav ul li ul:hover,
 nav ul li ul:focus {
     display: block;
@@ -70,29 +71,23 @@ nav ul li ul:focus {
     z-index: 99999999;
 }
 
-nav ul li>ul li,
 nav ul li ul li {
     background: var(--theme-1-darker);
+    clear: both;
+    width: 100%;
 }
 
-nav ul li>ul li:hover,
 nav ul li ul li:hover {
     background: var(--theme-1-lighter);
 }
 
 
 @media screen and (prefers-color-scheme: light) {
-    nav ul li>ul li,
     nav ul li ul li {
         background: var(--theme-1-lighter);
     }
-    nav ul li>ul li:hover,
+
     nav ul li ul li:hover {
         background: var(--theme-1-lightest);
     }
-}
-
-nav ul li ul li {
-    clear: both;
-    width: 100%;
 }
