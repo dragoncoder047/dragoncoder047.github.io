@@ -134,7 +134,7 @@ blockquote {
 #extras li {
     display: flex;
     flex-direction: column;
-    list-style-type: none!important;
+    list-style-type: none !important;
     padding: 0.25em;
 }
 
@@ -177,11 +177,6 @@ code {
     tab-size: 4;
     -moz-tab-size: 4;
     -o-tab-size: 4;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    white-space: pre-wrap;
-    word-wrap: break-word;
     background: var(--black);
 }
 
@@ -189,6 +184,8 @@ pre {
     padding: 0.5em;
     border-radius: 10px;
     border: 1px solid var(--theme-3-darker);
+    overflow: scroll;
+    max-height: 75vh;
 }
 
 code {
@@ -280,6 +277,7 @@ figure {
 
 img {
     max-height: 60vh;
+    max-width: 100%;
     cursor: zoom-in;
 }
 
@@ -289,6 +287,8 @@ figure.float-left {
 }
 
 @media screen and (max-width: 800px) {
+
+    /* don't float figures on narrow screens */
     figure.float-right,
     figure.float-left {
         max-width: 80%;
@@ -331,7 +331,7 @@ del {
 }
 
 
-/* clean up */
+/* custom selection colors */
 
 ::selection {
     color: black;
