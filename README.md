@@ -13,3 +13,7 @@ if __name__ == '__main__':
 That way, all the makefile has to do is run `build.py`. (It's actually a bit more complicated here, because the static files do not live in the theme folder, so they must be copied over manually.)
 
 `markdown/` contains the source files, `docs/` contains the output HTML. I would call it something different, but Github Pages only let you deploy from either the root or `docs/`, and I got tired of all the output HTML cluttering up the root, so `docs/` it is.
+
+## Images
+
+The images in `markdown/images` (and the copies in `docs/images`) are copyright &copy; 2023-present me, and may not be used without either permission or attribution.
