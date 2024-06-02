@@ -143,9 +143,10 @@ blockquote {
 a {
     color: var(--color-fg);
     --ul-color: var(--color-link);
-    /* text-decoration: solid var(--ul-color) underline; */
+    text-decoration: solid var(--ul-color) underline;
+    -webkit-text-decoration: solid var(--ul-color) underline;
     /* for some reason underline doesn't work in Safari ?!? */
-    border-bottom: 1px solid var(--ul-color);
+    /* border-bottom: 1px solid var(--ul-color); */
 }
 
 a:visited {
