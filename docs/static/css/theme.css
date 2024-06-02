@@ -15,7 +15,7 @@
     --theme-3-darker: darkorange;
     --theme-4: #808;
     --theme-4-darker: #a3a;
-    --color-heading: var(--theme-1);
+    --color-heading: var(--theme-1-lightest);
     --color-link: var(--theme-2);
     --color-link-visited: var(--theme-1);
     --color-open-tab: var(--theme-3);
