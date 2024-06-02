@@ -66,7 +66,6 @@ header {
 #sitename-text h1,
 #sitename-text h2 {
     font-size: 1.5em;
-    color: var(--theme-1);
     padding-left: 0.5em;
 }
 
@@ -142,7 +141,13 @@ blockquote {
 /* basic links */
 
 a {
-    color: var(--color-link);
+    color: var(--color-fg);
+    --ul-color: var(--color-link);
+    text-decoration: solid var(--ul-color) underline;
+}
+
+a:visited {
+    --ul-color: var(--color-link-visited);
 }
 
 
@@ -158,13 +163,8 @@ footer a,
 footer a:visited,
 footer a::after {
     color: inherit;
-    text-decoration: underline;
+    --ul-color: inherit;
     cursor: pointer;
-}
-
-a:visited {
-    color: var(--color-link);
-    text-decoration: solid var(--color-link-visited) underline;
 }
 
 
@@ -177,15 +177,14 @@ code {
     tab-size: 4;
     -moz-tab-size: 4;
     -o-tab-size: 4;
-    background: var(--black);
 }
 
 pre {
     padding: 0.5em;
     border-radius: 10px;
-    border: 1px solid var(--theme-3-darker);
-    overflow: scroll;
+    overflow: auto;
     max-height: 75vh;
+    background: var(--black);
 }
 
 code {

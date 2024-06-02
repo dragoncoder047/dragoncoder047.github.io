@@ -1,6 +1,6 @@
 Title: Adding Macros to uLisp
 
-The Lisp form `:::list defmacro` allows for more powerful syntactic constructs. Note that this does not include backquote support -- there is a [separate page]({filename}backquote.md) for that.
+The Lisp form `:::lisp defmacro` allows for more powerful syntactic constructs. Note that this does not include backquote support -- there is a [separate page]({filename}backquote.md) for that.
 
 *EDIT: In response to [all of the confusion](http://forum.ulisp.com/t/what-would-you-like-to-see-in-ulisp-in-2024/1350/36) I seem to have caused by posting this error-ridden guide, I have done my best to correct all of the errors. Hopefully, now it should be possible to to directly follow this guide from a vanilla uLisp to be able to add macros. I apologize for any confusion, compiler problems, and crashes caused by my sloppiness.*
 
@@ -93,7 +93,7 @@ The Lisp form `:::list defmacro` allows for more powerful syntactic constructs. 
 
 ## Part 2 - Stack overflow checking'
 
-The macro evaluator is recursive and I couldn't find a way to do it with tail-call elimination, so stack overflow checks have to be added. The nice part is that they also prevent normal functions from exploding the stack (like a naive `:::list (let ((foo (lambda (f) (f f) (f f)))) (foo foo))` would).
+The macro evaluator is recursive and I couldn't find a way to do it with tail-call elimination, so stack overflow checks have to be added. The nice part is that they also prevent normal functions from exploding the stack (like a naive `:::lisp (let ((foo (lambda (f) (f f) (f f)))) (foo foo))` would).
 
 3. Add a global variable:
 

@@ -1,3 +1,5 @@
+raise RuntimeError
+
 import colorsys
 import re
 

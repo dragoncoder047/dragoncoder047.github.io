@@ -80,14 +80,3 @@ nav ul li ul li {
 nav ul li ul li:hover {
     background: var(--theme-1-lighter);
 }
-
-
-@media screen and (prefers-color-scheme: light) {
-    nav ul li ul li {
-        background: var(--theme-1-lighter);
-    }
-
-    nav ul li ul li:hover {
-        background: var(--theme-1-lightest);
-    }
-}
