@@ -141,15 +141,15 @@ blockquote {
 /* basic links */
 
 a {
+    color: inherit;
     --ul-color: var(--color-link);
     text-decoration: solid var(--ul-color) underline;
-    -webkit-text-decoration: solid var(--ul-color) underline;
-    /* for some reason underline doesn't work in Safari ?!? */
-    /* border-bottom: 1px solid var(--ul-color); */
 }
 
 a:visited {
     --ul-color: var(--color-link-visited);
+    /* repeating it because Chrome is stupid */
+    text-decoration: solid var(--ul-color) underline;
 }
 
 
