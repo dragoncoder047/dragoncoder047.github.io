@@ -10,13 +10,13 @@ AUTHOR = "dragoncoder047"
 SITENAME = "dragoncoder047&rsquo;s site"
 SITESUBTITLE = "projects, ideas, and everything else"
 SITEURL = "https://dragoncoder047.github.io"
-LOGO = "/images/yazani/yazani_1_extracted_bg.svg"
+LOGO = "/images/yazani/yazani_1_extracted_bg.png"
 LOGO_AREA_HTML = ('<a href="/" class="flex-row"><div class="flex-row">'
                   f'<img src="{LOGO}" />'
                   '<div id="sitename-text">'
                   f'<h1>{SITENAME}</h1><h2>{SITESUBTITLE}</h2>'
                   '</div></div></a>')
-ICON = "/images/yazani_1_extracted_bg_big_eyes_cropped.png"
+ICON = "/images/yazani/yazani_1_extracted_bg_big_eyes_cropped.png"
 ICON_MIMETYPE = "image/png"
 THEME_CSS_FILE = "/static/css/theme.css"
 THEME_MAIN_CSS = "/static/css/main.css"
