@@ -49,8 +49,9 @@ FILENAME_METADATA = r"(?P<slug>.*)"
 
 # Blogroll
 LINKS = (
-    ("Conwaylife", "https://www.conwaylife.com/"),
+    ("Conwaylife.com Forums", "https://www.conwaylife.com/"),
     ("Python", "https://www.python.org/"),
+    ("uLisp", "http://www.ulisp.com/"),
 )
 
 # Social
