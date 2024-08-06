@@ -6,10 +6,9 @@
 
 ::-webkit-scrollbar-thumb {
     background: var(--theme-1);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--theme-1-lighter);
+    &:hover {
+        background: var(--theme-1-lighter);
+    }
 }
 
 ::-webkit-scrollbar-button {
@@ -19,10 +18,9 @@
 ::-webkit-resize {
     background-color: var(--black);
     color: var(--white);
-}
-
-::-webkit-resize::after {
-    content: '&#8690';
+    &::after {
+        content: '&#8690';
+    }
 }
 
 ::-webkit-scrollbar-corner {

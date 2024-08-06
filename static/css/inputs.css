@@ -65,29 +65,28 @@ input[type=radio] {
     background: transparent;
     border: none;
     padding: 0;
-}
 
-input[type=checkbox]::before,
-input[type=radio]::before {
-    color: var(--white);
-    background: var(--color-bg);
-    opacity: 1;
-    display: inline-block;
-    vertical-align: sub;
-    font-family: Icons;
-    font-size: 1.2em;
-    padding-left: 2px;
-    padding-right: 2px;
-}
 
-input[type=checkbox]:disabled:before,
-input[type=radio]:disabled:before {
-    color: gray;
-}
+    &::before {
+        color: var(--white);
+        background: var(--color-bg);
+        opacity: 1;
+        display: inline-block;
+        vertical-align: sub;
+        font-family: Icons;
+        font-size: 1.2em;
+        padding-left: 2px;
+        padding-right: 2px;
 
-input[type=checkbox]:not(:disabled):hover::before,
-input[type=radio]:not(:disabled):hover::before {
-    color: var(--theme-1-lighter);
+    }
+
+    &:disabled::before {
+        color: gray;
+    }
+
+    &:not(:disabled):hover::before {
+        color: var(--theme-1-lighter);
+    }
 }
 
 input:not(.switch)[type=checkbox]::before {
@@ -126,15 +125,15 @@ input[type=color] {
     height: 20px;
     border: none;
     background: none;
-}
 
-input[type=color]::-webkit-color-swatch-wrapper {
-    padding: 0;
-}
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
 
-input[type=color]::-webkit-color-swatch {
-    border: 2px solid gray;
-    border-radius: 3px;
+    &::-webkit-color-swatch {
+        border: 2px solid gray;
+        border-radius: 3px;
+    }
 }
 
 
@@ -183,82 +182,82 @@ input[type=range] {
     margin: 10px;
     background: transparent;
     border: none;
-}
 
-input[type=range]:focus {
-    outline: none;
-}
+    &:focus {
+        outline: none;
+    }
 
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 2px;
-    cursor: pointer;
-    background: var(--white);
-    border-radius: 0px;
-}
+    &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 2px;
+        cursor: pointer;
+        background: var(--white);
+        border-radius: 0;
+    }
 
-input[type=range]::-webkit-slider-thumb {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: var(--active-color);
-    -webkit-appearance: none;
-    margin-top: -5px;
-}
+    &::-webkit-slider-thumb {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: var(--active-color);
+        -webkit-appearance: none;
+        margin-top: -5px;
+    }
 
-input[type=range]::-webkit-slider-thumb:hover {
-    background: var(--hover-color);
-}
+    &::-webkit-slider-thumb:hover {
+        background: var(--hover-color);
+    }
 
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: var(--white);
-}
+    &:focus::-webkit-slider-runnable-track {
+        background: var(--white);
+    }
 
-input[type=range]::-moz-range-track {
-    width: 100%;
-    height: 2px;
-    background: var(--white);
-}
+    &::-moz-range-track {
+        width: 100%;
+        height: 2px;
+        background: var(--white);
+    }
 
-input[type=range]::-moz-range-thumb {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: var(--active-color);
-}
+    &::-moz-range-thumb {
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: var(--active-color);
+    }
 
-input[type=range]::-moz-range-thumb:hover {
-    background: var(--hover-color);
-}
+    &::-moz-range-thumb:hover {
+        background: var(--hover-color);
+    }
 
-input[type=range]::-ms-track {
-    width: 100%;
-    height: 2px;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-}
+    &::-ms-track {
+        width: 100%;
+        height: 2px;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
 
-input[type=range]::-ms-fill-lower,
-input[type=range]::-ms-fill-upper {
-    background: var(--white);
-}
+    &::-ms-fill-lower,
+    &::-ms-fill-upper {
+        background: var(--white);
+    }
 
-input[type=range]::-ms-thumb {
-    margin-top: 1px;
-    height: 12px;
-    width: 12px;
-    border-radius: 50px;
-    background: var(--active-color);
-}
+    &::-ms-thumb {
+        margin-top: 1px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50px;
+        background: var(--active-color);
+    }
 
-input[type=range]::-ms-thumb:hover {
-    background: var(--hover-color);
-}
+    &::-ms-thumb:hover {
+        background: var(--hover-color);
+    }
 
-input[type=range][orient=vertical] {
-    -webkit-appearance: inherit;
-    transform: rotate(90deg) translateY(50%);
+    &[orient=vertical] {
+        -webkit-appearance: inherit;
+        transform: rotate(90deg) translateY(50%);
+    }
 }
 
 
@@ -268,7 +267,7 @@ meter::-webkit-meter-bar {
     border: 2px solid gray;
     border-radius: 3px;
     background: var(--black);
-    height: 16px!important;
+    height: 16px !important;
     margin-top: -5px;
 }
 
@@ -294,28 +293,31 @@ progress {
     -webkit-appearance: none;
     border: 2px solid gray;
     border-radius: 3px;
-}
 
-progress::-webkit-progress-bar {
-    animation: progress 2s linear infinite;
-    -webkit-animation: progress 2s linear infinite;
-    background-color: var(--black);
-    background-image: repeating-linear-gradient( 135deg, transparent, transparent 33%, #ffffff3f 33%, #ffffff3f 66%, transparent 66%);
-    background-size: 50px 25px, 100% 100%, 100% 100%;
+    &::-webkit-progress-bar {
+        animation: progress 2s linear infinite;
+        -webkit-animation: progress 2s linear infinite;
+        background-color: var(--black);
+        background-image: repeating-linear-gradient(135deg, transparent, transparent 33%, #ffffff3f 33%, #ffffff3f 66%, transparent 66%);
+        background-size: 50px 25px, 100% 100%, 100% 100%;
+    }
+
+    &::-webkit-progress-value {
+        background: blue;
+    }
 }
 
 progress:not([value])::-webkit-progress-bar {
     background-color: blue;
 }
 
-progress::-webkit-progress-value {
-    background: blue;
-}
+
 
 @keyframes progress {
     from {
         background-position: 0 0;
     }
+
     to {
         background-position: 50px 0;
     }

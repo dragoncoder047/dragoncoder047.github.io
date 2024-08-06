@@ -4,7 +4,7 @@ Modified: 2024-02-02
 
 Just so you know who you are dealing with...
 
-I am a high school student. I enjoy programming in Python, C/C++, and Javascript, as well as reverse-engineering, hacking, and building robots, especially the electronics side of stuff.
+I am a college student. I enjoy programming in Python, C/C++, and Javascript, as well as reverse-engineering, hacking, and building robots, especially the electronics side of stuff.
 
 ## Projects I work on
 
@@ -20,4 +20,4 @@ Cellular automata is one of my interests, and while I don't spend much time on i
 
 #### Look Mom, I have a YouTube channel! (jumps up and down)
 
-[My YouTube channel](https://youtube.com/@dragoncoder047)
+[My YouTube channel](https://youtube.com/@dragoncoder047). Mostly electronics, LEGO machines, and goofing around with friends.

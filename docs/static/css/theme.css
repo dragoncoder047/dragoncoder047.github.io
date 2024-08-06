@@ -17,7 +17,7 @@
     --theme-4-darker: #a3a;
     --color-heading: var(--theme-1-lightest);
     --color-link: var(--theme-2);
-    --color-link-visited: var(--theme-1);
+    --color-link-visited: var(--theme-1-lightest);
     --color-open-tab: var(--theme-3);
     --color-footer: var(--darkgray);
     --font-heading: "Open Sans", sans-serif;

@@ -61,16 +61,16 @@ header {
 #sitename-text {
     display: flex;
     flex-direction: column;
-}
 
-#sitename-text h1,
-#sitename-text h2 {
-    font-size: 1.5em;
-    padding-left: 0.5em;
-}
+    & h1,
+    & h2 {
+        font-size: 1.5em;
+        padding-left: 0.5em;
+    }
 
-#sitename-text h2 {
-    font-size: 1em;
+    & h2 {
+        font-size: 1em;
+    }
 }
 
 main {
@@ -85,6 +85,14 @@ main {
 footer {
     color: var(--color-footer);
     text-align: center;
+
+    & a,
+    & a:visited,
+    & a::after {
+        color: inherit;
+        text-decoration-color: inherit;
+        cursor: pointer;
+    }
 }
 
 h1,
@@ -121,20 +129,20 @@ blockquote {
     border: 1px solid gray;
     font-style: italic;
     font-size: 70%;
-}
 
-#extras div,
-#extras ul {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
+    & div,
+    & ul {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
 
-#extras li {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none !important;
-    padding: 0.25em;
+    & li {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none !important;
+        padding: 0.25em;
+    }
 }
 
 
@@ -142,14 +150,12 @@ blockquote {
 
 a {
     color: inherit;
-    --ul-color: var(--color-link);
-    text-decoration: solid var(--ul-color) underline;
-}
+    text-decoration: underline;
+    text-decoration-color: var(--color-link);
 
-a:visited {
-    --ul-color: var(--color-link-visited);
-    /* repeating it because Chrome is stupid */
-    text-decoration: solid var(--ul-color) underline;
+    &:visited {
+        text-decoration-color: var(--color-link-visited);
+    }
 }
 
 
@@ -160,15 +166,6 @@ a[href^="http"]:not([href*="dragoncoder047.github.io"])::after {
     content: "open_in_new";
     color: var(--theme-3-darker);
 }
-
-footer a,
-footer a:visited,
-footer a::after {
-    color: inherit;
-    --ul-color: inherit;
-    cursor: pointer;
-}
-
 
 /* code */
 
