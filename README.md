@@ -14,6 +14,8 @@ That way, all the makefile has to do is run `build.py`. (It's actually a bit mor
 
 `markdown/` contains the source files, `docs/` contains the output HTML. I would call it something different, but Github Pages only let you deploy from either the root or `docs/`, and I got tired of all the output HTML cluttering up the root, so `docs/` it is.
 
-## Images
+## Copyright/License
 
-The images in `markdown/images` (and the copies in `docs/images`) are copyright &copy; 2023-present me, and may not be used without either permission or attribution.
+The images in `markdown/images` (and the copies in `docs/images`) are released under the Creative Commons CC BY-NC-SA 4.0 license.
+
+All code is released under the GNU General Public License v3.0.
