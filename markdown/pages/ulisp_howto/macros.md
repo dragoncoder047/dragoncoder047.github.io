@@ -91,9 +91,9 @@ The Lisp form `:::lisp defmacro` allows for more powerful syntactic constructs. 
     form = macroexpand(form, env);
     ```
 
-## Part 2 - Stack overflow checking'
+## Part 2 - Stack overflow checking
 
-The macro evaluator is recursive and I couldn't find a way to do it with tail-call elimination, so stack overflow checks have to be added. The nice part is that they also prevent normal functions from exploding the stack (like a naive `:::lisp (let ((foo (lambda (f) (f f) (f f)))) (foo foo))` would).
+The macro evaluator is recursive and I couldn't find a way to do it with tail-call elimination, so a C stack overflow check has to be added. The nice part is that in addition to recursive macros, it also prevents normal functions from exploding the stack (like a naive `:::lisp (let ((foo (lambda (f) (f f) (f f)))) (foo foo))` would).
 
 3. Add a global variable:
 

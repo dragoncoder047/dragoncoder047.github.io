@@ -151,8 +151,8 @@ if (symbolp(form)) {
 form = macroexpand(form, env);</code></pre>
 </li>
 </ol>
-<h2 id="part-2-stack-overflow-checking">Part 2 - Stack overflow checking&rsquo;</h2>
-<p>The macro evaluator is recursive and I couldn&rsquo;t find a way to do it with tail-call elimination, so stack overflow checks have to be added. The nice part is that they also prevent normal functions from exploding the stack (like a naive <code class="language-lisp highlight">(let ((foo (lambda (f) (f f) (f f)))) (foo foo))</code> would).</p>
+<h2 id="part-2-stack-overflow-checking">Part 2 - Stack overflow checking</h2>
+<p>The macro evaluator is recursive and I couldn&rsquo;t find a way to do it with tail-call elimination, so a C stack overflow check has to be added. The nice part is that in addition to recursive macros, it also prevents normal functions from exploding the stack (like a naive <code class="language-lisp highlight">(let ((foo (lambda (f) (f f) (f f)))) (foo foo))</code> would).</p>
 <ol start="3">
 <li>
 <p>Add a global variable:</p>
