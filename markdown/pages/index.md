@@ -8,7 +8,7 @@ I am a college student. I enjoy programming in Python, C/C++, and Javascript, as
 
 ## Projects I work on
 
-[Here is a list of all the major projects I have going right now.]({filename}projects.md)
+[Click here for a list of all the major projects I have going right now.]({filename}projects.md)
 
 ## Stuff I've written
 
