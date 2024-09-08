@@ -83,7 +83,11 @@ After several false starts with older versions of uLisp and writing my own langu
 
 Phoo was a little scripting language I invented based on the principle that everything is a stack. I abandoned it in May 2023 after it proved extremely difficult to maintain. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo, when it worked, was a whole lot faster than Quackery and the code is impressively concise compared to the equivalent Javascript or Python; but unfortunately when it broke, it gave sone of the most cryptic and unhelpful error messages of any programming language I've ever seen, second only to a C++ coredump -- not to mention it's a pain to debug in the Javascript debugger. (You learn from your failures!) I haven't used Phoo "in" anything, and probably never will, and the shell is broken, but if anyone ever gets it working again Phoo has loads of possibilities of what can be done because it is just a general purpose programming language. Javascript source code [on Github](https://github.com/dragoncoder047/phoo). Phoo's [documentation](/phoo/docs/index.html) is a bit primitive, cobbled together by a little Python script, but everything that needs to be documented is documented relatively thouroughly on that link for the outward-facing Phoo words, and as JSDoc comments for Phoo's internals.
 
-## Thuepaste
+---
+
+## Miscallaneous
+
+### Thuepaste
 
 <!-- cSpell: ignore Thue -->
 
