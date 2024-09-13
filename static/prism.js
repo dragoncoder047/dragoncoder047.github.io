@@ -3458,7 +3458,7 @@ Prism.languages.python3 = Prism.languages.python;
 	var BRACE_ALIAS_MAP = {
 		'${': '{', // JS template punctuation (e.g. `foo ${bar + 1}`)
         	'do': '[', 'end': ']', // Phoo blocks
-		"'(": '(', '`(': '(', // Lisp quotes and quasiquotes
+		"'(": '(', '`(': '(', ',(': '(', // Lisp quotes and quasiquotes
 	};
 
 	var LEVEL_WARP = 12;
