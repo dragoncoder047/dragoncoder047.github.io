@@ -42,7 +42,7 @@ The backquote special form and its reader-macro version are incredibly useful in
 
     object* process_backquote (object* arg, size_t level = 0) {
         // "If ast is a map or a symbol, return a list containing: the "quote" symbol, then ast."
-        if (arg == NULL || atom(arg)) return quoteit(QUOTE, arg);
+        if (arg == NULL || atom(arg)) return quote(arg);
         // "If ast is a list starting with the "unquote" symbol, return its second element."
         if (listp(arg) && symbolp(first(arg))) {
             switch (builtin(first(arg)->name)) {

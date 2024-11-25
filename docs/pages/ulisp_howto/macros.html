@@ -18,14 +18,14 @@
 
     <meta property="og:site_name" content="dragoncoder047&rsquo;s site" />
     <meta property="og:title" content="Adding Macros to uLisp" />
-    <meta property="og:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Note that this does not include backquote support – there is a separate page for that. EDIT: In response to all of the confusion I seem to have caused by posting this error-ridden guide, I have done my best to correct …" />
+    <meta property="og:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Note that this does not include backquote support – there is a separate page for that. EDIT Feb. 28: In response to all of the confusion I seem to have caused by posting this error-ridden guide, I have done my best …" />
     <meta property="og:image" content="/images/yazani/yazani_1_extracted_bg.png" />
     <meta property="og:type" content="page" />
     <meta property="og:url" content="https://dragoncoder047.github.io/pages/ulisp_howto/macros.html" />
     <meta property="og:locale" content="['']" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="dragoncoder047&rsquo;s site - Adding Macros to uLisp" />
-    <meta name="twitter:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Note that this does not include backquote support – there is a separate page for that. EDIT: In response to all of the confusion I seem to have caused by posting this error-ridden guide, I have done my best to correct …" />
+    <meta name="twitter:description" content="The Lisp form defmacro allows for more powerful syntactic constructs. Note that this does not include backquote support – there is a separate page for that. EDIT Feb. 28: In response to all of the confusion I seem to have caused by posting this error-ridden guide, I have done my best …" />
     <meta name="twitter:image" content="/images/yazani/yazani_1_extracted_bg.png" />
             <!-- PrismJS -->
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
@@ -75,9 +75,27 @@
 
 
     <p>The Lisp form <code class="language-lisp highlight">defmacro</code> allows for more powerful syntactic constructs. Note that this does not include backquote support &ndash; there is a <a href="https://dragoncoder047.github.io/pages/ulisp_howto/backquote.html">separate page</a> for that.</p>
-<p><em>EDIT: In response to <a href="http://forum.ulisp.com/t/what-would-you-like-to-see-in-ulisp-in-2024/1350/36">all of the confusion</a> I seem to have caused by posting this error-ridden guide, I have done my best to correct all of the errors. Hopefully, now it should be possible to to directly follow this guide from a vanilla uLisp to be able to add macros. I apologize for any confusion, compiler problems, and crashes caused by my sloppiness.</em></p>
+<p><em>EDIT Feb. 28: In response to <a href="http://forum.ulisp.com/t/what-would-you-like-to-see-in-ulisp-in-2024/1350/36">all of the confusion</a> I seem to have caused by posting this error-ridden guide, I have done my best to correct all of the errors. Hopefully, now it should be possible to to directly follow this guide from a vanilla uLisp to be able to add macros. I apologize for any confusion, compiler problems, and crashes caused by my sloppiness.</em></p>
+<p><em>EDIT Nov. 24: again, corrected some more errors&hellip; my sincerest apologies for this undue insanity!</em></p>
 <h2 id="part-1-the-functions">Part 1 - the Functions</h2>
 <ol>
+<li>
+<p>Add the <code>MACRO</code> sentinel symbol, right after <code>LAMBDA</code> in the table and builtins:</p>
+<pre class="highlight language-cpp"><code>const char stringmacro[] = "macro";</code></pre>
+<pre class="highlight language-cpp"><code>const char docmacro[] = "(macro (parameter*) form*)\n"
+"Creates an unnamed lambda-macro with parameters. The body is evaluated with the parameters as local variables\n"
+"whose initial values are defined by the values of the forms after the macro form;\n"
+"the resultant Lisp code returned is then evaluated again, this time in the scope of where the macro was called.";</code></pre>
+<pre class="highlight language-cpp" data-line="2"><code>{ string8, NULL, 0017, doc8 }, // string8 should be "lambda"
+{ stringmacro, NULL, 0017, docmacro },
+{ string9, NULL, 0017, doc9 },</code></pre>
+<pre class="highlight language-cpp" data-line="4"><code>enum builtins: builtin_t { NIL, TEE, NOTHING, OPTIONAL,
+FEATURES, INITIALELEMENT, ELEMENTTYPE,
+TEST, EQ, BIT, AMPREST, LAMBDA, 
+MACRO,
+LET, LETSTAR,
+/* rest of them omitted for brevity */ }</code></pre>
+</li>
 <li>
 <p>Add these functions and their table entries:</p>
 <pre class="highlight language-cpp"><code>bool is_macro_call (object* form, object* env) {
@@ -126,18 +144,30 @@ object* macroexpand (object* form, object* env) {
 
 object* fn_macroexpand (object* args, object* env) {
     return macroexpand(first(args), env);
+}
+
+object* sp_defmacro (object* args, object* env) {
+    (void) env;
+    object* var = first(args);
+    if (!symbolp(var)) error(notasymbol, var);
+    object* val = cons(bsymbol(MACRO), cdr(args));
+    object* pair = value(var-&gt;name, GlobalEnv);
+    if (pair != NULL) cdr(pair) = val;
+    else push(cons(var, val), GlobalEnv);
+    return var;
 }</code></pre>
-<pre class="highlight language-cpp"><code>const char stringbackquote[] PROGMEM = "backquote";
-const char stringunquote[] PROGMEM = "unquote";
-const char stringuqsplicing[] PROGMEM = "unquote-splicing";</code></pre>
-<pre class="highlight language-cpp"><code>const char docmacro[] PROGMEM = "(macro (parameter*) form*)\n"
-"Creates an unnamed lambda-macro with parameters. The body is evaluated with the parameters as local variables\n"
-"whose initial values are defined by the values of the forms after the macro form;\n"
-"the resultant Lisp code returned is then evaluated again, this time in the scope of where the macro was called.";
-const char docdefmacro[] PROGMEM = "(defmacro name (parameters) form*)\n"
-"Defines a syntactic macro.";</code></pre>
-<pre class="highlight language-cpp"><code>{ stringmacro, NULL, 0017, docmacro },
-{ stringdefmacro, sp_defmacro, 0327, docdefmacro },
+<pre class="highlight language-cpp"><code>const char stringdefmacro[] = "defmacro";
+const char stringmacroexpand1[] = "macroexpand-1";
+const char stringmacroexpand[] = "macroexpand";</code></pre>
+<pre class="highlight language-cpp"><code>const char docdefmacro[] PROGMEM = "(defmacro name (parameters) form*)\n"
+"Defines a syntactic macro. No attempt is made to make it a "
+"hygienic macro.";
+const char docmacroexpand1[] = "(macroexpand-1 'form)\n"
+"If the form represents a call to a macro, expands the macro once and returns the expanded code.";
+const char docmacroexpand[] = "(macroexpand 'form)\n"
+"Repeatedly applies (macroexpand-1) until the form no longer represents a call to a macro,\n"
+"then returns the new form.";</code></pre>
+<pre class="highlight language-cpp"><code>{ stringdefmacro, sp_defmacro, 0327, docdefmacro },
 { stringmacroexpand1, fn_macroexpand1, 0111, docmacroexpand1 },
 { stringmacroexpand, fn_macroexpand, 0111, docmacroexpand },</code></pre>
 </li>

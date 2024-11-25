@@ -2,11 +2,41 @@ Title: Adding Macros to uLisp
 
 The Lisp form `:::lisp defmacro` allows for more powerful syntactic constructs. Note that this does not include backquote support -- there is a [separate page]({filename}backquote.md) for that.
 
-*EDIT: In response to [all of the confusion](http://forum.ulisp.com/t/what-would-you-like-to-see-in-ulisp-in-2024/1350/36) I seem to have caused by posting this error-ridden guide, I have done my best to correct all of the errors. Hopefully, now it should be possible to to directly follow this guide from a vanilla uLisp to be able to add macros. I apologize for any confusion, compiler problems, and crashes caused by my sloppiness.*
+*EDIT Feb. 28: In response to [all of the confusion](http://forum.ulisp.com/t/what-would-you-like-to-see-in-ulisp-in-2024/1350/36) I seem to have caused by posting this error-ridden guide, I have done my best to correct all of the errors. Hopefully, now it should be possible to to directly follow this guide from a vanilla uLisp to be able to add macros. I apologize for any confusion, compiler problems, and crashes caused by my sloppiness.*
+
+*EDIT Nov. 24: again, corrected some more errors... my sincerest apologies for this undue insanity!*
 
 ## Part 1 - the Functions
 
-1. Add these functions and their table entries:
+1. Add the `MACRO` sentinel symbol, right after `LAMBDA` in the table and builtins:
+
+    ```cpp
+    const char stringmacro[] = "macro";
+    ```
+
+    ```cpp
+    const char docmacro[] = "(macro (parameter*) form*)\n"
+    "Creates an unnamed lambda-macro with parameters. The body is evaluated with the parameters as local variables\n"
+    "whose initial values are defined by the values of the forms after the macro form;\n"
+    "the resultant Lisp code returned is then evaluated again, this time in the scope of where the macro was called.";
+    ```
+
+    ```{.cpp data-line="2"}
+    { string8, NULL, 0017, doc8 }, // string8 should be "lambda"
+    { stringmacro, NULL, 0017, docmacro },
+    { string9, NULL, 0017, doc9 },
+    ```
+
+    ```{.cpp data-line="4"}
+    enum builtins: builtin_t { NIL, TEE, NOTHING, OPTIONAL,
+    FEATURES, INITIALELEMENT, ELEMENTTYPE,
+    TEST, EQ, BIT, AMPREST, LAMBDA, 
+    MACRO,
+    LET, LETSTAR,
+    /* rest of them omitted for brevity */ }
+    ```
+
+2. Add these functions and their table entries:
 
     ```cpp
     bool is_macro_call (object* form, object* env) {
@@ -56,31 +86,43 @@ The Lisp form `:::lisp defmacro` allows for more powerful syntactic constructs. 
     object* fn_macroexpand (object* args, object* env) {
         return macroexpand(first(args), env);
     }
+
+    object* sp_defmacro (object* args, object* env) {
+        (void) env;
+        object* var = first(args);
+        if (!symbolp(var)) error(notasymbol, var);
+        object* val = cons(bsymbol(MACRO), cdr(args));
+        object* pair = value(var->name, GlobalEnv);
+        if (pair != NULL) cdr(pair) = val;
+        else push(cons(var, val), GlobalEnv);
+        return var;
+    }
     ```
 
     ```cpp
-    const char stringbackquote[] PROGMEM = "backquote";
-    const char stringunquote[] PROGMEM = "unquote";
-    const char stringuqsplicing[] PROGMEM = "unquote-splicing";
+    const char stringdefmacro[] = "defmacro";
+    const char stringmacroexpand1[] = "macroexpand-1";
+    const char stringmacroexpand[] = "macroexpand";
     ```
 
     ```cpp
-    const char docmacro[] PROGMEM = "(macro (parameter*) form*)\n"
-    "Creates an unnamed lambda-macro with parameters. The body is evaluated with the parameters as local variables\n"
-    "whose initial values are defined by the values of the forms after the macro form;\n"
-    "the resultant Lisp code returned is then evaluated again, this time in the scope of where the macro was called.";
     const char docdefmacro[] PROGMEM = "(defmacro name (parameters) form*)\n"
-    "Defines a syntactic macro.";
+    "Defines a syntactic macro. No attempt is made to make it a "
+    "hygienic macro.";
+    const char docmacroexpand1[] = "(macroexpand-1 'form)\n"
+    "If the form represents a call to a macro, expands the macro once and returns the expanded code.";
+    const char docmacroexpand[] = "(macroexpand 'form)\n"
+    "Repeatedly applies (macroexpand-1) until the form no longer represents a call to a macro,\n"
+    "then returns the new form.";
     ```
 
     ```cpp
-    { stringmacro, NULL, 0017, docmacro },
     { stringdefmacro, sp_defmacro, 0327, docdefmacro },
     { stringmacroexpand1, fn_macroexpand1, 0111, docmacroexpand1 },
     { stringmacroexpand, fn_macroexpand, 0111, docmacroexpand },
     ```
 
-2. Wire up the evaluator to expand the macros:
+3. Wire up the evaluator to expand the macros:
 
     ```{.cpp data-line="6"}
     // in object* eval (object* form, object* env)
