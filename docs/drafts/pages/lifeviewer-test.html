@@ -32,6 +32,7 @@
 <script src="/static/prism.js" data-autoloader-path="https://cdn.jsdelivr.net/npm/prismjs@v1.x/components/"></script>
 <script src="/static/prism-runbutton.js"></script>
 <script src="/phoo/prism-phoo.js"></script>        <!-- /PrismJS -->
+
         <!-- Katex -->
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.css" type="text/css" />
@@ -53,20 +54,26 @@
         );
     });
 </script>        <!-- /Katex -->
+
+
         <!-- Lifeviewer -->
-<meta name="LifeViewer" content="lifeviewer textarea" />
+<meta name="LifeViewer" content="lifeviewer textarea limit" />
 <script src="/static/lv-plugin.js"></script>
 <style>
 .lifeviewer textarea {
     position: absolute;
-    top: -1000px;
+    top: 1000vh;
 }
 
 .lifeviewer canvas {
     margin-left: auto;
     margin-right: auto;
+    display: block;
 }
 </style>        <!-- /Lifeviewer -->
+
+
+
 
     </head>
 
