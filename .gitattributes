@@ -1,5 +1,5 @@
 docs/** linguist-generated
-static/lv-lugin.js linguist-vendored
+static/lv-plugin.js linguist-vendored
 static/prism.js linguist-vendored
 static/css/pygments_orig.css linguist-vendored
 static/css/prism_orig.css linguist-vendored
