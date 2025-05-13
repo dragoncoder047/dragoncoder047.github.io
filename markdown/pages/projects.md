@@ -15,7 +15,7 @@ In January 2025 I found an old cheap 1/24 scale toy RC car I had gotten from som
 
 * [YouTube video 1 (converter board)](https://youtube.com/watch?v=mR6eZbIb-GU&si=0jpZpAx9GqCHcuqC)
 * [YouTube video 2 (integrated electronics)](https://youtube.com/watch?v=lI0AvOpP5sQ&si=QdZHMJufsYyxe6Dc)
-* [Instagram post (circuit diagram)](https://www.instagram.com/p/DGixxIxuWf2)
+* [Instagram post (circuit diagram)](https://www.instagram.com/p/DGOJyuPuBau/)
 
 ### Roboraptor Upgrades
 
