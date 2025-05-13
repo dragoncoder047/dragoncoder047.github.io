@@ -1,10 +1,10 @@
 Title: dragoncoder047's homepage
 Save_as: index.html
-Modified: 2024-02-02
+Modified: 2025-04-07
 
 Just so you know who you are dealing with...
 
-I am a college student. I enjoy programming in Python, C/C++, and Javascript, as well as reverse-engineering, hacking, and building robots, especially the electronics side of stuff.
+I am a college student. I enjoy programming in Python, C, C++, and Javascript/Typescript, as well as reverse-engineering, hacking, and building robots, especially the electronics side of stuff.
 
 ## Projects I work on
 
@@ -20,4 +20,4 @@ Cellular automata is one of my interests, and while I don't spend much time on i
 
 [My YouTube channel](https://youtube.com/@dragoncoder047). Mostly electronics, LEGO machines, and goofing around with friends. These are longer videos of what I'm more proud of. Occasionally a "hey, this is cool" type video gets uploaded but not too often.
 
-[My Instagram profile](https://www.instagram.com/dragoncoder047/). There isn't much there yet but I intend to use this for sharing screenshots and photos of in-progress projects that aren't at the point where I would make a blog post or Youtube video about it. I am also on [Threads](https://www.threads.net) using the [same username](https://www.threads.net/@dragoncoder047).
+[My Instagram profile](https://www.instagram.com/dragoncoder047/). There isn't much there yet but I intend to use this for sharing screenshots and photos of in-progress projects that aren't at the point where I would make a blog post or Youtube video about it. I am also on [Threads](https://www.threads.net/@dragoncoder047).
