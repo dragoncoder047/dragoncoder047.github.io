@@ -68,7 +68,7 @@ In late June 2022 I had the idea to try and create music from Langton's Ant and 
 
 *Status: Complete, update in progress*
 
-In late September 2022 I was fooling around with the PCB's of the Armdroid (see above) and wanted to make circuit diagrams. I am not trained in and major EDA software like KiCad, and none I know of run in a web browser at any rate, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I wanted it to, so I wrote my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (such as my blog). There is also a CLI program for rendering standalone images.
+In late September 2022 I was fooling around with the PCB's of the Armdroid (see above) and wanted to make circuit diagrams. [KiCanvas](https://kicanvas.org) does exist, but it's extremely alpha, and anyway KiCad files are overkill for just embedding an *image* of a circuit in a web page, so I decided to do ASCII art drawings. The closest thing to what I wanted -- Jovansonlee Cesar's [svgbob](https://github.com/ivanceras/svgbob) -- doesn't quite work the way I wanted it to, so I wrote my own program. Schemascii is designed specifically for circuit diagrams, and is written in Python so it can be embedded into a Python-Markdown-rendered site (such as my blog). There is also a CLI program for rendering standalone images. And if I get around to actually writing code for it, I might even get an exporter to KiCad netlist format
 
 * [Source code](https://github.com/dragoncoder047/schemascii)
 * [Run in browser (experimental)](https://dragoncoder047.github.io/schemascii/)
@@ -95,7 +95,7 @@ A while ago (years? I forget when) I discovered the [Cognate](https://cognate-la
 
 PICKLE is my latest idea of a programming language, designed around some clever syntactic features that allows embedding of arbitrary string data inside the code, as well as user-definable custom operators and operator overloading. Currently PICKLE itself is only a concept described in a series of blog posts.
 
-* [PICKLE blog post series](/blog/pickles.html)
+* [PICKLE blog post series](/blog/2023/pickles/)
 * [Tinobsy source code](https://github.com/dragoncoder047/tinobsy/)
 
 ### uLisp fork
