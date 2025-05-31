@@ -1,5 +1,5 @@
 Title: Stuff I do
-Modified: 2025-05-13
+Modified: 2025-05-31
 
 <!-- markdownlint-disable no-emphasis-as-heading -->
 
@@ -19,7 +19,7 @@ In January 2025 I found an old cheap 1/24 scale toy RC car I had gotten from som
 
 ### Roboraptor Upgrades
 
-*Status: Work in progress*
+*Status: WIP*
 
 In 2014 my parents bought me a [Roboraptor](https://wowwee.com/roboraptor-x), and as toys go it couldn't stand up to my style of playing with it --- a few years later it broke. Not to worry -- broken toys are not trash, the're canvases for further tinkering! Since I really enjoy robotics, electronics, and programming, I took the Roboraptor apart and set a goal to cram as many new features into the original housing as I could, while taking away as little as possible of the original functions. As I have learned new things with electronics, I've been constantly revising my plans.
 
@@ -40,7 +40,7 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 ### Parasite
 
-*Status: Work in progress*
+*Status: WIP*
 
 On August 18, 2023, I dreamed up an idea for a computer game. The basis of the idea would be that the player would be accompanied by a number of non-player agents controlled by neural networks. The level could only be beaten if the non-player agents completed the goal -- the goal cannot ever be completed by the player (that would defeat the purpose of the whole game). I chose snakes as the player characters, and the result was the game Parasite. Unfortunately, I'm a terrible level designer -- there aren't any! If you have any ideas for levels please do send them my way via a github issue.
 
@@ -61,6 +61,15 @@ In late June 2022 I had the idea to try and create music from Langton's Ant and 
 ---
 
 ## Tools
+
+### Lynx
+
+*Status: Mostly usable (need more nodes)*
+
+I had this idea for a flow-based programming tool that stored the node data as a Scheme S-expression. I also decided to add a couple of other cool features to it and ended up producing some ridiculously idiotic bugs that I couldn't solve for a long time. But once I got it working I had an editor that actually gave helpful error messages (which is pretty neat) and a fairly-responsive renderer. Like a lot of the other things I have done, it's a pretty powerful engine but the data that the engine processes -- in this case, example flows -- is kind of skimpy (I am pretty good at making powerful agorithms and evaluation engines but actually using them requires a special kind of creativity that I don't really have).
+
+* [Main page](https://dragoncoder047.github.io/lynx/)
+* [Source code](https://github.com/dragoncoder047/lynx)
 
 ### Schemascii
 
@@ -100,7 +109,7 @@ PICKLE is my latest idea of a programming language, designed around some clever 
 
 ### uLisp fork
 
-*Status: Work in progress*
+*Status: WIP*
 
 I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. At the time, uLisp didn't quite work because it was difficult to add extensions, so I fooled around for a while and then settled on LIL (see below). In late March 2023 a new version of uLisp was released that makes extensions a lot easier, and so I decided I would use uLisp after all as a scripting language for my microcontroller (because it works and is well-supported) instead of LIL. In the process of working with it, I found a lot of bugs and was able to fix them, and also offer improvements, some of which have been merged upstream. And, after I got sick of the primitive Arduino serial monitor, I wrote my own Python bridge program that gives you a little nicer interaction experience when connected to a microcontroller running uLisp (although it does have a considerable number of bugs in and of itself).
 
@@ -136,7 +145,7 @@ Phoo was a little scripting language I invented based on the principle that ever
 
 <!-- cSpell: ignore Thue -->
 
-*Status: Complete*
+*Status: Complete (I guess)*
 
 For a brief spat in March 2022 I got myself obsessed with the [Thue programming language](https://en.wikipedia.org/wiki/Thue_(programming_language)) and wrote a little interpreter for it and a few demo programs, which are included along with a bunch of other demos I found on the internet. I came up with an idea for an algorithm that would determine the probability of any given Thue-machine halting, but without actually running it. Unfortunately, no matter what approach I took to trying to implement it, it either crashed, got stuck in a loop for hours, or ran out of memory. My idea seems like it would work, I just can't figure out how to implement it. Aside from making more demo programs, I don't think I'll get back to this much at all.
 

@@ -77,7 +77,7 @@
     <h1>Stuff I do</h1>
     
 
-        <p><em>Last updated: Tue 13 May 2025</em></p>
+        <p><em>Last updated: Sat 31 May 2025</em></p>
 
     <!-- markdownlint-disable no-emphasis-as-heading -->
 
@@ -93,7 +93,7 @@
 <li><a href="https://www.instagram.com/p/DGOJyuPuBau/">Instagram post (circuit diagram)</a></li>
 </ul>
 <h3 id="roboraptor-upgrades">Roboraptor Upgrades</h3>
-<p><em>Status: Work in progress</em></p>
+<p><em>Status: WIP</em></p>
 <p>In 2014 my parents bought me a <a href="https://wowwee.com/roboraptor-x">Roboraptor</a>, and as toys go it couldn&rsquo;t stand up to my style of playing with it &mdash; a few years later it broke. Not to worry &ndash; broken toys are not trash, the&rsquo;re canvases for further tinkering! Since I really enjoy robotics, electronics, and programming, I took the Roboraptor apart and set a goal to cram as many new features into the original housing as I could, while taking away as little as possible of the original functions. As I have learned new things with electronics, I&rsquo;ve been constantly revising my plans.</p>
 <ul>
 <li><a href="https://dragoncoder047.github.io/blog/2022/shifting-gears/">Blog post series</a></li>
@@ -109,7 +109,7 @@
 </ul>
 <h2 id="games">Games</h2>
 <h3 id="parasite">Parasite</h3>
-<p><em>Status: Work in progress</em></p>
+<p><em>Status: WIP</em></p>
 <p>On August 18, 2023, I dreamed up an idea for a computer game. The basis of the idea would be that the player would be accompanied by a number of non-player agents controlled by neural networks. The level could only be beaten if the non-player agents completed the goal &ndash; the goal cannot ever be completed by the player (that would defeat the purpose of the whole game). I chose snakes as the player characters, and the result was the game Parasite. Unfortunately, I&rsquo;m a terrible level designer &ndash; there aren&rsquo;t any! If you have any ideas for levels please do send them my way via a github issue.</p>
 <ul>
 <li><a href="/parasite/">Play (around with) it</a></li>
@@ -126,6 +126,13 @@
 </ul>
 <hr>
 <h2 id="tools">Tools</h2>
+<h3 id="lynx">Lynx</h3>
+<p><em>Status: Mostly usable (need more nodes)</em></p>
+<p>I had this idea for a flow-based programming tool that stored the node data as a Scheme S-expression. I also decided to add a couple of other cool features to it and ended up producing some ridiculously idiotic bugs that I couldn&rsquo;t solve for a long time. But once I got it working I had an editor that actually gave helpful error messages (which is pretty neat) and a fairly-responsive renderer. Like a lot of the other things I have done, it&rsquo;s a pretty powerful engine but the data that the engine processes &ndash; in this case, example flows &ndash; is kind of skimpy (I am pretty good at making powerful agorithms and evaluation engines but actually using them requires a special kind of creativity that I don&rsquo;t really have).</p>
+<ul>
+<li><a href="https://dragoncoder047.github.io/lynx/">Main page</a></li>
+<li><a href="https://github.com/dragoncoder047/lynx">Source code</a></li>
+</ul>
 <h3 id="schemascii">Schemascii</h3>
 <!-- cSpell: ignore Jovansonlee -->
 
@@ -154,7 +161,7 @@
 <li><a href="https://github.com/dragoncoder047/tinobsy/">Tinobsy source code</a></li>
 </ul>
 <h3 id="ulisp-fork">uLisp fork</h3>
-<p><em>Status: Work in progress</em></p>
+<p><em>Status: WIP</em></p>
 <p>I wanted to be able to embed a scripting language on an Arduino so I don&rsquo;t have to use a C compiler on another computer to reprogram it. At the time, uLisp didn&rsquo;t quite work because it was difficult to add extensions, so I fooled around for a while and then settled on LIL (see below). In late March 2023 a new version of uLisp was released that makes extensions a lot easier, and so I decided I would use uLisp after all as a scripting language for my microcontroller (because it works and is well-supported) instead of LIL. In the process of working with it, I found a lot of bugs and was able to fix them, and also offer improvements, some of which have been merged upstream. And, after I got sick of the primitive Arduino serial monitor, I wrote my own Python bridge program that gives you a little nicer interaction experience when connected to a microcontroller running uLisp (although it does have a considerable number of bugs in and of itself).</p>
 <ul>
 <li><a href="/pages/ulisp_howto.html">Patch-it-yourself installation instructions</a></li>
@@ -182,7 +189,7 @@
 <h3 id="thuepaste">Thuepaste</h3>
 <!-- cSpell: ignore Thue -->
 
-<p><em>Status: Complete</em></p>
+<p><em>Status: Complete (I guess)</em></p>
 <p>For a brief spat in March 2022 I got myself obsessed with the <a href="https://en.wikipedia.org/wiki/Thue_(programming_language)">Thue programming language</a> and wrote a little interpreter for it and a few demo programs, which are included along with a bunch of other demos I found on the internet. I came up with an idea for an algorithm that would determine the probability of any given Thue-machine halting, but without actually running it. Unfortunately, no matter what approach I took to trying to implement it, it either crashed, got stuck in a loop for hours, or ran out of memory. My idea seems like it would work, I just can&rsquo;t figure out how to implement it. Aside from making more demo programs, I don&rsquo;t think I&rsquo;ll get back to this much at all.</p>
 <ul>
 <li><a href="/thuepaste/">Try interpreter online</a></li>
