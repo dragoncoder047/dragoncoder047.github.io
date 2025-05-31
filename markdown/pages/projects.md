@@ -36,6 +36,8 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 * [Web page](/armdroid/)
 
+---
+
 ## Games
 
 ### Parasite
