@@ -3,6 +3,7 @@
 build: clean
 	./build.py
 	cp -r static/ docs/static/
+	cp -r .well-known/ docs/.well-known
 
 clean:
 	rm -rf docs/
