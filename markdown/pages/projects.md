@@ -1,5 +1,5 @@
 Title: Stuff I do
-Modified: 2025-05-31
+Modified: 2025-08-13
 
 <!-- markdownlint-disable no-emphasis-as-heading -->
 
@@ -34,31 +34,29 @@ In 2014 my parents bought me a [Roboraptor](https://wowwee.com/roboraptor-x), an
 
 In early 2022 I discovered two old Armdroid 1000's and their accessories in the back of my engineering teacher's storage closet, remnants from the days that my school taught [PLTW Computer Integrated Manufaturing](https://www.pltw.org/computer-integrated-manufacturing-course-outline). I put together a website with pictures of the robots and links to other resources I found on the Web. This site also documents my efforts to reverse-engineer the Armdroid and control it with an Arduino Uno, which were successful. I have since graduated, and no longer have access to the Armdroid, so I will not be posting any more updates to this - the only reason I haven't archived the GitHub repository is because it would disable the GitHub Pages site.
 
-* [Web page](/armdroid/)
+* [Web page](https://dragoncoder047.github.io/armdroid/)
 
 ---
 
 ## Games
 
+### Debugger
+
+*Status: In development*
+
+In July 2024 I got an idea for a puzzle platformer game with some cool mechanics and started developing it --- seriously this time, as opposed to *Parasite* (below), and using [an established game engine](https://v4000.kaplayjs.com/). Bringing this game to completion has proven more challenging than I ever imagined, and it's kind of ballooned out of control and has still not been released yet!
+
+* [Blog post series](https://dragoncoder047.github.io/blog/2024/boy-have-i-been/)
+* [Teaser video (with outdated level map)](https://youtube.com/watch?v=66vBqb_Jda4)
+
 ### Parasite
 
 *Status: WIP*
 
-On August 18, 2023, I dreamed up an idea for a computer game. The basis of the idea would be that the player would be accompanied by a number of non-player agents controlled by neural networks. The level could only be beaten if the non-player agents completed the goal -- the goal cannot ever be completed by the player (that would defeat the purpose of the whole game). I chose snakes as the player characters, and the result was the game Parasite. Unfortunately, I'm a terrible level designer -- there aren't any! If you have any ideas for levels please do send them my way via a github issue.
+I literally dreamed up the idea for this game. The basis of the idea would be that the player would be accompanied by a number of non-player agents controlled by neural networks. The level could only be beaten if the non-player agents completed the goal -- the goal cannot ever be completed by the player (that would defeat the purpose of the whole game). I chose snakes as the player characters, and the result was the game Parasite. Unfortunately, I'm a terrible level designer -- there aren't any! If you have any ideas for levels please do send them my way via a github issue.
 
-* [Play (around with) it](/parasite/)
+* [Play (around with) it](https://dragoncoder047.github.io/parasite/)
 * [Source code](https://github.com/dragoncoder047/parasite/)
-
-### Langton-Music
-
-*Status: Complete, update in progress*
-
-In late June 2022 I had the idea to try and create music from Langton's Ant and other types of two-dimensional Turing machines. The little simulator I built isn't terribly polished in terms of UI, but it works, and I actually managed to set it up so it is installable as a progressive web app. I haven't had much of a chance to play around with it.
-
-* [Play it](/langton-music/index.html)
-* [Source code](https://github.com/dragoncoder047/langton-music)
-* [Submit bug report / feature request](https://github.com/dragoncoder047/langton-music/issues/)
-* [Discuss on conwaylife.com](https://conwaylife.com/forums/viewtopic.php?f=11&p=147432)
 
 ---
 
@@ -84,6 +82,17 @@ In late September 2022 I was fooling around with the PCB's of the Armdroid (see 
 * [Source code](https://github.com/dragoncoder047/schemascii)
 * [Run in browser (experimental)](https://dragoncoder047.github.io/schemascii/)
 
+### Langton-Music
+
+*Status: Complete, update in progress*
+
+In late June 2022 I had the idea to try and create music from Langton's Ant and other types of two-dimensional Turing machines. The little simulator I built isn't terribly polished in terms of UI, but it works, and I actually managed to set it up so it is installable as a progressive web app. I haven't had much of a chance to play around with it.
+
+* [Play it](https://dragoncoder047.github.io/langton-music/index.html)
+* [Source code](https://github.com/dragoncoder047/langton-music)
+* [Submit bug report / feature request](https://github.com/dragoncoder047/langton-music/issues/)
+* [Discuss on conwaylife.com](https://conwaylife.com/forums/viewtopic.php?f=11&p=147432)
+
 ---
 
 ## Programming languages
@@ -106,7 +115,7 @@ A while ago (years? I forget when) I discovered the [Cognate](https://cognate-la
 
 PICKLE is my latest idea of a programming language, designed around some clever syntactic features that allows embedding of arbitrary string data inside the code, as well as user-definable custom operators and operator overloading. Currently PICKLE itself is only a concept described in a series of blog posts.
 
-* [PICKLE blog post series](/blog/2023/pickles/)
+* [PICKLE blog post series](https://dragoncoder047.github.io/blog/2023/pickles/)
 * [Tinobsy source code](https://github.com/dragoncoder047/tinobsy/)
 
 ### uLisp fork
@@ -115,7 +124,7 @@ PICKLE is my latest idea of a programming language, designed around some clever 
 
 I wanted to be able to embed a scripting language on an Arduino so I don't have to use a C compiler on another computer to reprogram it. At the time, uLisp didn't quite work because it was difficult to add extensions, so I fooled around for a while and then settled on LIL (see below). In late March 2023 a new version of uLisp was released that makes extensions a lot easier, and so I decided I would use uLisp after all as a scripting language for my microcontroller (because it works and is well-supported) instead of LIL. In the process of working with it, I found a lot of bugs and was able to fix them, and also offer improvements, some of which have been merged upstream. And, after I got sick of the primitive Arduino serial monitor, I wrote my own Python bridge program that gives you a little nicer interaction experience when connected to a microcontroller running uLisp (although it does have a considerable number of bugs in and of itself).
 
-* [Patch-it-yourself installation instructions](/pages/ulisp_howto.html)
+* [Patch-it-yourself installation instructions](https://dragoncoder047.github.io/pages/ulisp_howto.html)
 * [Full source code](https://github.com/dragoncoder047/ulisp-esp32)
 
 ### LILduino
@@ -137,7 +146,7 @@ After several false starts with older versions of uLisp and writing my own langu
 Phoo was a little scripting language I invented based on the principle that everything is a stack. I abandoned it in May 2023 after it proved extremely difficult to maintain. Phoo started as a Javascript port of another scripting language called [Quackery](https://github.com/GordonCharlton/Quackery), but took a left turn early on in development and is nothing like Quackery anymore. Phoo, when it worked, was a whole lot faster than Quackery and the code is impressively concise compared to the equivalent Javascript or Python; but unfortunately when it broke, it gave sone of the most cryptic and unhelpful error messages of any programming language I've ever seen, second only to a C++ coredump -- not to mention it's a pain to debug in the Javascript debugger. (You learn from your failures!) I haven't used Phoo "in" anything, and probably never will, and the shell is broken, but if anyone ever gets it working again Phoo has loads of possibilities of what can be done because it is just a general purpose programming language.
 
 * [Source code](https://github.com/dragoncoder047/phoo)
-* [Documentation](/phoo/docs/index.html)
+* [Documentation](https://dragoncoder047.github.io/phoo/docs/index.html)
 
 ---
 
@@ -151,4 +160,4 @@ Phoo was a little scripting language I invented based on the principle that ever
 
 For a brief spat in March 2022 I got myself obsessed with the [Thue programming language](https://en.wikipedia.org/wiki/Thue_(programming_language)) and wrote a little interpreter for it and a few demo programs, which are included along with a bunch of other demos I found on the internet. I came up with an idea for an algorithm that would determine the probability of any given Thue-machine halting, but without actually running it. Unfortunately, no matter what approach I took to trying to implement it, it either crashed, got stuck in a loop for hours, or ran out of memory. My idea seems like it would work, I just can't figure out how to implement it. Aside from making more demo programs, I don't think I'll get back to this much at all.
 
-* [Try interpreter online](/thuepaste/)
+* [Try interpreter online](https://dragoncoder047.github.io/thuepaste/)
