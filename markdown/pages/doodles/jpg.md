@@ -61,7 +61,7 @@ The second project was called "Beyond Confines" and it involved using the non-de
 
     %: Interesting note: I do not own a Playstation Portal nor any other handheld gaming console (Steam Deck, Nintendo Switch, etc). In the original photo I used, I was holding a book. But thanks to the magic of image editing you'll never notice that!
 
-??? info "Project reflection questions <br><br><small>(once again, I guess intended to be answered before starting, but I don't do that)</small>
+??? info "Project reflection questions <br><br><small>(once again, I guess intended to be answered before starting, but I don't do that)</small>"
     > In your own words, what is a picture plane?
 
     A picture plane is a flat object on which some scene is depicted, which itself may be depicted in another outer scene.
