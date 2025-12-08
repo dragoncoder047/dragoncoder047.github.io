@@ -75,6 +75,7 @@ MENUITEMS = (
         ("Thuepaste", f"https://{AUTHOR}.github.io/thuepaste"),
     )),
     ("uLisp Extensions", f"{SITEURL}/pages/ulisp_howto.html"),
+    ("Doodles", f"{SITEURL}/pages/doodles/index.html"),
 )
 
 DEFAULT_PAGINATION = 10
@@ -190,8 +191,6 @@ MARKDOWN = {
 
 PLUGINS = [
     # "seo",
-    # XXX 7/29/23 BS4 issues MarkupResemblesLocatorWarning
-    "pelican.plugins.share_post",
     # "sitemap",
     "pelican.plugins.related_posts",
     "minchin.pelican.plugins.nojekyll",

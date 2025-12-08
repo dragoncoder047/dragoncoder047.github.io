@@ -36,12 +36,19 @@ a[download$=".svg"]::before {
     content: "image";
 }
 
+a[download$=".c"]::before,
+a[download$=".h"]::before,
+a[download$=".cpp"]::before,
+a[download$=".hpp"]::before,
 a[download$=".py"]::before,
 a[download$=".pyx"]::before,
 a[download$=".ipy"]::before,
 a[download$=".ipynb"]::before,
+a[download$=".sh"]::before,
+a[download$=".ts"]::before,
+a[download$=".tsx"]::before,
 a[download$=".js"]::before,
-a[download$=".pinq"]::before {
+a[download$=".jsx"]::before {
     content: "code";
     color: var(--theme-4-darker);
 }
@@ -71,6 +78,7 @@ a[download$=".epub"]::before {
     content: "book";
 }
 
+a[download$=".7z"]::before,
 a[download$=".gz"]::before,
 a[download$=".tar"]::before,
 a[download$=".zip"]::before {
@@ -115,6 +123,7 @@ a[download$=".midi"]::before {
 }
 
 a[download$=".woff"]::before,
+a[download$=".otf"]::before,
 a[download$=".ttf"]::before {
     content: "text_fields";
 }

@@ -277,6 +277,12 @@ img {
     max-height: 60vh;
     max-width: 100%;
     cursor: zoom-in;
+
+    &:only-child {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 }
 
 figure.float-right,
@@ -296,7 +302,7 @@ figure.float-left {
 
 figcaption {
     font-style: italic;
-    opacity: 70%;
+    opacity: 50%;
 }
 
 

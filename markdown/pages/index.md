@@ -16,7 +16,7 @@ I am a college student. I enjoy programming in Python, C, C++, and Javascript/Ty
 
 ## The other incarnations of me
 
-Cellular automata is one of my interests, and while I don't spend much time on it I do contribute to the [conwaylife.com forums](https://conwaylife.com/forums/) under the username [**wirehead**](https://conwaylife.com/forums/memberlist.php?mode=viewprofile&u=2991).
+Cellular automata is one of my interests, and while I don't spend much time on it I do occasionally contribute to the [conwaylife.com forums](https://conwaylife.com/forums/) under the username [**wirehead**](https://conwaylife.com/forums/memberlist.php?mode=viewprofile&u=2991).
 
 [My YouTube channel](https://youtube.com/@dragoncoder047). Mostly electronics, LEGO machines, and goofing around with friends. These are longer videos of what I'm more proud of. Occasionally a "hey, this is cool" type video gets uploaded but not too often.
 
