@@ -11,7 +11,7 @@ Here's the image on the last page, out on its own:
 
 ![image]({attach}img/Untitled-1.svg)
 
-??? info "Project reflections questions"
+??? info "Project reflection questions"
     > In your own words, what does a zine allow individual artists to do?
 
     display their art along with their thoughts about it so they don't have to keep explaining it to people that ask them about the art.
