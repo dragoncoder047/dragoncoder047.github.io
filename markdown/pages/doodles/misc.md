@@ -7,6 +7,10 @@ The graphic design class I took included a unit on page layout design, for print
 
 <iframe style="width:100%;height:60vh" src="{attach}img/goober.pdf"></iframe>
 
+Here's the image on the last page, out on its own:
+
+![image]({attach}img/Untitled-1.svg)
+
 ??? info "Project reflections questions"
     > In your own words, what does a zine allow individual artists to do?
 
