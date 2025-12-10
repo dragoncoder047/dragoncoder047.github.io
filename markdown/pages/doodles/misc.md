@@ -3,7 +3,7 @@ Modified: 12-07-2025
 
 The graphic design class I took included a unit on page layout design, for print documents such as magazines and brochures. The project was to create a 4-page "zine" with text and images, for which I used some comic strips that I hadn't released publicly yet. I finished writing the text for this at 1AM the night before it was due and ended up rambling for 6 pages about myself and [the character I have created that represents me](/blog/2024/i-hope-this-sticks/#the-new-logo). I am ashamed to admit these were made in Adobe InDesign. Unfortunately neither I nor my teacher were allowed to install [Scribus](https://www.scribus.net) on the lab computers due to my college IT department's lengthy software security review process.
 
-[open PDF in hew tab]({attach}img/goober.pdf){target="_blank"}
+[open PDF in new tab]({attach}img/goober.pdf){target="_blank"}
 
 <iframe style="width:100%;height:60vh" src="{attach}img/goober.pdf"></iframe>
 
