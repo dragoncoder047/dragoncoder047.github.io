@@ -5,7 +5,7 @@ The graphic design class I took included a unit on page layout design, for print
 
 [open PDF in new tab]({attach}img/goober.pdf){target="_blank"}
 
-<iframe style="width:100%;height:60vh" src="{attach}img/goober.pdf"></iframe>
+<iframe style="display:block;width:90%;height:90vh;margin-left:auto;margin-right:auto" src="{attach}img/goober.pdf"></iframe>
 
 Here's the image on the last page, out on its own:
 
