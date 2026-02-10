@@ -1,5 +1,5 @@
 Title: Stuff I do
-Modified: 2025-08-13
+Modified: 2026-02-10
 
 <!-- markdownlint-disable no-emphasis-as-heading -->
 
@@ -46,8 +46,10 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 In July 2024 I got an idea for a puzzle platformer game with some cool mechanics and started developing it --- seriously this time, as opposed to *Parasite* (below), and using [an established game engine](https://v4000.kaplayjs.com/). Bringing this game to completion has proven more challenging than I ever imagined, and it's kind of ballooned out of control and has still not been released yet!
 
+* **NEW** - [Source code](https://github.com/dragoncoder047/aelith)
+* **NEW** - [Discord server](https://discord.gg/7yD8GekuDz)
 * [Blog post series](https://dragoncoder047.github.io/blog/2024/boy-have-i-been/)
-* [Teaser video (with outdated level map)](https://youtube.com/watch?v=66vBqb_Jda4)
+* [Teaser video (with outdated name and map)](https://youtube.com/watch?v=66vBqb_Jda4)
 
 ### Parasite
 
