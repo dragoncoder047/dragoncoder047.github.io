@@ -1,5 +1,5 @@
 Title: Stuff I do
-Modified: 2026-02-10
+Modified: 2026-04-12
 
 <!-- markdownlint-disable no-emphasis-as-heading -->
 
@@ -46,7 +46,7 @@ In early 2022 I discovered two old Armdroid 1000's and their accessories in the 
 
 In July 2024 I got an idea for a puzzle platformer game with some cool mechanics and started developing it --- seriously this time, as opposed to *Parasite* (below), and using [an established game engine](https://v4000.kaplayjs.com/). Bringing this game to completion has proven more challenging than I ever imagined, and it's kind of ballooned out of control and has still not been released yet!
 
-* **NEW** - [Source code](https://github.com/dragoncoder047/aelith)
+* **NEW** - [Source code](https://github.com/r47onfire/aelith)
 * **NEW** - [Discord server](https://discord.gg/7yD8GekuDz)
 * [Blog post series](https://dragoncoder047.github.io/blog/2024/boy-have-i-been/)
 * [Teaser video (with outdated name and map)](https://youtube.com/watch?v=66vBqb_Jda4)
@@ -98,6 +98,19 @@ In late June 2022 I had the idea to try and create music from Langton's Ant and 
 ---
 
 ## Programming languages
+
+### Backolon
+
+*Status: Under active development*
+
+After a couple of false starts making [Aelith](#aelith) in pure Typescript, I decided that I wanted to make a game engine and then make Aelith in that engine, rather than hardcoding Aelith in Javascript. That way it would be easier to mod, since unlike Java (where a Mincecraft mod can just patch the bytecode), JavaScript has no way to perform self-modification. That, and I also wanted to just have fun making a programming language.
+
+* [Website](https://backolon.js.org)
+* [Documentation](https://backolon.js.org/docs)
+* [Javascript API](https://backolon.js.org/docs/embedding)
+* [Online REPL](https://backolon.js.org/repl)
+* [Source code](https://github.com/r47onfire/backolon)
+* [Channel in the proglangdesign.net Discord server](https://discord.com/channels/530598289813536771/1485687416051335429)
 
 ### Cogni
 

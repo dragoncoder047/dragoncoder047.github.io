@@ -66,6 +66,7 @@ MENUITEMS = (
     # ("Archives", f"/archives.html"),
     ("Blog", "/blog"),
     ("Projects", "#", (
+        ("Backolon", "https://backolon.js.org/"),
         ("Armdroid", f"https://{AUTHOR}.github.io/armdroid"),
         ("Langton&rsquo;s Ant Music",
          f"https://{AUTHOR}.github.io/langton-music"),
