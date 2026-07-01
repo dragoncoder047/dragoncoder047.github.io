@@ -7,6 +7,7 @@
 @import url('fonts.css');
 @import url('nav.css');
 @import url('numbered_headings.css');
+@import url('carousel.css');
 
 html {
     font-size: 1em;
@@ -156,6 +157,17 @@ a {
     &:visited {
         text-decoration-color: var(--color-link-visited);
     }
+
+}
+
+[id] {
+    /* TODO: parameterize this with a little bit of JS to measure the <header> height */
+    scroll-margin-top: 15rem;
+
+    &:target {
+        text-shadow: 0 0 10px var(--theme-4);
+    }
+
 }
 
 

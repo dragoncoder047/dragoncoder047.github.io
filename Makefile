@@ -12,5 +12,4 @@ deps:
 	sudo python3 -m pip install -r requirements.txt
 
 testserve:
-	python3 -m http.server 8888 -b localhost -d docs &
-	open http://localhost:8888
+	python3 -m http.server 8888 -b localhost -d docs
