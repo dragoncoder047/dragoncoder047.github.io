@@ -57,7 +57,10 @@ The character and attack links provided will only work if you're an Art Fight pa
 
 #### Attacks
 
-(none yet!)
+??? "spoiler"
+
+    **Glym** - *for [Whyzer](https://www.instagram.com/whyzerderg)* <!--- cSpell: ignore glym whyzer -->
+    <img alt="0" src="{attach}img/Glym_not_Gleam.png" />
 
 ### My Characters
 
