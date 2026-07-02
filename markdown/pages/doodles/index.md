@@ -67,6 +67,8 @@ The Explorer is the player character of the game I'm making, [Aelith]({filename}
 
 <ul class="carousel"><li>
 <img alt="0" src="{attach}img/explorer_front.png" />
+</li><li>
+<img alt="1" src="{attach}img/explorer_sit.png" />
 </li></ul>
 
 #### [NIC](https://artfight.net/character/9367905.nic)
