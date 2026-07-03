@@ -59,7 +59,9 @@ The character and attack links provided will only work if you're an Art Fight pa
 
 ??? "spoiler"
 
-    **Glym** - *for [Whyzer](https://www.instagram.com/whyzerderg)* <!--- cSpell: ignore glym whyzer -->
+    [**Glym**](https://artfight.net/attack/13475386.its-glym-not-gleam) - *for [Whyzer](https://www.instagram.com/whyzerderg)* <!--- cSpell: ignore glym whyzer -->
+    {:style="text-align:center"}
+
     <img alt="0" src="{attach}img/Glym_not_Gleam.png" />
 
 ### My Characters
