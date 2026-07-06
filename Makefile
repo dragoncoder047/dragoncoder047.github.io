@@ -4,6 +4,8 @@ build: clean
 	./build.py
 	cp -r static/ docs/static/
 	cp -r .well-known/ docs/.well-known
+	cp markdown/images/pixelated.png docs/images/pixelated.png
+# TEMP HACK
 
 clean:
 	rm -rf docs/
