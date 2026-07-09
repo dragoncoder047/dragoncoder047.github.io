@@ -1,5 +1,5 @@
 Title: doodles
-Modified: 07-03-2026
+Modified: 07-09-2026
 
 <!-- markdownlint-disable no-trailing-punctuation -->
 
@@ -68,6 +68,11 @@ The character and attack links provided will only work if you're an Art Fight pa
     {:style="text-align:center"}
 
     <img alt="0" src="{attach}img/broom.png" />
+
+    [**"How Dare You Greet Me With an Advertisement"**](https://artfight.net/attack/15395392.how-dare-you-greet-me-with-an-advertisement) - featuring [the Erstwhile Commander](https://artfight.net/character/5951663.erstwhile-u-1) and [a Truster-Bot](https://artfight.net/character/9358673.truster-bot)
+    {:style="text-align:center"}
+
+    <img alt="0" src="{attach}img/ad.png" />
 
 ### My Characters
 
